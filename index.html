@@ -262,6 +262,7 @@ footer b{color:var(--ink)}
   <a class="lnk" href="#registre">Le registre</a>
   <a class="lnk" href="#regie">En régie</a>
   <a class="lnk" href="#cas">Les cas</a>
+  <a class="lnk" href="#public">Par spectateur</a>
   <a class="lnk" href="#retombees">Les retombées</a>
   <a class="lnk" href="#methode">Méthode</a>
   <button class="tgl" id="tgl" type="button" aria-label="Basculer entre le thème clair et le thème sombre" title="Thème clair ou sombre">
@@ -441,8 +442,63 @@ footer b{color:var(--ink)}
   <div class="cards" id="casescards"></div>
 </div></section>
 
+<section id="public"><div class="wrap">
+  <div class="eyebrow">06 — Le rapport de force</div>
+  <h2>Combien d'argent public par spectateur ?</h2>
+  <p class="sub">Un total ne dit rien tant qu'on ignore combien de gens il touche. Voici les six plus gros bénéficiaires pour lesquels un chiffre de public a pu être trouvé à la source, mis en face de ce que la Ville et la Métropole leur votent. L'écart va de 13 € à 97 € par personne.</p>
+
+  <div class="chartbox">
+    <h3 class="cbt">Argent public municipal et métropolitain, par spectateur</h3>
+    <div id="spectbars" style="margin-top:14px"></div>
+    <figcaption>Subvention de la <b>seule</b> Ville de Montpellier et de la <b>seule</b> Métropole, divisée par la fréquentation déclarée. La Région, l'État et le Département financent aussi ces structures et ne sont pas comptés : le coût public réel par spectateur est donc <b>supérieur</b> à chacun de ces chiffres.</figcaption>
+  </div>
+
+  <div class="scroller" style="margin-top:18px">
+    <table>
+      <thead><tr><th>Structure</th><th class="n">Subvention</th><th>Exercice</th><th class="n">Public</th><th>Nature du chiffre</th><th class="n">Par personne</th></tr></thead>
+      <tbody>
+        <tr><td>Opéra Orchestre national Montpellier</td><td class="n">13 330 k€</td><td>2022</td><td class="n">137 743</td><td>billets édités, saison 2022-2023</td><td class="n"><b>96,8 €</b></td></tr>
+        <tr><td>MO.CO. Montpellier Contemporain</td><td class="n">5 901 k€</td><td>2024</td><td class="n">≈ 100 000</td><td>visiteurs annoncés pour 2025</td><td class="n"><b>≈ 59 €</b></td></tr>
+        <tr><td>Le Printemps des Comédiens</td><td class="n">1 522 k€</td><td>2023</td><td class="n">≈ 30 000</td><td>moyenne annuelle relevée par la Chambre régionale des comptes</td><td class="n"><b>50,7 €</b></td></tr>
+        <tr><td>Montpellier Danse</td><td class="n">1 588 k€</td><td>2023</td><td class="n">≈ 32 000</td><td>spectateurs, 57 représentations, 96 % de remplissage</td><td class="n"><b>49,6 €</b></td></tr>
+        <tr><td>Festival Radio France Occitanie</td><td class="n">1 094 k€</td><td>2026</td><td class="n">75 000</td><td>45 000 billets payants + 30 000 en accès libre</td><td class="n"><b>14,6 €</b></td></tr>
+        <tr><td>Cinemed</td><td class="n">707 k€</td><td>2021</td><td class="n">55 000</td><td>entrées, 43<sup>e</sup> édition</td><td class="n"><b>12,9 €</b></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="cards" style="margin-top:18px">
+    <div class="card">
+      <span class="big">24,3 €</span>
+      <h3>Ce que change la gratuité</h3>
+      <p>Le Festival Radio France tombe à 14,6 € par personne parce qu'il compte 30 000 spectateurs en accès libre. Rapporté aux seuls 45 000 billets payants, le même festival est à 24,3 €. Les deux chiffres sont exacts : ils ne mesurent pas la même chose.</p>
+      <span class="src">Radio France, bilan de la 41<sup>e</sup> édition</span>
+    </div>
+    <div class="card">
+      <span class="big">× 7,5</span>
+      <h3>L'écart entre le premier et le dernier</h3>
+      <p>Une place d'opéra mobilise sept fois et demie plus d'argent municipal et métropolitain qu'une entrée au Cinemed. Ce n'est pas un scandale en soi — un orchestre permanent et un festival de cinéma n'ont pas la même structure de coûts. C'est une question qui mérite d'être posée en conseil.</p>
+      <span class="src">Calcul à partir des deux lignes du tableau ci-dessus</span>
+    </div>
+    <div class="card">
+      <span class="big">0 €</span>
+      <h3>Le miroir inversé</h3>
+      <p>Pour ce que la collectivité organise elle-même, c'est l'exact contraire : on connaît le public et pas le prix. 300 000 personnes pour l'installation de JR au Carré Sainte-Anne en 2025, 104 208 pour l'exposition Soulages au musée Fabre, 20 000 au Pavillon Populaire, 16 000 à l'espace Saint-Ravy. Aucun coût publié pour aucune des quatre.</p>
+      <span class="src">L'Art-vues, bilan culturel 2025 des métropoles d'Occitanie</span>
+    </div>
+  </div>
+
+  <div class="card" style="margin-top:14px">
+    <h3>Ce que ce tableau ne prouve pas</h3>
+    <p><b>Les chiffres de public ne sont pas de même nature.</b> Un billet édité n'est pas une personne : un abonné en compte plusieurs. Une entrée de festival n'est pas un spectateur distinct. Une foule en accès libre est une estimation de l'organisateur, jamais un comptage. Comparer 137 743 billets d'opéra à 55 000 entrées de festival, c'est déjà comparer deux instruments de mesure différents.</p>
+    <p><b>Les années ne coïncident pas toujours.</b> Une saison lyrique court sur deux exercices budgétaires ; le MO.CO. est ici rapproché d'une fréquentation de l'année suivante, faute de chiffre 2024 publié. Ces décalages sont indiqués ligne par ligne.</p>
+    <p><b>Et surtout, le dénominateur n'est pas le seul bon.</b> Un orchestre national forme des musiciens, produit des créations, emploie des permanents toute l'année et joue hors les murs — 23 496 spectateurs en région pour la seule saison 2022-2023, qui ne sont pas dans les 137 743 billets. Réduire une politique culturelle à un prix par siège serait aussi trompeur que de n'en publier aucun. <b>Le reproche porté ici reste le même : ces ratios devraient être calculés et publiés par la collectivité elle-même, dans chaque convention d'objectifs.</b> Ils ne le sont nulle part.</p>
+    <span class="src">Sources : rapport de saison 2022-2023 de l'Opéra Orchestre national Montpellier ; bilan de la 41<sup>e</sup> édition du Festival Radio France Occitanie Montpellier ; bilan de la 43<sup>e</sup> édition du Cinemed ; conférence de bilan de la 43<sup>e</sup> édition de Montpellier Danse (La Scène) ; rapport de la Chambre régionale des comptes sur Le Printemps des Comédiens, relayé par Le Poing ; L'Art-vues, 9 janvier 2026. Consultés le 29 octobre 2026.</span>
+  </div>
+</div></section>
+
 <section id="retombees"><div class="wrap">
-  <div class="eyebrow">06 — L'autre moitié du calcul</div>
+  <div class="eyebrow">07 — L'autre moitié du calcul</div>
   <h2>Les retombées économiques</h2>
   <p class="sub">Le coût est voté, donc connu. Le bénéfice est annoncé, donc estimé — le plus souvent par ceux qui le reçoivent. Les deux chiffres ne sont pas de même nature, et c'est là que se joue l'essentiel du débat montpelliérain sur l'argent de la culture et de l'événementiel.</p>
 
@@ -483,14 +539,14 @@ footer b{color:var(--ink)}
 </div></section>
 
 <section id="urgence"><div class="wrap">
-  <div class="eyebrow">07 — Le contre-exemple</div>
+  <div class="eyebrow">08 — Le contre-exemple</div>
   <h2>Le fonds d'urgence culturel de 2025</h2>
   <p class="sub">Douze aides, 115 000 €, publiées une par une avec le nom du bénéficiaire et celui du dispositif. La démonstration que la transparence est à portée de main.</p>
   <div class="scroller"><table id="fondstbl"></table></div>
 </div></section>
 
 <section id="methode"><div class="wrap">
-  <div class="eyebrow">08 — Comment c'est fait</div>
+  <div class="eyebrow">09 — Comment c'est fait</div>
   <h2>Méthode, limites et sources</h2>
   <p class="sub">Tout est vérifiable. Rien n'est estimé sans le dire.</p>
   <details><summary>D'où viennent les chiffres</summary><div class="bd"><p>Du jeu de données « Attribution des subventions aux associations de la Ville Montpellier et de la Métropole de Montpellier », publié en données ouvertes. Le fichier courant ne couvre plus que 2025 et 2026 ; toute la série antérieure a été déplacée dans une archive compressée de sept classeurs aux schémas incompatibles, couvrant 2011 à 2024. Les deux ont été réconciliés ligne à ligne : 810 bénéficiaires ayant reçu au moins une subvention sur un dispositif culturel.</p></div></details>
@@ -815,6 +871,30 @@ tglBtn.onclick = () => {
   draw(); drawCmp();
   areaChart(document.getElementById('envchart'), ENV, "L'enveloppe culturelle publiée par exercice, en milliers d'euros");
 };
+
+/* ── coût par spectateur ── */
+const SPECT = [
+  { n:'Opéra Orchestre national', v:96.8, c:'lieu', d:'13 330 k€ en 2022 · 137 743 billets édités' },
+  { n:'MO.CO.',                   v:59.0, c:'lieu', d:'5 901 k€ en 2024 · environ 100 000 visiteurs' },
+  { n:'Le Printemps des Comédiens',v:50.7, c:'evt',  d:'1 522 k€ en 2023 · environ 30 000 spectateurs' },
+  { n:'Montpellier Danse',        v:49.6, c:'evt',  d:'1 588 k€ en 2023 · environ 32 000 spectateurs' },
+  { n:'Festival Radio France',    v:14.6, c:'evt',  d:'1 094 k€ en 2026 · 75 000 spectateurs, gratuits compris' },
+  { n:'Cinemed',                  v:12.9, c:'evt',  d:'707 k€ en 2021 · 55 000 entrées' }
+];
+(function drawSpect(){
+  const el = document.getElementById('spectbars'); if (!el) return;
+  const max = Math.max(...SPECT.map(x => x.v));
+  el.innerHTML = '<div class="tb">' + SPECT.map(x => `<div class="tbrow">
+      <span class="tbn" title="${esc(x.d)}">${esc(x.n)}</span>
+      <span class="tbb" data-d="${esc(x.d)}"><i style="width:${(100*x.v/max).toFixed(1)}%;background:var(--${x.c})"></i></span>
+      <span class="tbv">${fr.format(x.v)} €</span><span></span>
+    </div>`).join('') + '</div>';
+  el.querySelectorAll('.tbb,.tbn').forEach((b, i) => {
+    const x = SPECT[Math.floor(i / 2)] || SPECT[i % SPECT.length];
+    b.addEventListener('mousemove', e => showTip(e, '<b>' + esc(b.dataset.d || b.title || '') + '</b>'));
+    b.addEventListener('mouseleave', hideTip);
+  });
+})();
 
 /* ── jauge de lecture ── */
 const progEl = document.getElementById('prog');
