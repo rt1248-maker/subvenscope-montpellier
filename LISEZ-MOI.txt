@@ -1,0 +1,45 @@
+SUBVEN'SCOPE MONTPELLIER
+========================
+Qui reçoit l'argent de la culture — Ville de Montpellier et Métropole,
+exercices 2015 à 2026.
+
+CONTENU DU DOSSIER
+  index.html          Le site complet. Un seul fichier, aucune dépendance
+                      installée. Seules les polices viennent de Google
+                      Fonts. 867 bénéficiaires, inscrits dans la variable
+                      DATA au début de la balise <script>.
+  donnees-sources.xlsx  Le tableau de reconstitution, feuille par feuille.
+
+AVANT PUBLICATION
+  Deux mentions légales restent à compléter dans le pied de page
+  (rechercher « [à compléter] » dans index.html) : directeur de la
+  publication et contact. L'hébergeur est déjà renseigné pour GitHub
+  Pages. Obligation de la loi n° 2004-575 du 21 juin 2004, art. 6-III.
+
+HÉBERGEMENT — GITHUB PAGES
+  1. Dépôt PUBLIC, par exemple « subvenscope-montpellier ».
+  2. « Add file » > « Upload files », déposer index.html, « Commit ».
+  3. « Settings » > « Pages » > Source « Deploy from a branch »,
+     branche « main », dossier « / (root) ». Enregistrer.
+  4. Deux minutes plus tard : https://<compte>.github.io/<dépôt>/
+  Gratuit, versions conservées, domaine personnalisé dans le même écran.
+
+AUTRES OPTIONS
+  Netlify Drop (app.netlify.com/drop) — en ligne en trente secondes,
+  sans compte, adresse provisoire.
+  Cloudflare Pages — « Direct Upload », gratuit, domaine personnalisé.
+
+MISE À JOUR
+  Le site est un fichier unique : rééditer index.html et le redéposer.
+
+MÉTHODE
+  La page « Méthode » du site décrit les quatre règles de reconstitution :
+  une publication par exercice (la plus récente), conservation des votes
+  multiples, tous les dispositifs retenus et non la seule rubrique
+  Culture, fusion des variantes de noms. Les deux contrôles de cohérence
+  y figurent également.
+
+AVERTISSEMENT
+  Aucune des structures citées n'est mise en cause. Le sujet est la
+  publication de l'information par la collectivité, non l'usage des
+  fonds par les bénéficiaires.
