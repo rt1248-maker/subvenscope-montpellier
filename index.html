@@ -931,7 +931,7 @@ document.getElementById('fcat').addEventListener('change', e => { cat = e.target
 function syncCat(){ [...chipsEl.children].forEach(x => x.setAttribute('aria-pressed', x.dataset.c === cat));
   document.getElementById('fcat').value = cat; }
 areaChart(document.getElementById('envchart'), ENV, "L'enveloppe culturelle publiée par exercice, en milliers d'euros");
-cmp = ['Cinemed', "Uni'Sons", 'Tropisme'].map(p => STR.findIndex(s => s.n.startsWith(p))).filter(i => i >= 0);
+cmp = ['Cinemed', 'Montpellier Danse', 'Confluences'].map(p => STR.findIndex(s => s.n.startsWith(p))).filter(i => i >= 0);
 draw(); drawCmp();
 addEventListener('resize', drawDist);
 
