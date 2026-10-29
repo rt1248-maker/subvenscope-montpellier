@@ -121,7 +121,8 @@ section{padding-block:56px;position:relative}
 section:nth-of-type(even){background:var(--paper-2)}
 section:nth-of-type(even)::before{content:"";position:absolute;inset:0 0 auto;height:1px;background:linear-gradient(90deg,transparent,var(--accent),var(--evt),var(--accent-3),transparent);opacity:.45}
 section:nth-of-type(odd)::before{content:"";position:absolute;inset:0 0 auto;height:1px;background:var(--rule)}
-.eyebrow{display:inline-flex;align-items:center;gap:8px;font-family:var(--f-num);font-size:11px;letter-spacing:.13em;text-transform:uppercase;color:var(--accent);font-weight:600;background:color-mix(in srgb,var(--accent) 12%,transparent);border-radius:999px;padding:5px 12px}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;font-family:var(--f-num);font-size:14px;letter-spacing:.11em;text-transform:uppercase;color:var(--accent);font-weight:700;background:color-mix(in srgb,var(--accent) 13%,transparent);border-radius:999px;padding:8px 16px;line-height:1.25}
+@media(max-width:560px){.eyebrow{font-size:12px;letter-spacing:.08em;padding:6px 13px}}
 #evolution .eyebrow{color:var(--evt);background:color-mix(in srgb,var(--evt) 13%,transparent)}
 #registre .eyebrow{color:var(--lieu);background:color-mix(in srgb,var(--lieu) 14%,transparent)}
 #regie .eyebrow{color:var(--regie);background:color-mix(in srgb,var(--regie) 15%,transparent)}
