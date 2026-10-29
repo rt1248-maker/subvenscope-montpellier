@@ -100,10 +100,15 @@ nav a.lnk:hover{color:var(--ink);background:color-mix(in srgb,var(--accent) 12%,
 @keyframes drift{from{transform:translate3d(-2%,-1%,0) scale(1)}to{transform:translate3d(3%,2%,0) scale(1.1)}}
 .hero .wrap{position:relative;z-index:1}
 .kicker{display:inline-block;font-family:var(--f-num);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);font-weight:600;background:color-mix(in srgb,var(--accent) 13%,transparent);border:1px solid color-mix(in srgb,var(--accent) 26%,transparent);border-radius:999px;padding:6px 13px}
-.hero h1{font-size:clamp(32px,8.4vw,82px);line-height:.95;font-weight:800;margin:20px 0 0;letter-spacing:-.045em}
+.hero h1{font-size:clamp(31px,4.9vw,60px);line-height:.98;font-weight:800;margin:18px 0 0;letter-spacing:-.04em}
+@media(max-width:900px){.hero h1{font-size:clamp(31px,7.4vw,56px)}}
 @media(max-width:560px){.kicker{font-size:10px;letter-spacing:.1em;padding:5px 11px;line-height:1.5}.hero{padding-block:40px 32px}}
 .hero h1 b{background:linear-gradient(96deg,var(--evt),var(--accent) 42%,var(--asso) 86%);-webkit-background-clip:text;background-clip:text;color:transparent}
 .hero p{font-size:clamp(16px,2vw,19.5px);color:var(--ink-2);max-width:62ch;margin:20px 0 0}
+.herogrid{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,.82fr);gap:38px;align-items:center}
+.heroart{min-width:0}
+.heroart svg{width:100%;height:auto;filter:drop-shadow(0 18px 38px color-mix(in srgb,var(--accent) 22%,transparent))}
+@media(max-width:900px){.herogrid{grid-template-columns:minmax(0,1fr);gap:26px}.heroart{max-width:380px;margin-inline:auto}}
 .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:13px;margin-top:34px}
 .stat{position:relative;background:var(--panel);border:1px solid var(--rule);border-radius:var(--r);padding:17px 18px 16px;box-shadow:var(--shadow);overflow:hidden;transition:transform .2s cubic-bezier(.2,.8,.3,1),box-shadow .2s}
 .stat::after{content:"";position:absolute;inset:0 0 auto;height:4px;background:var(--sc,var(--accent))}
@@ -272,9 +277,75 @@ footer b{color:var(--ink)}
 </div></nav>
 
 <header class="hero"><div class="wrap">
-  <div class="kicker">Subventions votées · Ville de Montpellier et Métropole · exercices 2015 à 2026</div>
+  <div class="herogrid"><div>
+  <div class="kicker">Ville et Métropole · exercices 2015 à 2026</div>
   <h1>805 bénéficiaires.<br><b>Dix en captent 87 %.</b></h1>
   <p>La Ville et la Métropole publient leurs subventions. Elles les publient mal : sept classeurs aux formats incompatibles, des noms écrits de trois façons différentes, un exercice compté deux fois. Tout a été remis à plat ici, et rendu cherchable. Vous pouvez chercher une association, suivre sa trajectoire sur douze ans, la comparer à trois autres, et voir combien d'argent public chaque spectateur représente. <b>Et à la fin, vous verrez ce qui manque</b> — les manifestations que la collectivité organise elle-même, dont elle n'a jamais publié le coût.</p>
+  </div>
+<div class="heroart" aria-hidden="true">
+<svg viewBox="0 0 520 430" role="img" aria-label="Illustration du château d'eau du Peyrou et de l'aqueduc Saint-Clément">
+  <defs>
+    <clipPath id="hc"><circle cx="268" cy="196" r="188"/></clipPath>
+  </defs>
+  <circle cx="268" cy="196" r="188" fill="var(--accent)" opacity=".13"/>
+  <g clip-path="url(#hc)">
+    <circle cx="374" cy="118" r="60" fill="var(--regie)" opacity=".9"/>
+    <!-- aqueduc Saint-Clément -->
+    <g fill="var(--evt)">
+      <rect x="246" y="186" width="274" height="15" rx="2"/>
+      <rect x="252" y="201" width="20" height="78"/><rect x="312" y="201" width="20" height="78"/>
+      <rect x="372" y="201" width="20" height="78"/><rect x="432" y="201" width="20" height="78"/>
+      <rect x="492" y="201" width="20" height="78"/>
+      <path d="M272 279h40v-38a20 20 0 0 0-40 0z"/><path d="M332 279h40v-38a20 20 0 0 0-40 0z"/>
+      <path d="M392 279h40v-38a20 20 0 0 0-40 0z"/><path d="M452 279h40v-38a20 20 0 0 0-40 0z"/>
+    </g>
+    <g fill="var(--evt)" opacity=".72">
+      <rect x="246" y="279" width="274" height="13" rx="2"/>
+      <rect x="254" y="292" width="16" height="66"/><rect x="314" y="292" width="16" height="66"/>
+      <rect x="374" y="292" width="16" height="66"/><rect x="434" y="292" width="16" height="66"/>
+      <rect x="494" y="292" width="16" height="66"/>
+      <path d="M270 358h44v-34a22 22 0 0 0-44 0z"/><path d="M330 358h44v-34a22 22 0 0 0-44 0z"/>
+      <path d="M390 358h44v-34a22 22 0 0 0-44 0z"/><path d="M450 358h44v-34a22 22 0 0 0-44 0z"/>
+    </g>
+    <!-- cyprès -->
+    <g fill="var(--lieu)" opacity=".85">
+      <path d="M228 358c0-34 7-62 11-62s11 28 11 62z"/>
+      <path d="M248 358c0-26 5-48 8-48s8 22 8 48z" opacity=".7"/>
+    </g>
+    <!-- château d'eau du Peyrou -->
+    <g fill="var(--lieu)">
+      <path d="M62 150h132l-18-26h-96z"/>
+      <rect x="54" y="150" width="148" height="16" rx="2"/>
+      <rect x="70" y="166" width="14" height="96"/><rect x="100" y="166" width="14" height="96"/>
+      <rect x="130" y="166" width="14" height="96"/><rect x="160" y="166" width="14" height="96"/>
+      <rect x="62" y="262" width="132" height="14" rx="2"/>
+      <rect x="50" y="276" width="156" height="15" rx="2"/>
+      <rect x="40" y="291" width="176" height="16" rx="2"/>
+      <rect x="30" y="307" width="196" height="17" rx="2"/>
+    </g>
+    <g fill="var(--asso)">
+      <rect x="112" y="118" width="32" height="8" rx="4"/>
+      <circle cx="128" cy="108" r="9"/>
+    </g>
+    <!-- bassin -->
+    <rect x="18" y="324" width="220" height="34" rx="6" fill="var(--accent-3)" opacity=".55"/>
+    <g fill="var(--panel)" opacity=".55">
+      <rect x="40" y="334" width="52" height="4" rx="2"/><rect x="104" y="344" width="78" height="4" rx="2"/>
+      <rect x="130" y="332" width="42" height="4" rx="2"/>
+    </g>
+    <!-- sol -->
+    <rect x="0" y="358" width="520" height="40" fill="var(--accent)" opacity=".22"/>
+    <!-- petites barres, clin d'oeil aux graphiques -->
+    <g opacity=".9">
+      <rect x="36" y="376" width="16" height="14" rx="3" fill="var(--evt)"/>
+      <rect x="60" y="370" width="16" height="20" rx="3" fill="var(--lieu)"/>
+      <rect x="84" y="364" width="16" height="26" rx="3" fill="var(--asso)"/>
+      <rect x="108" y="380" width="16" height="10" rx="3" fill="var(--regie)"/>
+    </g>
+  </g>
+</svg>
+</div>
+  </div>
   <div class="stats">
     <div class="stat"><b id="s1">—</b><small>de <b>crédits culturels</b> votés par la Ville et la Métropole, <b>sur les sept exercices 2019 à 2025</b></small></div>
     <div class="stat"><b id="s2">—</b><small>pour le seul Opéra Orchestre national <b>sur ces mêmes sept exercices</b>, soit 53 % du total</small></div>
