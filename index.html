@@ -240,6 +240,20 @@ figcaption{font-size:13.5px;line-height:1.55;color:var(--ink-3);margin-top:11px}
  .chead{display:flex;align-items:center;gap:12px;margin-bottom:2px}
  .chead h3{margin:0}
  .chead .ico{flex:none;width:36px;height:36px;border-radius:11px;display:grid;place-items:center;color:var(--accent);background:color-mix(in srgb,var(--accent) 12%,transparent);border:1px solid color-mix(in srgb,var(--accent) 26%,transparent)}
+ .card.acc{padding:0}
+ .acc>summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:12px;padding:17px 19px;border-radius:var(--r)}
+ .acc>summary::-webkit-details-marker{display:none}
+ .acc>summary::before{content:none;display:none}
+ .acc>summary h3{margin:0;flex:1;font-size:17px;font-weight:800;line-height:1.3}
+ .acc>summary .ico{flex:none;width:36px;height:36px;border-radius:11px;display:grid;place-items:center;color:var(--accent);background:color-mix(in srgb,var(--accent) 12%,transparent);border:1px solid color-mix(in srgb,var(--accent) 26%,transparent)}
+ .acc>summary .pm{flex:none;font-family:var(--f-num);font-weight:600;font-size:15px;width:24px;height:24px;border-radius:8px;display:grid;place-items:center;color:var(--accent);background:color-mix(in srgb,var(--accent) 12%,transparent)}
+ .acc>summary .pm::before{content:"+"}
+ .acc[open]>summary .pm::before{content:"\2212"}
+ .acc[open]{border-color:color-mix(in srgb,var(--accent) 34%,var(--rule))}
+ .acc>summary:hover h3{color:var(--accent)}
+ .accbd{padding:0 19px 19px 19px}
+ .accbd>p:first-child{margin-top:0}
+ @media(max-width:560px){.acc>summary{padding:15px}.acc>summary .ico{width:32px;height:32px;border-radius:10px}.accbd{padding:0 15px 15px}}
  @media(max-width:560px){.chead .ico{width:32px;height:32px;border-radius:10px}.chead{gap:10px}}
 .card .big{font-family:var(--f-num);font-size:30px;font-weight:600;letter-spacing:-.045em;display:block;margin-bottom:6px;background:linear-gradient(96deg,var(--accent-2),var(--accent));-webkit-background-clip:text;background-clip:text;color:transparent}
 .card p{font-size:15px;line-height:1.6;color:var(--ink-2);margin:10px 0 0}
@@ -252,6 +266,15 @@ figcaption{font-size:13.5px;line-height:1.55;color:var(--ink-3);margin-top:11px}
 table{border-collapse:collapse;width:100%;font-size:15px}
 th,td{text-align:left;padding:12px 14px;border-bottom:1px solid var(--rule-2)}
 th{font-family:var(--f-display);font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-2);border-bottom:1.5px solid var(--rule);background:var(--panel-2);position:sticky;top:0}
+ .spt tbody tr:nth-child(odd){background:color-mix(in srgb,var(--ink) 3.5%,transparent)}
+ .spt tbody tr:hover{background:color-mix(in srgb,var(--accent) 7%,transparent)}
+ .spt td.n,.spt td:nth-child(3){white-space:nowrap}
+ .spt td:first-child{font-weight:500}
+ .vp{display:inline-flex;align-items:center;justify-content:center;min-width:78px;padding:5px 11px;border-radius:999px;font-family:var(--f-num);font-weight:600;font-variant-numeric:tabular-nums;font-size:14px;letter-spacing:-.02em}
+ .v-hi{color:var(--hors);background:color-mix(in srgb,var(--hors) 14%,transparent)}
+ .v-mid{color:var(--regie);background:color-mix(in srgb,var(--regie) 16%,transparent)}
+ .v-lo{color:var(--lieu);background:color-mix(in srgb,var(--lieu) 15%,transparent)}
+ @media(max-width:560px){.vp{min-width:0;padding:4px 9px;font-size:13px}}
 tbody tr:hover{background:var(--panel-2)}
 td.n,th.n{text-align:right;font-family:var(--f-num);font-variant-numeric:tabular-nums}
 details{border:1px solid var(--rule);border-radius:var(--r-sm);background:var(--panel);margin-top:10px;box-shadow:var(--shadow);transition:border-color .15s}
@@ -416,23 +439,25 @@ footer b{color:var(--ink)}
   <p class="sub">La Comédie du Livre, les ZAT, la Fête de la Musique, le Marché de Noël, le musée Fabre sont portés directement par la Ville ou la Métropole. Ils n'ont donc aucune ligne dans le fichier des subventions, qui ne recense que les associations. Leur coût n'est publié nulle part ailleurs.</p>
   <div class="cards" id="regiecards"></div>
 
-  <div class="card" style="margin-top:14px">
-    <div class="chead"><span class="ico"><svg width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11.5 2.8H5.6a1.6 1.6 0 0 0-1.6 1.6v11.2a1.6 1.6 0 0 0 1.6 1.6h8.8a1.6 1.6 0 0 0 1.6-1.6V7.3z"/><path d="M11.5 2.8v4.5H16"/><path d="M7 11h6M7 13.8h4"/></svg></span><h3>Y a-t-il une obligation de publier ce coût ?</h3></div>
-    <p>Aucun texte n'impose à une commune de publier, manifestation par manifestation, le coût de la Comédie du Livre ou de la Fête de la Musique. Trois obligations existent pourtant, plus larges.</p>
+  <details class="card acc" style="margin-top:14px">
+    <summary><span class="ico"><svg width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11.5 2.8H5.6a1.6 1.6 0 0 0-1.6 1.6v11.2a1.6 1.6 0 0 0 1.6 1.6h8.8a1.6 1.6 0 0 0 1.6-1.6V7.3z"/><path d="M11.5 2.8v4.5H16"/><path d="M7 11h6M7 13.8h4"/></svg></span><h3>Y a-t-il une obligation de publier ce coût ?</h3><span class="pm" aria-hidden="true"></span></summary>
+    <div class="accbd"><p>Aucun texte n'impose à une commune de publier, manifestation par manifestation, le coût de la Comédie du Livre ou de la Fête de la Musique. Trois obligations existent pourtant, plus larges.</p>
     <p>La première porte sur le compte administratif. L'article L. 2313-1 du code général des collectivités territoriales oblige les communes et les intercommunalités de plus de 3 500 habitants à y annexer « la liste des concours attribués […] sous la forme de prestations en nature ou de subventions ». La direction générale des collectivités locales précise, dans sa fiche consacrée à cette annexe, que la valorisation de ces prestations n'est pas obligatoire : elle est recommandée pour la sincérité des comptes, et elle « apparaît rarement dans les annexes ».</p>
     <p>La deuxième est l'ouverture des données par défaut. Depuis la loi pour une République numérique, l'article L. 312-1-1 du code des relations entre le public et l'administration oblige les collectivités de plus de 3 500 habitants employant plus de 50 agents à publier en ligne les documents qu'elles ont déjà communiqués, leurs bases de données tenues à jour et « les données dont la publication présente un intérêt économique, social, sanitaire ou environnemental ». Le coût d'une manifestation financée par l'impôt relève de cette dernière catégorie.</p>
     <p>La troisième joue sur demande. Marchés, factures et bilans d'opération sont des documents administratifs au sens de l'article L. 300-2 du même code, communicables en application de l'article L. 311-1. Le silence gardé pendant un mois vaut refus et ouvre deux mois pour saisir la Commission d'accès aux documents administratifs. L'information existe donc, et elle est accessible à qui la réclame. Elle n'est pas publiée.</p>
     <span class="src">Sources : CGCT, art. L. 2313-1 ; DGCL, fiche « Concours attribués à des tiers » ; CRPA, art. L. 300-2, L. 311-1, L. 312-1-1 et R. 311-13 ; loi n° 2016-1321 du 7 octobre 2016.</span>
-  </div>
-  <div class="card" style="margin-top:14px">
-    <div class="chead"><span class="ico"><svg width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5.6 4h8.8l-.8 11a1.6 1.6 0 0 1-1.6 1.5H8a1.6 1.6 0 0 1-1.6-1.5z"/><path d="M6.1 8.3h7.8"/></svg></span><h3>Qui tient la buvette, qui fait la technique ?</h3></div>
-    <p>La Ville publie ses appels à candidatures d'occupation du domaine public : étals des halles Laissac et Jacques-Cœur, food trucks d'un forum pour l'emploi, attractions et chalets du Marché de Noël, jusqu'au naming de la piscine olympique d'Antigone. Les règlements de consultation sont en ligne, les délais aussi. Le zonage de tarification des occupations temporaires pour manifestations est lui-même publié en données ouvertes.</p>
+    </div>
+  </details>
+  <details class="card acc" style="margin-top:14px">
+    <summary><span class="ico"><svg width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5.6 4h8.8l-.8 11a1.6 1.6 0 0 1-1.6 1.5H8a1.6 1.6 0 0 1-1.6-1.5z"/><path d="M6.1 8.3h7.8"/></svg></span><h3>Qui tient la buvette, qui fait la technique ?</h3><span class="pm" aria-hidden="true"></span></summary>
+    <div class="accbd"><p>La Ville publie ses appels à candidatures d'occupation du domaine public : étals des halles Laissac et Jacques-Cœur, food trucks d'un forum pour l'emploi, attractions et chalets du Marché de Noël, jusqu'au naming de la piscine olympique d'Antigone. Les règlements de consultation sont en ligne, les délais aussi. Le zonage de tarification des occupations temporaires pour manifestations est lui-même publié en données ouvertes.</p>
     <p>Ce qui n'est publié nulle part, c'est la suite : le nom de celui qui obtient l'emplacement, la redevance qu'il paie, la durée de son titre.</p>
     <p>L'obligation, sur ce point, est réelle mais étroite. Pour les titres d'occupation du domaine public délivrés en vue d'une exploitation économique, le code général de la propriété des personnes publiques impose une procédure de sélection préalable et sa publicité (art. L. 2122-1-1) ; la redevance doit tenir compte des avantages procurés au titulaire (art. L. 2125-1). Aucun texte n'oblige en revanche à publier le nom du titulaire retenu ni le montant perçu : l'obligation porte sur l'appel, pas sur le résultat.</p>
     <p>Pour la technique, le seuil est chiffré. L'article R. 2196-1 du code de la commande publique oblige l'acheteur à publier sur le portail national des données ouvertes les données essentielles de tout marché « répondant à un besoin dont la valeur est égale ou supérieure à 40 000 euros hors taxes », dans les deux mois suivant la notification. Juin 2026 fournit un cas chiffré : la convention votée avec l'association Fierté Montpellier Pride évalue à <b>58 136,75 € TTC</b>, soit environ 48 400 € hors taxes, les prestations mutualisées que la Ville met en marché pour la Marche des Fiertés et la Fête de la Musique. Structures, éclairage et sonorisation en représentent 37 650 €, auxquels s'ajoutent sanitaires, tentes, gardiennage et distribution électrique. Le portail de données ouvertes de la Métropole ne propose aucun jeu de données sur la commande publique : ni liste de marchés, ni données essentielles, ni titulaires.</p>
     <p>Reste la buvette. Le même acte y répond : « débit de boissons temporaire les 19 et 20 juin », tenu par l'association organisatrice, démontage du matériel à sa charge. C'est une ligne dans une convention. Les autres manifestations n'en comportent pas.</p>
     <span class="src">Sources : montpellier.fr, appels à candidatures d'occupation du domaine public, et entreprendre-montpellier.com, appels à projets du Marché de Noël ; data.montpellier3m.fr, recherche « marchés publics » et jeu de données « zonage de tarification des occupations temporaires du domaine public pour des manifestations », consultés le 29 octobre 2026. CGPPP, art. L. 2122-1-1 et L. 2125-1. Code de la commande publique, art. R. 2196-1. Délibération V2026-58 du 16 juin 2026 et sa convention annexée.</span>
-  </div>
+    </div>
+  </details>
 
   <div class="card" style="margin-top:14px">
     <div class="chead"><span class="ico"><svg width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="10" cy="10" r="7"/><path d="M10 5.9v4.4l2.9 1.7"/></svg></span><h3>Combien de temps laisse-t-on aux candidats ?</h3></div>
@@ -470,7 +495,7 @@ footer b{color:var(--ink)}
 <section id="public"><div class="wrap">
   <div class="eyebrow">06 — Le rapport de force</div>
   <h2>Combien d'argent public par spectateur ?</h2>
-  <p class="sub">Un total ne dit rien tant qu'on ignore combien de personnes il touche. Dix structures publient un chiffre de public ; le voici rapporté à ce que la Ville et la Métropole leur votent. <b>L'écart va de 45 centimes à 97 € par personne, un rapport de 1 à 215.</b> Pour les 795 autres bénéficiaires du registre, aucune fréquentation n'est publiée.</p>
+  <p class="sub">Treize millions d'euros pour l'Opéra, dix-huit mille pour What a Trip ! : ces montants ne disent rien tant qu'on ignore combien de personnes ils touchent. Dix structures publient un chiffre de public. En divisant ce qu'elles reçoivent de la Ville et de la Métropole par le nombre de spectateurs qu'elles accueillent, on obtient ce que coûte une place à la collectivité. <b>97 € pour une place d'opéra, 45 centimes pour une entrée à What a Trip ! : un rapport de 1 à 215.</b> Pour les 795 autres bénéficiaires du registre, aucun chiffre de fréquentation n'est publié.</p>
 
   <div class="chartbox">
     <h3 class="cbt">Argent public municipal et métropolitain, par spectateur</h3>
@@ -479,22 +504,23 @@ footer b{color:var(--ink)}
   </div>
 
   <div class="scroller" style="margin-top:18px">
-    <table>
+    <table class="spt">
       <thead><tr><th>Structure</th><th class="n">Subvention</th><th>Exercice</th><th class="n">Public</th><th>Nature du chiffre</th><th class="n">Par personne</th></tr></thead>
       <tbody>
-        <tr><td>Opéra Orchestre national Montpellier</td><td class="n">13 330 k€</td><td>2022</td><td class="n">137 743</td><td>billets édités, saison 2022-2023</td><td class="n"><b>96,8 €</b></td></tr>
-        <tr><td>MO.CO. Montpellier Contemporain</td><td class="n">5 901 k€</td><td>2024</td><td class="n">≈ 100 000</td><td>visiteurs annoncés pour 2025</td><td class="n"><b>≈ 59 €</b></td></tr>
-        <tr><td>Théâtre des Treize Vents</td><td class="n">700 k€</td><td>2020</td><td class="n">12 000</td><td>spectateurs en salle, saison 2018-2019 (+ 8 500 en tournée)</td><td class="n"><b>58,3 €</b></td></tr>
-        <tr><td>Le Printemps des Comédiens</td><td class="n">1 522 k€</td><td>2023</td><td class="n">≈ 30 000</td><td>moyenne annuelle relevée par la Chambre régionale des comptes</td><td class="n"><b>50,7 €</b></td></tr>
-        <tr><td>Montpellier Danse</td><td class="n">1 588 k€</td><td>2023</td><td class="n">≈ 32 000</td><td>spectateurs, 57 représentations, 96 % de remplissage</td><td class="n"><b>49,6 €</b></td></tr>
-        <tr><td>Festival Radio France Occitanie</td><td class="n">1 094 k€</td><td>2026</td><td class="n">75 000</td><td>45 000 billets payants + 30 000 en accès libre</td><td class="n"><b>14,6 €</b></td></tr>
-        <tr><td>Cinemed</td><td class="n">707 k€</td><td>2021</td><td class="n">55 000</td><td>entrées, 43<sup>e</sup> édition</td><td class="n"><b>12,9 €</b></td></tr>
-        <tr><td>Uni'Sons — festival Arabesques</td><td class="n">288 k€</td><td>2025</td><td class="n">&gt; 60 000</td><td>spectateurs annoncés, 20<sup>e</sup> édition</td><td class="n"><b>4,8 €</b></td></tr>
-        <tr><td>Rank'Art — MaMA Stock</td><td class="n">8 k€</td><td>2026</td><td class="n">&gt; 15 000</td><td>festivaliers annoncés, 9<sup>e</sup> édition, festival entièrement gratuit</td><td class="n"><b>0,53 €</b></td></tr>
-        <tr><td>AFIVAM — What a Trip !<span class="htag">intérêts déclarés</span></td><td class="n">18 k€</td><td>2023</td><td class="n">40 000</td><td>visiteurs annoncés par l'organisateur, comme pour les autres festivals</td><td class="n"><b>0,45 €</b></td></tr>
+        <tr><td>Opéra Orchestre national Montpellier</td><td class="n">13 330 k€</td><td>2022</td><td class="n">137 743</td><td>billets édités, saison 2022-2023</td><td class="n"><span class="vp v-hi">96,8 €</span></td></tr>
+        <tr><td>MO.CO. Montpellier Contemporain</td><td class="n">5 901 k€</td><td>2024</td><td class="n">≈ 100 000</td><td>visiteurs annoncés pour 2025</td><td class="n"><span class="vp v-hi">≈ 59 €</span></td></tr>
+        <tr><td>Théâtre des Treize Vents</td><td class="n">700 k€</td><td>2020</td><td class="n">12 000</td><td>spectateurs en salle, saison 2018-2019 (+ 8 500 en tournée)</td><td class="n"><span class="vp v-hi">58,3 €</span></td></tr>
+        <tr><td>Le Printemps des Comédiens</td><td class="n">1 522 k€</td><td>2023</td><td class="n">≈ 30 000</td><td>moyenne annuelle relevée par la Chambre régionale des comptes</td><td class="n"><span class="vp v-hi">50,7 €</span></td></tr>
+        <tr><td>Montpellier Danse</td><td class="n">1 588 k€</td><td>2023</td><td class="n">≈ 32 000</td><td>spectateurs, 57 représentations, 96 % de remplissage</td><td class="n"><span class="vp v-mid">49,6 €</span></td></tr>
+        <tr><td>Festival Radio France Occitanie</td><td class="n">1 094 k€</td><td>2026</td><td class="n">75 000</td><td>45 000 billets payants + 30 000 en accès libre</td><td class="n"><span class="vp v-mid">14,6 €</span></td></tr>
+        <tr><td>Cinemed</td><td class="n">707 k€</td><td>2021</td><td class="n">55 000</td><td>entrées, 43<sup>e</sup> édition</td><td class="n"><span class="vp v-mid">12,9 €</span></td></tr>
+        <tr><td>Uni'Sons — festival Arabesques</td><td class="n">288 k€</td><td>2025</td><td class="n">&gt; 60 000</td><td>spectateurs annoncés, 20<sup>e</sup> édition</td><td class="n"><span class="vp v-lo">4,8 €</span></td></tr>
+        <tr><td>Rank'Art — MaMA Stock</td><td class="n">8 k€</td><td>2026</td><td class="n">&gt; 15 000</td><td>festivaliers annoncés, 9<sup>e</sup> édition, festival entièrement gratuit</td><td class="n"><span class="vp v-lo">0,53 €</span></td></tr>
+        <tr><td>AFIVAM — What a Trip !<span class="htag">intérêts déclarés</span></td><td class="n">18 k€</td><td>2023</td><td class="n">40 000</td><td>visiteurs annoncés par l'organisateur, comme pour les autres festivals</td><td class="n"><span class="vp v-lo">0,45 €</span></td></tr>
       </tbody>
     </table>
   </div>
+  <figcaption>Les pastilles regroupent les structures en trois paliers de lecture : <b class="hors">plus de 50 €</b> par personne, <b style="color:var(--regie)">de 10 à 50 €</b>, <b style="color:var(--lieu)">moins de 10 €</b>. Ce classement n'exprime aucun jugement : une institution permanente et un festival de trois jours n'ont pas la même structure de coûts.</figcaption>
 
   <div class="cards" style="margin-top:18px">
     <div class="card">
