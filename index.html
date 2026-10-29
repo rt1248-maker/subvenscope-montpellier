@@ -112,7 +112,8 @@ nav a.lnk:hover{color:var(--ink);background:color-mix(in srgb,var(--accent) 12%,
 .stat:nth-child(3){--sc:linear-gradient(90deg,var(--lieu),var(--accent-3))}
 .stat:nth-child(4){--sc:linear-gradient(90deg,var(--asso),var(--accent-2))}
 .stat:hover{transform:translateY(-3px);box-shadow:var(--shadow-lg)}
-.stat b{display:block;font-family:var(--f-num);font-weight:600;font-size:clamp(21px,3vw,30px);letter-spacing:-.045em;line-height:1.06}
+.stat>b{display:block;font-family:var(--f-num);font-weight:600;font-size:clamp(21px,3vw,30px);letter-spacing:-.045em;line-height:1.06}
+.stat small b{font:inherit;font-weight:600;color:var(--ink);display:inline}
 .stat small{display:block;color:var(--ink-2);font-size:12.5px;margin-top:8px;line-height:1.35}
 
 /* ── sections ────────────────────────────────────────────────────── */
@@ -273,17 +274,17 @@ footer b{color:var(--ink)}
   <h1>810 bénéficiaires.<br><b>Dix en captent 87 %.</b></h1>
   <p>Toutes les subventions culturelles votées par la Ville et la Métropole, remises à plat et rendues cherchables. Le classement, la distribution réelle, la trajectoire de chaque structure — et, à la fin, ce que la collectivité organise elle-même sans jamais en publier le coût.</p>
   <div class="stats">
-    <div class="stat"><b id="s1">—</b><small>de <b>crédits culturels</b> votés sur 2019-2025</small></div>
-    <div class="stat"><b id="s2">—</b><small>pour le premier bénéficiaire seul, soit 53 % du total</small></div>
-    <div class="stat"><b id="s3">—</b><small>bénéficiaires ayant reçu des crédits culturels sur la période</small></div>
-    <div class="stat"><b id="s4">—</b><small>par jour, tous les jours, pendant sept ans</small></div>
+    <div class="stat"><b id="s1">—</b><small>de <b>crédits culturels</b> votés par la Ville et la Métropole, <b>sur les sept exercices 2019 à 2025</b></small></div>
+    <div class="stat"><b id="s2">—</b><small>pour le seul Opéra Orchestre national <b>sur ces mêmes sept exercices</b>, soit 53 % du total</small></div>
+    <div class="stat"><b id="s3">—</b><small>structures ayant reçu au moins un euro de crédits culturels <b>entre 2019 et 2025</b></small></div>
+    <div class="stat"><b id="s4">—</b><small>votés en moyenne <b>chaque année</b> sur la même période</small></div>
   </div>
 </div></header>
 
 <section id="panorama"><div class="wrap">
   <div class="eyebrow">01 — Le panorama</div>
   <h2>Le classement, puis la réalité</h2>
-  <p class="sub">D'abord les quinze premiers, à l'échelle. Puis les 810, un point chacun, sur une échelle logarithmique — seule façon de faire tenir sur une même ligne une structure à 2 000 € et une autre à 94 millions.</p>
+  <p class="sub">On commence par les quinze premiers, dessinés à l'échelle : la première barre écrase les autres, et c'est déjà une réponse. Puis viennent les 810, un point chacun. L'axe est logarithmique, parce qu'il faut bien loger sur la même ligne l'association de quartier qui reçoit 2 000 € et l'institution qui en reçoit 94 millions — quarante-sept mille fois plus. Chaque pas vers la droite multiplie par dix.</p>
   <div class="bar-tools">
     <div class="search">
       <svg width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><circle cx="7" cy="7" r="4.6"/><path d="M10.4 10.4 14 14"/></svg>
@@ -318,7 +319,13 @@ footer b{color:var(--ink)}
   <div class="chartbox">
     <h3 class="cbt">Les 810, à leur place réelle</h3>
     <div id="dist" style="margin-top:16px"></div>
-    <figcaption>Un point par bénéficiaire, positionné selon le total reçu de 2019 à 2025, sur une échelle logarithmique. Survolez un point pour le nom, cliquez pour ouvrir la fiche.</figcaption>
+    <div class="hleg">
+      <b><s style="background:var(--evt);border-radius:999px;width:12px;height:12px"></s> événement</b>
+      <b><s style="background:var(--lieu);border-radius:999px;width:12px;height:12px"></s> lieu</b>
+      <b><s style="background:var(--asso);border-radius:999px;width:12px;height:12px"></s> autre association</b>
+      <b><s style="background:var(--asso);border-radius:999px;width:12px;height:12px;box-shadow:0 0 0 2px var(--hors)"></s> cerclé de rouge : a aussi reçu de l'argent hors culture</b>
+    </div>
+    <figcaption>Un point par bénéficiaire, placé selon les <b>crédits culturels</b> reçus de 2019 à 2025, sur une échelle logarithmique. La couleur donne le type de structure. <b>L'anneau rouge signale celles qui ont, en plus, touché des crédits non culturels</b> — le montant exact est dans leur fiche. Survolez un point pour le nom, cliquez pour l'ouvrir.</figcaption>
   </div>
 
   <div class="tmwrap" style="margin-top:14px">
@@ -535,7 +542,7 @@ const med = [...active].sort((a,b)=>a.w-b.w)[Math.floor(active.length/2)].w;
 document.getElementById('s1').textContent = mE(W_TOTAL);
 document.getElementById('s2').textContent = mE(ranked[0].w);
 document.getElementById('s3').textContent = fr.format(active.length);
-document.getElementById('s4').textContent = fr.format(Math.round(W_TOTAL * 1000 / (7 * 365))) + ' €';
+document.getElementById('s4').textContent = mE(W_TOTAL / 7);
 document.getElementById('rb-n').textContent = DATA.regie.length;
 const H_TOTAL = sum(STR.map(s => s.hw || 0)), H_N = STR.filter(s => s.hw).length;
 document.getElementById('hstat').textContent =
