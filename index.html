@@ -634,7 +634,7 @@ function drawDist(){
     const pts = list.filter(s => s.c === c).sort((p, q) => p.w - q.w);
     pts.forEach((s, k) => {
       const x = X(s.w), jy = y0 + 24 + ((k * 7) % 22) - 10;
-      g.push(`<circle class="dot" data-i="${STR.indexOf(s)}" cx="${x.toFixed(1)}" cy="${jy.toFixed(1)}" r="${s.w > 2000 ? 5.5 : 3.4}" fill="var(--${c})" fill-opacity="${s.w > 2000 ? .95 : .55}" stroke="${s.hw ? 'var(--hors)' : 'var(--panel)'}" stroke-width="${s.hw ? 1.6 : .8}"/>`);
+      g.push(`<circle class="dot" data-i="${STR.indexOf(s)}" cx="${x.toFixed(1)}" cy="${jy.toFixed(1)}" r="${s.w > 2000 ? 5.5 : (s.hw ? 4.2 : 3.4)}" fill="var(--${c})" fill-opacity="${s.w > 2000 ? .95 : .55}" stroke="${s.hw ? 'var(--hors)' : 'var(--panel)'}" stroke-width="${s.hw ? 2.2 : .8}"/>`);
     });
   });
   const stars = list.filter(s => s.w > 8000).sort((p,q) => q.w - p.w).slice(0, 3);
