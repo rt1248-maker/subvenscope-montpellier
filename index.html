@@ -104,6 +104,11 @@ nav a.lnk:hover{color:var(--ink);background:color-mix(in srgb,var(--accent) 12%,
 @media(max-width:900px){.hero h1{font-size:clamp(31px,7.4vw,56px)}}
 @media(max-width:560px){.kicker{font-size:10px;letter-spacing:.1em;padding:5px 11px;line-height:1.5}.hero{padding-block:40px 32px}}
 .hero h1 b{background:linear-gradient(96deg,var(--evt),var(--accent) 42%,var(--asso) 86%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.sig{display:flex;align-items:center;gap:11px;margin-top:16px;font-family:var(--f-num);font-size:clamp(13px,1.45vw,15.5px);color:var(--ink-2);letter-spacing:-.01em}
+.sig::before{content:"";flex:none;width:28px;height:2px;border-radius:2px;background:linear-gradient(90deg,var(--accent-2),var(--accent))}
+.sig>span{min-width:0}
+.sig b{color:var(--ink);font-weight:600}
+@media(max-width:560px){.sig{gap:9px}.sig::before{width:20px}}
 .hero p{font-size:clamp(16px,2vw,19.5px);color:var(--ink-2);max-width:62ch;margin:20px 0 0}
 .herogrid{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,.82fr);gap:38px;align-items:center}
 .heroart{min-width:0}
@@ -286,7 +291,8 @@ footer b{color:var(--ink)}
 <header class="hero"><div class="wrap">
   <div class="herogrid"><div>
   <div class="kicker">Ville et Métropole · exercices 2015 à 2026</div>
-  <h1>805 bénéficiaires.<br><b>Dix en captent 87 %.</b></h1>
+  <h1>Où va l'argent<br><b>de la culture ?</b></h1>
+  <p class="sig"><span><b>805 bénéficiaires.</b> Dix en captent 87 %.</span></p>
   <p>La Ville et la Métropole publient leurs subventions, mais elles les publient mal : sept classeurs aux formats incompatibles, des noms orthographiés de trois façons, un exercice compté deux fois. Ces fichiers ont été repris ligne à ligne et rendus cherchables. On peut y suivre une association sur douze ans, la comparer à trois autres, rapporter la subvention au nombre de spectateurs. <b>Reste ce qui n'y figure pas</b> : les manifestations que la collectivité organise elle-même, dont le coût n'a jamais été publié.</p>
   </div>
 <div class="heroart" aria-hidden="true">
