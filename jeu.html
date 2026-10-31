@@ -314,7 +314,9 @@ footer b{color:var(--ink)}
 </head>
 <body>
 <style>
+ html{overflow-x:clip}
  body{overflow-x:hidden}
+ .scorepill{transform-origin:100% 50%}
  .gtop{position:sticky;top:0;z-index:30;background:color-mix(in srgb,var(--paper) 86%,transparent);backdrop-filter:blur(16px) saturate(1.5);border-bottom:1px solid var(--rule)}
  .gtop .wrap{display:flex;align-items:center;gap:14px;padding-block:11px;flex-wrap:nowrap}
  .gtop .brand{margin-right:auto}
@@ -400,6 +402,9 @@ footer b{color:var(--ink)}
  .pick.bad{opacity:.72}
  .pick.mine::before{content:"";position:absolute;inset:0;border-radius:var(--r-sm);border:2px solid var(--accent);pointer-events:none}
  .pick.mine .t{padding-right:74px}
+ .pick.pc.mine .t{padding-right:0}
+ .pick.pc.mine::after{top:auto;bottom:9px;right:50%;transform:translateX(50%)}
+ .pick.pc{padding-bottom:30px}
  .pick.mine::after{content:"choix retenu";position:absolute;right:10px;top:10px;font-family:var(--f-num);font-size:9.5px;letter-spacing:.09em;text-transform:uppercase;color:var(--accent)}
 
  .sub2{display:none;margin-top:22px;border-top:1px solid var(--rule-2);padding-top:20px;animation:in .45s cubic-bezier(.2,.8,.3,1)}
@@ -422,9 +427,30 @@ footer b{color:var(--ink)}
  .ob.done .ans{display:block;animation:in .4s}
  .ob.done button{pointer-events:none;opacity:.5}
  .ob.done button.sel{opacity:1}
- .ob.win{border-color:color-mix(in srgb,var(--lieu) 60%,var(--rule));background:color-mix(in srgb,var(--lieu) 7%,transparent)}
- .ob.lose{border-color:color-mix(in srgb,var(--hors) 50%,var(--rule));background:color-mix(in srgb,var(--hors) 5%,transparent)}
+ .ob.win{border-color:color-mix(in srgb,var(--lieu) 45%,var(--rule))}
+ .ob.lose{border-color:color-mix(in srgb,var(--rule-2) 90%,var(--rule))}
 
+ .chips{display:flex;flex-wrap:wrap;gap:7px;margin-top:4px}
+ .chips span{display:inline-block;font-size:13px;line-height:1.3;border:1px solid var(--rule);background:var(--panel-2);color:var(--ink-2);border-radius:999px;padding:6px 12px}
+ .chips span.eq{color:var(--ink-3);border-style:dashed}
+
+ .ob .vd{display:none;align-items:center;justify-content:space-between;gap:11px;margin-top:13px;padding:10px 14px;border-radius:var(--r-sm);font-family:var(--f-num);font-size:12.5px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;line-height:1.3}
+ .ob.done .vd{display:flex}
+ .ob .vd s{flex:none;width:9px;height:9px;border-radius:50%;text-decoration:none}
+ .ob .vd u{display:inline-flex;align-items:center;gap:9px;text-decoration:none}
+ .ob .vd i{flex:none;font-style:normal;font-size:11px;letter-spacing:.07em;opacity:.85}
+ .ob.win .vd i{color:var(--lieu)}
+ .ob.lose .vd i{color:var(--ink-3)}
+ .vd.manque{color:var(--hors);background:color-mix(in srgb,var(--hors) 13%,transparent);box-shadow:inset 3px 0 0 var(--hors)}
+ .vd.manque s{background:var(--hors)}
+ .vd.legal{color:var(--ink-2);background:var(--panel-3);box-shadow:inset 3px 0 0 var(--ink-3)}
+ .vd.legal s{background:var(--ink-3)}
+ .m4sum{display:none;margin-top:18px;border:1px solid color-mix(in srgb,var(--hors) 45%,var(--rule));border-radius:var(--r-sm);background:color-mix(in srgb,var(--hors) 8%,transparent);padding:18px 20px;animation:in .45s}
+ .m4sum.on{display:block}
+ .m4sum b{display:block;font-family:var(--f-num);font-size:clamp(26px,4.5vw,38px);font-weight:600;letter-spacing:-.04em;color:var(--hors);line-height:1}
+ .m4sum p{margin-top:9px;font-size:15px;line-height:1.6;color:var(--ink-2)}
+
+ .btn[hidden]{display:none}
  .btn{cursor:pointer;text-decoration:none;display:inline-block;font:inherit;font-weight:700;font-size:15.5px;border:0;border-radius:999px;padding:13px 26px;color:var(--onfill);background:linear-gradient(96deg,var(--accent),var(--accent-2));box-shadow:0 10px 26px -12px var(--accent);transition:filter .15s,opacity .15s}
  .btn:hover{filter:brightness(1.07)}
  .btn:disabled{opacity:.4;cursor:default;box-shadow:none}
@@ -448,7 +474,7 @@ footer b{color:var(--ink)}
 
 <nav class="gtop"><div class="wrap">
   <a class="brand" href="./" style="text-decoration:none;color:inherit"><span class="mk" aria-hidden="true"></span>Subven'Scope <em>Montpellier</em></a>
-  <div class="steps" id="steps" aria-label="Progression"><i class="on"></i><i></i><i></i><i></i><i></i></div>
+  <div class="steps" id="steps" aria-label="Progression"><i class="on"></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
   <span class="scorepill" id="pill"><u id="pts">0</u><em id="s">point</em></span>
   <button class="tgl" id="tgl" type="button" aria-label="Basculer entre le thème clair et le thème sombre" title="Thème clair ou sombre"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4.2"></circle><path d="M12 2.4v2.2M12 19.4v2.2M2.4 12h2.2M19.4 12h2.2M5.2 5.2l1.6 1.6M17.2 17.2l1.6 1.6M18.8 5.2l-1.6 1.6M6.8 17.2l-1.6 1.6"></path></svg></button>
 </div></nav>
@@ -457,14 +483,14 @@ footer b{color:var(--ink)}
   <div class="ghero" id="intro">
     <a class="back" href="./">&larr; Retour au site</a>
     <h1>Le jeu de la <b>dépense publique</b></h1>
-    <p>Cinq manches, cinq minutes. Chaque réponse sort d'un acte public : une délibération, une décision du maire, une grille tarifaire, un fichier de subventions. Aucune n'est devinable. C'est précisément ce que ce jeu cherche à montrer : ces montants existent, ils sont publics, et personne ne les met jamais côte à côte.</p>
+    <p>Sept manches, moins de dix minutes. Chaque réponse sort d'un acte public : une délibération, une décision du maire, une grille tarifaire, un fichier de subventions. Aucune n'est devinable. C'est précisément ce que ce jeu cherche à montrer : ces montants existent, ils sont publics, et personne ne les met jamais côte à côte.</p>
     <div class="bar-actions"><button class="btn" id="start">Commencer la partie</button></div>
   </div>
 
   <div class="stage" id="stage" hidden>
     <!-- M1 -->
     <section class="m live" id="m1">
-      <span class="mtag">Manche 1 sur 5 · à l'estime</span>
+      <span class="mtag">Manche 1 sur 7 · à l'estime</span>
       <h2>Combien d'argent public pour une seule place ?</h2>
       <p class="lead">La subvention annuelle de la Ville et de la Métropole, divisée par le nombre de spectateurs accueillis. Placez chaque curseur là où le montant semble se situer.</p>
       <div class="panel-g" id="m1body"></div>
@@ -472,7 +498,7 @@ footer b{color:var(--ink)}
 
     <!-- M2bis : la courbe -->
     <section class="m" id="mh">
-      <span class="mtag">Manche 2 sur 5 · la courbe</span>
+      <span class="mtag">Manche 2 sur 7 · la courbe</span>
       <h2>Quelle structure a vu sa subvention augmenter le plus depuis 2019 ?</h2>
       <p class="lead">Quatre des plus grosses lignes du budget culturel, comparées entre l'exercice 2019 et l'exercice 2025. Une seule a nettement décroché vers le haut.</p>
       <div class="panel-g">
@@ -493,7 +519,7 @@ footer b{color:var(--ink)}
 
     <!-- M2 -->
     <section class="m" id="m2">
-      <span class="mtag">Manche 3 sur 5 · le prix fort</span>
+      <span class="mtag">Manche 3 sur 7 · le prix fort</span>
       <h2>Lequel fait payer sa place le plus cher ?</h2>
       <p class="lead">Quatre manifestations qui reçoivent de l'argent public ou occupent l'espace public. Une seule affiche le tarif plein le plus élevé.</p>
       <div class="panel-g">
@@ -504,9 +530,22 @@ footer b{color:var(--ink)}
       </div>
     </section>
 
+    <!-- MF2 : la Fete de la Musique -->
+    <section class="m" id="mfm">
+      <span class="mtag">Manche 4 sur 7 · le plateau de juin</span>
+      <h2>Combien la Fête de la Musique 2022 a-t-elle coûté à la Ville&nbsp;?</h2>
+      <p class="lead">Pas l'ensemble de la manifestation : la seule prestation achetée à France Télévisions, qui a installé son plateau place de la Comédie et diffusé la soirée en direct. Le marché s'intitule « achat d'actions de communication dans le cadre de l'organisation de la Fête de la Musique ».</p>
+      <div class="panel-g">
+        <div class="cards-g" id="mfmopts"></div>
+        <div id="mfmnote"></div>
+        <div class="bar-actions"><button class="btn" id="mfmnext" hidden>Manche suivante</button></div>
+        <span class="srcq">Décision du maire VD2022-323, marché V2D0024DC, France Télévisions, 605 000 € HT. Le montant figure dans la liste des décisions annexée au procès-verbal du conseil municipal du 28 juillet 2022, diffusé en PDF dans une archive compressée. Il n'apparaît dans aucun jeu de données ouvert.</span>
+      </div>
+    </section>
+
     <!-- M3 -->
     <section class="m" id="m3">
-      <span class="mtag">Manche 4 sur 5 · la facture</span>
+      <span class="mtag">Manche 5 sur 7 · la facture</span>
       <h2>Combien la Ville a-t-elle payé pour faire venir les plateaux de France Télévisions ?</h2>
       <p class="lead">Les Estivales de Culturebox en 2021, les Nuits du Peyrou en 2022. Deux marchés passés par la Ville auprès de la même société de production. Quel est le total ?</p>
       <div class="panel-g">
@@ -517,13 +556,32 @@ footer b{color:var(--ink)}
       </div>
     </section>
 
+    <!-- MR : en regie -->
+    <section class="m" id="mr">
+      <span class="mtag">Manche 6 sur 7 · en régie</span>
+      <h2>Et ce que la collectivité organise elle-même, combien ça coûte&nbsp;?</h2>
+      <p class="lead">Ces douze manifestations et équipements ne sont portés par aucune association : la Ville et la Métropole les organisent ou les gèrent directement. Ils n'ont donc aucune ligne dans le fichier des subventions.</p>
+      <div class="panel-g">
+        <div class="chips">
+          <span>Comédie du Livre</span><span>Les ZAT</span><span>Fête de la Musique</span><span>Marché de Noël</span><span>Les Dimanches du Peyrou</span>
+          <span class="eq">Musée Fabre</span><span class="eq">Pavillon Populaire</span><span class="eq">Carré Sainte-Anne</span><span class="eq">Théâtre Jean Vilar</span><span class="eq">mille formes</span><span class="eq">Espace Bagouet</span><span class="eq">Espace Saint-Ravy</span>
+        </div>
+        <p class="lead" style="margin-top:18px">Pour combien d'entre eux un coût a-t-il été publié, sous une forme ou une autre&nbsp;?</p>
+        <div class="cards-g tight" id="mropts"></div>
+        <div id="mrnote"></div>
+        <div class="bar-actions"><button class="btn" id="mrnext" hidden>Dernière manche</button></div>
+        <span class="srcq">Recherche menée sur le portail de données ouvertes de la Ville et de la Métropole, les budgets primitifs et comptes administratifs en ligne, les délibérations publiées et les recueils des actes administratifs 2021 et 2022.</span>
+      </div>
+    </section>
+
     <!-- M4 -->
     <section class="m" id="m4">
-      <span class="mtag">Manche 5 sur 5 · la règle</span>
+      <span class="mtag">Manche 7 sur 7 · la règle</span>
       <h2>Qu'est-ce qui est publié, et qu'est-ce qui ne l'est pas ?</h2>
       <p class="lead">Cinq informations qu'un habitant peut vouloir consulter sur l'argent public de la culture. Pour chacune, une seule question : la collectivité la publie-t-elle, oui ou non ? Une précision avant de commencer, parce qu'elle change la lecture du résultat : une information introuvable n'est pas forcément un manquement. Sur l'une de ces cinq lignes, la Ville applique exactement ce que la loi lui demande, et l'information manque quand même.</p>
       <div class="panel-g">
         <div id="m4list"></div>
+        <div class="m4sum" id="m4sum"><b>4 informations sur 5</b><p>ne sont publiées nulle part. La cinquième ne l'est pas non plus, mais sur celle-là aucun texte n'oblige la collectivité à la publier : le trou est dans la loi, pas dans la pratique.</p></div>
         <div class="bar-actions"><button class="btn" id="m4go" disabled>Vérifier mes cinq réponses</button><button class="btn ghost" id="m4next" hidden>Voir mon score</button></div>
       </div>
     </section>
@@ -539,6 +597,7 @@ footer b{color:var(--ink)}
           <div><b>90 €</b><span>la place la plus chère, Festival Radio France</span></div>
           <div><b>858 333 €</b><span>versés pour deux plateaux de télévision</span></div>
           <div><b>+29 %</b><span>la plus forte hausse depuis 2019, Montpellier Danse</span></div>
+          <div><b>1 sur 12</b><span>des manifestations en régie a un coût publié</span></div>
           <div><b>4 sur 5</b><span>des publications attendues sont absentes</span></div>
         </div>
         <div class="bar-actions" style="justify-content:center"><a class="btn" href="./">Voir les données complètes</a><button class="btn ghost" onclick="location.reload()">Rejouer</button></div>
@@ -560,7 +619,7 @@ document.getElementById('tgl').addEventListener('click',()=>{
  try{ localStorage.setItem('svs-theme',next); }catch(e){}
 });
 
-let pts=0, MAX=12, step=0;
+let pts=0, MAX=14, step=0;
 const pill=document.getElementById('pill'), ptsEl=document.getElementById('pts'), sEl=document.getElementById('s');
 function add(n){ if(!n) return; pts+=n; ptsEl.textContent=pts; sEl.textContent=pts>1?'points':'point';
   pill.classList.remove('pop'); void pill.offsetWidth; pill.classList.add('pop'); }
@@ -659,7 +718,25 @@ document.querySelectorAll('#m2opts .pick').forEach(b=>b.addEventListener('click'
  document.getElementById('m2note').innerHTML=`<p class="lead" style="margin-top:16px"><span class="tag ${bon?'ok':'ko'}">${bon?'+1 point':'raté'}</span>${bon?"Bien vu. ":""}C'est le <b>Festival Radio France</b> qui mène, à <b>90 €</b> la place, devant le Club Peyrou à 86 €. Le festival reçoit 1 094 k€ de subventions en 2025, et propose par ailleurs une trentaine de concerts gratuits. Les deux chiffres sont vrais en même temps.</p>`;
  document.getElementById('m2next').hidden=false;
 }));
-document.getElementById('m2next').addEventListener('click',()=>goto('m3',3));
+document.getElementById('m2next').addEventListener('click',()=>goto('mfm',3));
+
+/* ---------- MFM : la Fete de la Musique ---------- */
+const FDM=[{t:"95 000 €",d:"le prix d'un gros concert en plein air"},
+ {t:"240 000 €",d:"deux fois le budget d'une ZAT"},
+ {t:"605 000 €",d:"hors taxes, pour une seule soirée",ok:1},
+ {t:"1,2 M€",d:"le double du précédent"}];
+document.getElementById('mfmopts').innerHTML=FDM.map((o,i)=>
+ `<button class="pick" data-i="${i}"><span class="t">${o.t}</span><span class="d">${o.d}</span><span class="amt">${o.ok?'exact':'non'}</span></button>`).join('');
+document.querySelectorAll('#mfmopts .pick').forEach(b=>b.addEventListener('click',()=>{
+ if(b.classList.contains('done'))return;
+ const bon=!!FDM[+b.dataset.i].ok;
+ b.classList.add('mine');
+ document.querySelectorAll('#mfmopts .pick').forEach(x=>x.classList.add('done', FDM[+x.dataset.i].ok?'good':'bad'));
+ if(bon) add(1);
+ document.getElementById('mfmnote').innerHTML=`<p class="lead" style="margin-top:16px"><span class="tag ${bon?'ok':'ko'}">${bon?'+1 point':'raté'}</span><b>605 000 € HT</b> versés à France Télévisions pour la Fête de la Musique 2022, par un marché passé <b>sans publicité ni mise en concurrence préalables</b>. Le même conseil municipal a ajouté 1,5 M€ de crédits d'événementiel au budget supplémentaire de l'année, « par exemple pour le plateau France Télévisions, pour la Fête de la musique ou les Nuits du Peyrou ». Ce montant de 605 000 € ne figure dans aucun fichier ouvert : il a fallu aller le chercher dans une annexe PDF du procès-verbal.</p>`;
+ document.getElementById('mfmnext').hidden=false;
+}));
+document.getElementById('mfmnext').addEventListener('click',()=>goto('m3',4));
 
 /* ---------- M3 ---------- */
 const MONT=[{t:"120 000 €",v:120000,d:"le prix d'une grosse soirée municipale"},
@@ -674,26 +751,42 @@ document.querySelectorAll('#m3opts .pick').forEach(b=>b.addEventListener('click'
  b.classList.add('mine');
  document.querySelectorAll('#m3opts .pick').forEach(x=>x.classList.add('done', MONT[+x.dataset.i].ok?'good':'bad'));
  if(bon) add(1);
- document.getElementById('m3note').innerHTML=`<p class="lead" style="margin-top:16px"><span class="tag ${bon?'ok':'ko'}">${bon?'+1 point':'raté'}</span><b>858 333 €</b> : 500 000 € TTC en 2021 pour les Estivales de Culturebox, 358 333 € HT en 2022 pour les Nuits du Peyrou, en deux lots. Les deux marchés ont été passés <b>sans publicité ni mise en concurrence préalables</b>, auprès du même attributaire. La même année 2022, la Ville a par ailleurs payé <b>605 000 € HT à France Télévisions</b> pour la Fête de la Musique.</p>`;
+ document.getElementById('m3note').innerHTML=`<p class="lead" style="margin-top:16px"><span class="tag ${bon?'ok':'ko'}">${bon?'+1 point':'raté'}</span><b>858 333 €</b> : 500 000 € TTC en 2021 pour les Estivales de Culturebox, 358 333 € HT en 2022 pour les Nuits du Peyrou, en deux lots. Les deux marchés ont été passés <b>sans publicité ni mise en concurrence préalables</b>, auprès du même attributaire. Avec les 605 000 € de la Fête de la Musique, la Ville a engagé <b>plus de 1,46 million d'euros en deux ans</b> pour accueillir ces plateaux de télévision.</p>`;
  document.getElementById('m3next').hidden=false;
 }));
-document.getElementById('m3next').addEventListener('click',()=>goto('m4',4));
+document.getElementById('m3next').addEventListener('click',()=>goto('mr',5));
+
+/* ---------- MR : en regie ---------- */
+const REG=[{t:"les 12"},{t:"6 sur 12"},{t:"3 sur 12"},{t:"1 sur 12",ok:1}];
+document.getElementById('mropts').innerHTML=REG.map((o,i)=>
+ `<button class="pick pc" data-i="${i}"><span class="t">${o.t}</span></button>`).join('');
+document.querySelectorAll('#mropts .pick').forEach(b=>b.addEventListener('click',()=>{
+ if(b.classList.contains('done'))return;
+ const bon=!!REG[+b.dataset.i].ok;
+ b.classList.add('mine');
+ document.querySelectorAll('#mropts .pick').forEach(x=>x.classList.add('done', REG[+x.dataset.i].ok?'good':'bad'));
+ if(bon) add(1);
+ document.getElementById('mrnote').innerHTML=`<p class="lead" style="margin-top:16px"><span class="tag ${bon?'ok':'ko'}">${bon?'+1 point':'raté'}</span><b>Une seule</b>, et encore partiellement : la Fête de la Musique, pour les 605 000 € de la prestation France Télévisions en 2022. Pour les onze autres, aucun montant n'a pu être trouvé, ni dans les données ouvertes, ni dans les budgets, ni dans les délibérations publiées. Ce ne sont pas de petites lignes : le musée Fabre, la Comédie du Livre et le Marché de Noël mobilisent des agents, des bâtiments et des prestataires toute l'année.</p>`;
+ document.getElementById('mrnext').hidden=false;
+}));
+document.getElementById('mrnext').addEventListener('click',()=>goto('m4',6));
 
 /* ---------- M4 ---------- */
 const OBL=[
- {t:"Le coût des manifestations que la Ville organise elle-même — Comédie du Livre, ZAT, Marché de Noël — est publié quelque part.",pub:false,
-  a:"<b>Non publié.</b> Aucun texte n'impose de le publier manifestation par manifestation. Un seul montant a été retrouvé : 605 000 € HT versés à France Télévisions pour la Fête de la Musique 2022, dans une décision du maire noyée au milieu d'un PDF de plusieurs centaines de pages."},
- {t:"Les données essentielles des marchés publics d'au moins 40 000 € HT sont publiées en données ouvertes, comme l'impose l'article R. 2196-1.",pub:false,
-  a:"<b>Non publié.</b> Le portail de données ouvertes de la Métropole ne propose aucun jeu de données sur la commande publique : ni liste de marchés, ni données essentielles, ni titulaires. Deux marchés d'inauguration repérés en 2025 n'ont ni montant ni attributaire publiés."},
- {t:"Le fichier des subventions distingue les aides versées en argent de celles accordées en nature, comme le prévoit le format national.",pub:false,
-  a:"<b>Non renseigné.</b> Le champ existe. Sur les 3 432 lignes du fichier courant, il indique « aide en numéraire » pour la totalité des lignes, sans une seule exception — alors que des délibérations approuvent par ailleurs plus de 2 M€ d'exonérations et de minorations de loyer."},
- {t:"Le nom du titulaire retenu et la redevance payée après un appel à candidatures d'occupation du domaine public sont publiés.",pub:false,
-  a:"<b>Non publié — et c'est légal.</b> L'article L. 2122-1-1 du code général de la propriété des personnes publiques impose une procédure de sélection et sa publicité, mais <b>uniquement sur l'appel, pas sur le résultat</b>. Ici la Ville respecte la règle : c'est la règle qui laisse le trou."},
- {t:"Les délibérations de l'exercice 2025 sont consultables en ligne.",pub:false,
-  a:"<b>Non publiées.</b> L'open data des délibérations s'arrête au 31 décembre 2024, le portail des actes commence en mars 2026. L'exercice 2025 n'est publié nulle part — c'est l'année de la première aide de 40 000 € au Rockstore et de la première édition du Club Peyrou."}];
+ {t:"Le coût des manifestations que la Ville organise elle-même — Comédie du Livre, ZAT, Marché de Noël — est publié quelque part.",pub:false,k:"manque",vl:"Non publié",
+  a:"Aucun texte n'impose de le publier manifestation par manifestation. Un seul montant a été retrouvé : 605 000 € HT versés à France Télévisions pour la Fête de la Musique 2022, dans une décision du maire noyée au milieu d'un PDF de plusieurs centaines de pages."},
+ {t:"Les données essentielles des marchés publics d'au moins 40 000 € HT sont publiées en données ouvertes, comme l'impose l'article R. 2196-1.",pub:false,k:"manque",vl:"Non publié",
+  a:"Le portail de données ouvertes de la Métropole ne propose aucun jeu de données sur la commande publique : ni liste de marchés, ni données essentielles, ni titulaires. Deux marchés d'inauguration repérés en 2025 n'ont ni montant ni attributaire publiés."},
+ {t:"Le fichier des subventions distingue les aides versées en argent de celles accordées en nature, comme le prévoit le format national.",pub:false,k:"manque",vl:"Champ existant, jamais renseigné",
+  a:"Le champ existe. Sur les 3 432 lignes du fichier courant, il indique « aide en numéraire » pour la totalité des lignes, sans une seule exception — alors que des délibérations approuvent par ailleurs plus de 2 M€ d'exonérations et de minorations de loyer."},
+ {t:"Le nom du titulaire retenu et la redevance payée après un appel à candidatures d'occupation du domaine public sont publiés.",pub:false,k:"legal",vl:"Non publié, et pourtant conforme à la loi",
+  a:"L'article L. 2122-1-1 du code général de la propriété des personnes publiques impose une procédure de sélection et sa publicité, mais <b>uniquement sur l'appel, pas sur le résultat</b>. Ici la Ville respecte la règle : c'est la règle qui laisse le trou."},
+ {t:"Les délibérations de l'exercice 2025 sont consultables en ligne.",pub:false,k:"manque",vl:"Non publié",
+  a:"L'open data des délibérations s'arrête au 31 décembre 2024, le portail des actes commence en mars 2026. L'exercice 2025 n'est publié nulle part — c'est l'année de la première aide de 40 000 € au Rockstore et de la première édition du Club Peyrou."}];
 document.getElementById('m4list').innerHTML=OBL.map((o,i)=>`<div class="ob" id="ob${i}">
  <div class="txt">${o.t}</div>
  <div class="btns"><button data-i="${i}" data-v="1">C'est publié</button><button data-i="${i}" data-v="0">Ce n'est pas publié</button></div>
+ <div class="vd ${o.k}"><u><s></s>${o.vl}</u><i class="rs"></i></div>
  <div class="ans">${o.a}</div></div>`).join('');
 const rep={};
 document.querySelectorAll('#m4list button').forEach(b=>b.addEventListener('click',()=>{
@@ -705,11 +798,14 @@ document.querySelectorAll('#m4list button').forEach(b=>b.addEventListener('click
 document.getElementById('m4go').addEventListener('click',e=>{
  e.target.hidden=true; document.getElementById('m4next').hidden=false;
  OBL.forEach((o,i)=>{ const bon=rep[i]===o.pub;
-  document.getElementById('ob'+i).classList.add('done',bon?'win':'lose');
+  const el=document.getElementById('ob'+i);
+  el.classList.add('done',o.k,bon?'win':'lose');
+  el.querySelector('.rs').textContent = bon ? '+1 point' : 'raté';
   if(bon) setTimeout(()=>add(1),200+i*140); });
+ setTimeout(()=>document.getElementById('m4sum').classList.add('on'), 900);
 });
 document.getElementById('m4next').addEventListener('click',()=>{
- goto('mf',5);
+ goto('mf',7);
  const t=pts/MAX;
  document.getElementById('fscore').textContent=pts+'/'+MAX;
  document.getElementById('ring').style.setProperty('--p', Math.round(t*100));
