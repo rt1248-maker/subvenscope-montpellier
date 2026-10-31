@@ -75,11 +75,11 @@ svg{display:block;max-width:100%}
 
 /* ── barre de navigation ─────────────────────────────────────────── */
 nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:color-mix(in srgb,var(--paper) 78%,transparent);backdrop-filter:blur(16px) saturate(1.5);border-bottom:1px solid var(--rule)}
-nav .wrap{display:flex;align-items:center;gap:11px;padding-block:10px;flex-wrap:wrap}
+nav .wrap{display:flex;align-items:center;gap:9px;padding-block:10px;flex-wrap:wrap}
 .brand{font-family:var(--f-display);font-weight:800;font-size:16.5px;margin-right:auto;display:inline-flex;align-items:center;gap:9px;letter-spacing:-.03em}
 .brand em{font-style:normal;color:var(--ink-3);font-weight:500}
 .brand .mk{width:22px;height:22px;border-radius:7px;flex:none;background:linear-gradient(135deg,var(--accent),var(--evt) 55%,var(--accent-3));box-shadow:0 0 0 1px color-mix(in srgb,var(--accent) 35%,transparent),0 6px 16px -8px var(--accent)}
-nav a.lnk{font-size:13.5px;color:var(--ink-2);text-decoration:none;padding:5px 9px;border-radius:999px;transition:color .15s,background .15s}
+nav a.lnk{font-size:13px;color:var(--ink-2);text-decoration:none;padding:5px 7px;border-radius:999px;transition:color .15s,background .15s}
 nav a.lnk:hover{color:var(--ink);background:color-mix(in srgb,var(--accent) 12%,transparent)}
 .tgl{border:1px solid var(--rule);background:var(--panel);color:var(--ink-2);width:32px;height:32px;border-radius:999px;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;flex:none;transition:color .15s,border-color .15s,transform .15s}
 .tgl:hover{color:var(--accent);border-color:var(--accent);transform:rotate(-18deg)}
@@ -240,6 +240,22 @@ figcaption{font-size:13.5px;line-height:1.55;color:var(--ink-3);margin-top:11px}
  .chead{display:flex;align-items:center;gap:12px;margin-bottom:2px}
  .chead h3{margin:0}
  .chead .ico{flex:none;width:36px;height:36px;border-radius:11px;display:grid;place-items:center;color:var(--accent);background:color-mix(in srgb,var(--accent) 12%,transparent);border:1px solid color-mix(in srgb,var(--accent) 26%,transparent)}
+ .bill{display:grid;grid-template-columns:repeat(auto-fit,minmax(215px,1fr));gap:14px;margin-top:20px}
+ .billc{position:relative;border:1px solid var(--rule);border-radius:var(--r);background:var(--panel);padding:20px;box-shadow:var(--shadow)}
+ .billc>b{display:block;font-family:var(--f-num);font-size:clamp(32px,4.6vw,48px);font-weight:600;letter-spacing:-.055em;line-height:1;background:linear-gradient(96deg,var(--accent-2),var(--accent));-webkit-background-clip:text;background-clip:text;color:transparent}
+ .billc>u{display:block;text-decoration:none;font-family:var(--f-num);font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3);margin-top:8px}
+ .billc>p{margin-top:12px;font-size:14.5px;line-height:1.55;color:var(--ink-2)}
+ .billc>span.src{margin-top:12px}
+ .billtot{margin-top:14px;display:flex;flex-wrap:wrap;align-items:baseline;gap:8px 18px;padding:22px;border-radius:var(--r);border:1px solid color-mix(in srgb,var(--hors) 36%,var(--rule));background:color-mix(in srgb,var(--hors) 7%,var(--panel))}
+ .billtot>b{font-family:var(--f-num);font-size:clamp(34px,5.2vw,54px);font-weight:600;letter-spacing:-.055em;line-height:1;color:var(--hors)}
+ .billtot>span{font-size:15px;color:var(--ink-2);max-width:62ch;line-height:1.55}
+ .keyblock{margin-top:14px;padding:19px 21px;border-radius:var(--r);background:var(--panel);border:1px solid var(--rule);border-left:4px solid var(--accent);box-shadow:var(--shadow)}
+ .keyblock h4{font-size:16px;font-weight:800;margin:0 0 9px}
+ .keyblock p{font-size:15px;line-height:1.62;color:var(--ink-2);margin:0 0 9px}
+ .keyblock p:last-of-type{margin-bottom:0}
+ .keyblock.red{border-left-color:var(--hors)}
+ .keyblock.red h4{color:var(--hors)}
+ section .wrap>.src{display:block;margin-top:16px;font-family:var(--f-num);font-size:11.5px;line-height:1.55;color:var(--ink-3);border-top:1px solid var(--rule-2);padding-top:10px}
  .card.acc{padding:0}
  .acc>summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:12px;padding:17px 19px;border-radius:var(--r)}
  .acc>summary::-webkit-details-marker{display:none}
@@ -304,6 +320,7 @@ footer b{color:var(--ink)}
   <a class="lnk" href="#regie">En régie</a>
   <a class="lnk" href="#cas">Les cas</a>
   <a class="lnk" href="#public">Spectateurs</a>
+  <a class="lnk" href="#evenements">La facture</a>
   <a class="lnk" href="#prix">Les tarifs</a>
   <a class="lnk" href="#retombees">Retombées</a>
   <a class="lnk" href="#methode">Méthode</a>
@@ -441,23 +458,7 @@ footer b{color:var(--ink)}
 
   <div class="card" style="margin-top:14px">
     <div class="chead"><span class="ico"><svg width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.2 5.6h13.6v9.6a1.4 1.4 0 0 1-1.4 1.4H4.6a1.4 1.4 0 0 1-1.4-1.4z"/><path d="M3.2 5.6 5 3.2h10l1.8 2.4"/><path d="M8.2 9.4h3.6"/></svg></span><h3>Où se cachent les coûts</h3></div>
-    <p>Ces coûts existent, et ils ont fini par être retrouvés. Pas dans un jeu de données : dans les <b>décisions du maire</b>, publiées à l'intérieur du recueil des actes administratifs, des PDF de quatre cents à cinq cents pages diffusés en archives compressées. Ceux de 2021 sont des <b>images scannées</b>, sans couche de texte : il a fallu les passer à la reconnaissance optique de caractères pour pouvoir y chercher un mot.</p>
-    <div class="scroller" style="margin-top:16px">
-      <table class="spt">
-        <thead><tr><th>Décision</th><th>Objet</th><th>Attributaire</th><th class="n">Montant</th></tr></thead>
-        <tbody>
-          <tr><td>VD2021-294<br><span style="color:var(--ink-3)">29 juin 2021</span></td><td>Marché V1D0025CO — achat d'actions de communication, « organisation du Festival France Télévisions » (Estivales de Culturebox)</td><td>Electron Libre Production</td><td class="n"><span class="vp v-hi">500 000 €</span><br><span style="color:var(--ink-3);font-size:12px">TTC</span></td></tr>
-          <tr><td>VD2021-289 et 291<br><span style="color:var(--ink-3)">juin-juillet 2021</span></td><td>Conventions d'occupation du domaine public — Estivales Culturebox et « Africa, le concert événement »</td><td>—</td><td class="n"><span class="vp v-lo">0 €</span><br><span style="color:var(--ink-3);font-size:12px">redevance non appliquée</span></td></tr>
-          <tr><td>VD2022-323<br><span style="color:var(--ink-3)">juin 2022</span></td><td>Marché V2D0024DC — achat d'actions de communication, organisation de la Fête de la Musique</td><td>France Télévisions</td><td class="n"><span class="vp v-hi">605 000 €</span><br><span style="color:var(--ink-3);font-size:12px">HT</span></td></tr>
-          <tr><td>VD2022-335<br><span style="color:var(--ink-3)">30 juin 2022</span></td><td>Marché V2D0026DC — achat d'actions de communication, organisation des Nuits du Peyrou, deux lots</td><td>Electron Libre Productions</td><td class="n"><span class="vp v-hi">358 333 €</span><br><span style="color:var(--ink-3);font-size:12px">HT (258 333 + 100 000)</span></td></tr>
-          <tr><td>VD2022-330<br><span style="color:var(--ink-3)">juillet 2022</span></td><td>Convention d'occupation du domaine public, Nuits du Peyrou, 27 juin au 9 juillet 2022</td><td>Electron Libre Productions</td><td class="n">non publié</td></tr>
-        </tbody>
-      </table>
-    </div>
-    <p style="margin-top:14px"><b>Trois choses méritent d'être relevées.</b> Les trois marchés ont été passés <b>sans publicité ni mise en concurrence préalables</b>, sur le fondement de l'article R. 2122-3 du code de la commande publique, que les décisions citent sans préciser le motif retenu. Deux d'entre eux ont le même attributaire, une société de production audiovisuelle de Boulogne-Billancourt. Et le même procès-verbal du 28 juillet 2022 chiffre à <b>1,5 M€</b> les crédits d'événementiel ajoutés au budget supplémentaire, « par exemple pour le plateau France Télévisions, pour la Fête de la musique ou les Nuits du Peyrou » — ordre de grandeur cohérent avec les trois marchés ci-dessus.</p>
-    <p><b>La gratuité du domaine public est motivée, et c'est rare.</b> La décision VD2021-289 écrit : « compte tenu des retombées en terme d'image et des retombées économiques que représente la diffusion du programme télévisé, <b>il est convenu de ne pas appliquer de tarif de redevance</b>, en considérant que le caractère onéreux de l'occupation du domaine public est satisfait par ces éléments de valorisation ». Le même acte énumère ce que la Ville fournit en plus : dépose et repose de mobiliers urbains, blocs stop, remise en état des espaces verts, <b>présence d'agents de police municipale pendant la manifestation</b>, mise à disposition d'espaces de communication, arrêtés de sonorisation. Aucune de ces prestations n'est chiffrée.</p>
-    <p>L'information est donc publique au sens strict, et inexploitable en pratique : pour l'atteindre, il faut télécharger 360 Mo d'archives, en extraire une douzaine de PDF, convertir en texte ce qui peut l'être, océriser le reste, puis chercher un numéro de décision. <b>C'est exactement ce qui sépare une obligation de publication formellement respectée d'une information réellement accessible.</b></p>
-    <span class="src">Décisions VD2021-289, VD2021-291 et VD2021-294 (recueil des actes administratifs de juillet 2021, pages 369 à 380) ; décisions VD2022-323, VD2022-330 et VD2022-335 (recueils de juillet et d'août-septembre-octobre 2022) ; procès-verbal du conseil municipal du 28 juillet 2022. Jeux de données « Recueils des actes administratifs de Montpellier » et « Procès-verbaux du Conseil Municipal », consultés le 31 octobre 2026.</span>
+    <p>Quelques-uns de ces coûts ont fini par être retrouvés, et l'endroit en dit long : non pas dans un jeu de données, mais dans les décisions du maire, publiées à l'intérieur de recueils d'actes de quatre cents à cinq cents pages, diffusés en archives compressées, et scannés sans couche de texte pour les années 2021. <b>Trois marchés et deux conventions ont ainsi été reconstitués, pour plus de 1,4 M€.</b> Ils sont détaillés dans la partie suivante, <a href="#evenements" style="color:var(--accent);font-weight:600">la facture des grands événements</a>.</p>
   </div>
 
   <details class="card acc" style="margin-top:14px">
@@ -584,8 +585,62 @@ footer b{color:var(--ink)}
   </details>
 </div></section>
 
+<section id="evenements"><div class="wrap">
+  <div class="eyebrow">07 — La facture</div>
+  <h2>Combien coûtent les grands événements accueillis aux Montpelliérains ?</h2>
+  <p class="sub">La Ville n'organise pas ces soirées : elle les achète. Trois marchés passés en deux ans, auprès d'une chaîne publique et d'une société de production audiovisuelle, pour faire venir à Montpellier des plateaux de télévision. Voici ce qu'ils coûtent, et ce qu'il a fallu faire pour le savoir.</p>
+
+  <div class="bill">
+    <div class="billc"><b>605 000 €</b><u>HT · 2022</u><p><b>Fête de la Musique.</b> Marché V2D0024DC, « achat d'actions de communication », conclu avec <b>France Télévisions</b>. Grande scène esplanade de l'Europe, 15 000 personnes.</p><span class="src">Décision VD2022-323</span></div>
+    <div class="billc"><b>500 000 €</b><u>TTC · 2021</u><p><b>Estivales de Culturebox.</b> Marché V1D0025CO, « organisation du Festival France Télévisions », conclu avec <b>Electron Libre Production</b>, Boulogne-Billancourt.</p><span class="src">Décision VD2021-294 du 29 juin 2021</span></div>
+    <div class="billc"><b>358 333 €</b><u>HT · 2022</u><p><b>Nuits du Peyrou.</b> Marché V2D0026DC en deux lots, 258 333 € et 100 000 €, conclu avec <b>Electron Libre Productions</b>. Quatre soirées, 4 au 7 juillet 2022.</p><span class="src">Décision VD2022-335 du 30 juin 2022</span></div>
+  </div>
+
+  <div class="billtot"><b>1 463 333 €</b><span>pour trois soirées télévisées en deux exercices, en additionnant un montant TTC et deux montants HT. À quoi s'ajoutent la mise à disposition gratuite du domaine public et des prestations municipales qui ne sont chiffrées nulle part.</span></div>
+
+  <div class="scroller" style="margin-top:16px">
+      <table class="spt">
+        <thead><tr><th>Décision</th><th>Objet</th><th>Attributaire</th><th class="n">Montant</th></tr></thead>
+        <tbody>
+          <tr><td>VD2021-294<br><span style="color:var(--ink-3)">29 juin 2021</span></td><td>Marché V1D0025CO — achat d'actions de communication, « organisation du Festival France Télévisions » (Estivales de Culturebox)</td><td>Electron Libre Production</td><td class="n"><span class="vp v-hi">500 000 €</span><br><span style="color:var(--ink-3);font-size:12px">TTC</span></td></tr>
+          <tr><td>VD2021-289 et 291<br><span style="color:var(--ink-3)">juin-juillet 2021</span></td><td>Conventions d'occupation du domaine public — Estivales Culturebox et « Africa, le concert événement »</td><td>—</td><td class="n"><span class="vp v-lo">0 €</span><br><span style="color:var(--ink-3);font-size:12px">redevance non appliquée</span></td></tr>
+          <tr><td>VD2022-323<br><span style="color:var(--ink-3)">juin 2022</span></td><td>Marché V2D0024DC — achat d'actions de communication, organisation de la Fête de la Musique</td><td>France Télévisions</td><td class="n"><span class="vp v-hi">605 000 €</span><br><span style="color:var(--ink-3);font-size:12px">HT</span></td></tr>
+          <tr><td>VD2022-335<br><span style="color:var(--ink-3)">30 juin 2022</span></td><td>Marché V2D0026DC — achat d'actions de communication, organisation des Nuits du Peyrou, deux lots</td><td>Electron Libre Productions</td><td class="n"><span class="vp v-hi">358 333 €</span><br><span style="color:var(--ink-3);font-size:12px">HT (258 333 + 100 000)</span></td></tr>
+          <tr><td>VD2022-330<br><span style="color:var(--ink-3)">juillet 2022</span></td><td>Convention d'occupation du domaine public, Nuits du Peyrou, 27 juin au 9 juillet 2022</td><td>Electron Libre Productions</td><td class="n">non publié</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+  <div class="keyblock">
+    <h4>Trois marchés, aucune mise en concurrence</h4>
+    <p>Les trois marchés ont été passés <b>sans publicité ni mise en concurrence préalables</b>, au visa de l'article R. 2122-3 du code de la commande publique, que les décisions citent sans dire lequel de ses motifs elles retiennent. Elles annoncent « le prix » comme critère d'analyse des offres, alors qu'une seule offre est examinée.</p>
+    <p>Deux d'entre eux ont le même attributaire, une société de production audiovisuelle établie à Boulogne-Billancourt. Et le total 2022 des deux marchés, <b>963 333 € HT</b>, cadre avec les « 1,5 M€ d'événementiel » que le budget supplémentaire 2022 ajoute « par exemple pour le plateau France Télévisions, pour la Fête de la musique ou les Nuits du Peyrou ».</p>
+  </div>
+
+  <div class="keyblock red">
+    <h4>Le domaine public, gratuit, et motivé</h4>
+    <p>La gratuité d'une occupation du domaine public est rarement motivée. Ici, elle l'est, et le motif mérite d'être lu : « compte tenu des retombées en terme d'image et des retombées économiques que représente la diffusion du programme télévisé, <b>il est convenu de ne pas appliquer de tarif de redevance</b> ».</p>
+    <p>Le même acte énumère ce que la Ville fournit en plus de l'emprise : dépose et repose de mobiliers urbains, mise en place de blocs stop, remise en état des espaces verts, <b>présence d'agents de police municipale pendant la manifestation</b>, mise à disposition d'espaces de communication, prise des arrêtés de sonorisation. <b>Rien de tout cela n'est chiffré.</b></p>
+  </div>
+
+  <div class="keyblock">
+    <h4>Ce qu'il a fallu faire pour obtenir ces chiffres</h4>
+    <p>La méthode fait partie du constat. Les recueils d'actes de 2021 sont des <b>scans sans couche de texte</b> : 454 pages pour quatre cents octets extractibles. Il a fallu les passer à la reconnaissance optique de caractères — d'abord la page de garde, pour trouver où commence la partie « Décisions » ; puis le sommaire de cette partie ; puis les pages visées, en corrigeant un décalage de deux entre la pagination imprimée et celle du PDF.</p>
+    <p>Au total, 360 Mo d'archives à télécharger, une douzaine de PDF à extraire, et un océriseur. <b>L'information est publique au sens strict, et hors d'atteinte en pratique.</b></p>
+  </div>
+
+  <div class="keyblock red">
+    <h4>Et les inaugurations ? Deux marchés repérés, aucun montant</h4>
+    <p>Les mêmes questions se posent pour les grandes inaugurations récentes, et la réponse est plus courte encore : <b>aucun coût n'est publié</b>. Ni pour la ligne 5 du tramway, inaugurée le 20 décembre 2025 avec spectacle aérien, parade et DJ sets. Ni pour l'extension de la ligne 1 vers la gare Sud de France, le 18 octobre 2025. Ni pour la mise en service du bustram A, le 22 mai 2025. Ni pour la place Max Rouquette, les 20 et 21 septembre 2025, avec concert, installation lumineuse sur l'aqueduc et « buffet républicain ».</p>
+    <p>Deux marchés ont pourtant été repérés, et ils disent que ces soirées s'achètent elles aussi. <b>« Conception et production artistique de l'inauguration de la ligne 5 de tramway »</b>, référence 8M86S, passé par la TaM comme mandataire de la Métropole, avis publié le 8 mai 2025, offres au 2 juin : <b>ni estimation, ni attributaire, ni montant publiés</b>. Et <b>« Production évènementielle de l'inauguration de l'extension ligne 1 »</b>, référence 9M86S0, dont l'avis n'est plus consultable.</p>
+    <p>Or l'article R. 2196-1 du code de la commande publique impose de publier les données essentielles de tout marché d'au moins 40 000 € HT dans les deux mois suivant sa notification. <b>Le portail de données ouvertes de la Métropole ne propose aucun jeu de données sur la commande publique, et la TaM n'y déclare que deux à trois marchés.</b> Un marché de production artistique pour l'inauguration d'une ligne de tramway de 440 M€ ne descend vraisemblablement pas sous ce seuil.</p>
+  </div>
+
+  <span class="src">Décisions VD2021-289, VD2021-291 et VD2021-294 (recueil des actes administratifs de juillet 2021, pages 369 à 380) ; décisions VD2022-323, VD2022-330 et VD2022-335 (recueils de juillet et d'août-septembre-octobre 2022) ; procès-verbal du conseil municipal du 28 juillet 2022. Jeux de données « Recueils des actes administratifs de Montpellier » et « Procès-verbaux du Conseil Municipal », consultés le 31 octobre 2026. Avis de marché 8M86S (TaM, parution du 8 mai 2025) et 9M86S0, relevés sur les plateformes de publicité des marchés publics ; dossier de presse officiel de l'inauguration de la ligne 5 ; communiqués de la Ville et de la Métropole des 17 octobre 2025, 20 septembre 2025 et 8 décembre 2025. Consultés le 31 octobre 2026.</span>
+</div></section>
+
 <section id="prix"><div class="wrap">
-  <div class="eyebrow">07 — Le prix du billet</div>
+  <div class="eyebrow">08 — Le prix du billet</div>
   <h2>Qui fait payer, et combien ?</h2>
   <p class="sub">La subvention est publique, le tarif aussi. Douze manifestations et lieux dont la grille tarifaire officielle a pu être relevée, en regard de ce que la Ville et la Métropole leur votent. <b>L'argent public ne se retrouve pas mécaniquement dans le prix payé à l'entrée.</b></p>
 
@@ -642,7 +697,7 @@ footer b{color:var(--ink)}
 </div></section>
 
 <section id="retombees"><div class="wrap">
-  <div class="eyebrow">08 — L'autre moitié du calcul</div>
+  <div class="eyebrow">09 — L'autre moitié du calcul</div>
   <h2>Les retombées économiques</h2>
   <p class="sub">Le coût est voté en conseil : il est connu à l'euro près. Le bénéfice, lui, est estimé, le plus souvent par ceux qui le reçoivent. Les deux chiffres n'ont pas le même statut, et le débat sur l'argent public de la culture se joue en grande partie sur cette différence.</p>
 
@@ -684,14 +739,14 @@ footer b{color:var(--ink)}
 </div></section>
 
 <section id="urgence"><div class="wrap">
-  <div class="eyebrow">09 — Le contre-exemple</div>
+  <div class="eyebrow">10 — Le contre-exemple</div>
   <h2>Le fonds d'urgence culturel de 2025</h2>
   <p class="sub">Douze aides, 115 000 €, publiées une par une avec le nom du bénéficiaire et l'intitulé du dispositif. Même fichier, même collectivité, même année que tout le reste de ce registre.</p>
   <div class="scroller"><table id="fondstbl"></table></div>
 </div></section>
 
 <section id="methode"><div class="wrap">
-  <div class="eyebrow">10 — Comment c'est fait</div>
+  <div class="eyebrow">11 — Comment c'est fait</div>
   <h2>Méthode, limites et sources</h2>
   <p class="sub">Les sources, les règles de reconstitution et les limites de l'exercice, dans le détail.</p>
   <details><summary>D'où viennent les chiffres</summary><div class="bd"><p>Du jeu de données « Attribution des subventions aux associations de la Ville Montpellier et de la Métropole de Montpellier », publié en données ouvertes. Le fichier courant ne couvre plus que 2025 et 2026 ; toute la série antérieure a été déplacée dans une archive compressée de sept classeurs aux schémas incompatibles, couvrant 2011 à 2024. Les deux ont été réconciliés ligne à ligne : 805 bénéficiaires ayant reçu au moins une subvention sur un dispositif culturel.</p></div></details>
