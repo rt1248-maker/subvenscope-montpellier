@@ -103,6 +103,10 @@ nav a.lnk:hover{color:var(--ink);background:color-mix(in srgb,var(--accent) 12%,
 .hero p{font-size:clamp(16px,2vw,19.5px);color:var(--ink-2);max-width:62ch;margin:20px 0 0}
 .herogrid{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,.82fr);gap:38px;align-items:center}
 .heroart{min-width:0}
+.heroside{min-width:0;display:flex;flex-direction:column;align-items:center;gap:18px}
+.playtop{display:inline-flex;align-items:center;gap:10px;text-decoration:none;text-align:center;font-family:var(--f-display);font-weight:800;font-size:clamp(14px,1.6vw,16px);letter-spacing:-.01em;line-height:1.25;color:var(--onfill);background:linear-gradient(96deg,var(--accent),var(--accent-2),var(--accent-3));border-radius:999px;padding:13px 24px;box-shadow:0 14px 30px -14px var(--accent);transition:filter .15s,transform .15s}
+.playtop:hover{filter:brightness(1.07);transform:translateY(-2px)}
+.playtop svg{flex:none}
 .heroart img{display:block;width:100%;height:auto;border-radius:50%;filter:drop-shadow(0 18px 38px color-mix(in srgb,var(--accent) 26%,transparent))}
 @media(max-width:900px){.herogrid{grid-template-columns:minmax(0,1fr);gap:26px}.heroart{max-width:380px;margin-inline:auto}}
 .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:13px;margin-top:34px}
@@ -398,6 +402,14 @@ footer b{color:var(--ink)}
  .pick.mine .t{padding-right:74px}
  .pick.mine::after{content:"choix retenu";position:absolute;right:10px;top:10px;font-family:var(--f-num);font-size:9.5px;letter-spacing:.09em;text-transform:uppercase;color:var(--accent)}
 
+ .sub2{display:none;margin-top:22px;border-top:1px solid var(--rule-2);padding-top:20px;animation:in .45s cubic-bezier(.2,.8,.3,1)}
+ .sub2.on{display:block}
+ .sub2 h3{font-size:17px;font-weight:700;letter-spacing:-.02em}
+ .sub2 .hint{margin-top:5px;font-size:14px;color:var(--ink-3);line-height:1.5}
+ .cards-g.tight{margin-top:14px;grid-template-columns:repeat(auto-fit,minmax(120px,1fr))}
+ .pick.pc{text-align:center}
+ .pick.pc .t{font-family:var(--f-num);font-size:21px;letter-spacing:-.03em}
+
  /* vrai-faux */
  .ob{border:1px solid var(--rule);border-radius:var(--r-sm);background:var(--panel-2);padding:15px 16px;transition:border-color .3s,background .3s}
  .ob+.ob{margin-top:10px}
@@ -436,7 +448,7 @@ footer b{color:var(--ink)}
 
 <nav class="gtop"><div class="wrap">
   <a class="brand" href="./" style="text-decoration:none;color:inherit"><span class="mk" aria-hidden="true"></span>Subven'Scope <em>Montpellier</em></a>
-  <div class="steps" id="steps" aria-label="Progression"><i class="on"></i><i></i><i></i><i></i></div>
+  <div class="steps" id="steps" aria-label="Progression"><i class="on"></i><i></i><i></i><i></i><i></i></div>
   <span class="scorepill" id="pill"><u id="pts">0</u><em id="s">point</em></span>
   <button class="tgl" id="tgl" type="button" aria-label="Basculer entre le thème clair et le thème sombre" title="Thème clair ou sombre"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4.2"></circle><path d="M12 2.4v2.2M12 19.4v2.2M2.4 12h2.2M19.4 12h2.2M5.2 5.2l1.6 1.6M17.2 17.2l1.6 1.6M18.8 5.2l-1.6 1.6M6.8 17.2l-1.6 1.6"></path></svg></button>
 </div></nav>
@@ -445,22 +457,43 @@ footer b{color:var(--ink)}
   <div class="ghero" id="intro">
     <a class="back" href="./">&larr; Retour au site</a>
     <h1>Le jeu de la <b>dépense publique</b></h1>
-    <p>Quatre manches, cinq minutes. Chaque réponse sort d'un acte public : une délibération, une décision du maire, une grille tarifaire, un fichier de subventions. Aucune n'est devinable. C'est précisément ce que ce jeu cherche à montrer : ces montants existent, ils sont publics, et personne ne les met jamais côte à côte.</p>
+    <p>Cinq manches, cinq minutes. Chaque réponse sort d'un acte public : une délibération, une décision du maire, une grille tarifaire, un fichier de subventions. Aucune n'est devinable. C'est précisément ce que ce jeu cherche à montrer : ces montants existent, ils sont publics, et personne ne les met jamais côte à côte.</p>
     <div class="bar-actions"><button class="btn" id="start">Commencer la partie</button></div>
   </div>
 
   <div class="stage" id="stage" hidden>
     <!-- M1 -->
     <section class="m live" id="m1">
-      <span class="mtag">Manche 1 sur 4 · à l'estime</span>
+      <span class="mtag">Manche 1 sur 5 · à l'estime</span>
       <h2>Combien d'argent public pour une seule place ?</h2>
       <p class="lead">La subvention annuelle de la Ville et de la Métropole, divisée par le nombre de spectateurs accueillis. Placez chaque curseur là où le montant semble se situer.</p>
       <div class="panel-g" id="m1body"></div>
     </section>
 
+    <!-- M2bis : la courbe -->
+    <section class="m" id="mh">
+      <span class="mtag">Manche 2 sur 5 · la courbe</span>
+      <h2>Quelle structure a vu sa subvention augmenter le plus depuis 2019 ?</h2>
+      <p class="lead">Quatre des plus grosses lignes du budget culturel, comparées entre l'exercice 2019 et l'exercice 2025. Une seule a nettement décroché vers le haut.</p>
+      <div class="panel-g">
+        <div class="cards-g" id="mhopts"></div>
+        <div id="mhnote"></div>
+
+        <div class="sub2" id="mhsub">
+          <h3>Question subsidiaire</h3>
+          <p class="hint">De combien cette subvention a-t-elle augmenté, en pourcentage, entre 2019 et 2025 ?</p>
+          <div class="cards-g tight" id="mhpct"></div>
+          <div id="mhnote2"></div>
+        </div>
+
+        <div class="bar-actions"><button class="btn" id="mhnext" hidden>Manche suivante</button></div>
+        <span class="srcq">Fichiers de subventions de la Ville de Montpellier et de Montpellier Méditerranée Métropole, exercices 2019 et 2025, crédits culturels seuls. L'exercice 2019 cumule, pour certaines structures, deux votes successifs : les quatre lignes retenues ici ont une série continue sur toute la période.</span>
+      </div>
+    </section>
+
     <!-- M2 -->
     <section class="m" id="m2">
-      <span class="mtag">Manche 2 sur 4 · le prix fort</span>
+      <span class="mtag">Manche 3 sur 5 · le prix fort</span>
       <h2>Lequel fait payer sa place le plus cher ?</h2>
       <p class="lead">Quatre manifestations qui reçoivent de l'argent public ou occupent l'espace public. Une seule affiche le tarif plein le plus élevé.</p>
       <div class="panel-g">
@@ -473,7 +506,7 @@ footer b{color:var(--ink)}
 
     <!-- M3 -->
     <section class="m" id="m3">
-      <span class="mtag">Manche 3 sur 4 · la facture</span>
+      <span class="mtag">Manche 4 sur 5 · la facture</span>
       <h2>Combien la Ville a-t-elle payé pour faire venir les plateaux de France Télévisions ?</h2>
       <p class="lead">Les Estivales de Culturebox en 2021, les Nuits du Peyrou en 2022. Deux marchés passés par la Ville auprès de la même société de production. Quel est le total ?</p>
       <div class="panel-g">
@@ -486,9 +519,9 @@ footer b{color:var(--ink)}
 
     <!-- M4 -->
     <section class="m" id="m4">
-      <span class="mtag">Manche 4 sur 4 · la règle</span>
+      <span class="mtag">Manche 5 sur 5 · la règle</span>
       <h2>Qu'est-ce qui est publié, et qu'est-ce qui ne l'est pas ?</h2>
-      <p class="lead">Cinq affirmations sur ce que la collectivité met à disposition du public. Tout n'est pas un manquement : une de ces lignes est parfaitement conforme à la loi, et c'est la plus instructive.</p>
+      <p class="lead">Cinq informations qu'un habitant peut vouloir consulter sur l'argent public de la culture. Pour chacune, une seule question : la collectivité la publie-t-elle, oui ou non ? Une précision avant de commencer, parce qu'elle change la lecture du résultat : une information introuvable n'est pas forcément un manquement. Sur l'une de ces cinq lignes, la Ville applique exactement ce que la loi lui demande, et l'information manque quand même.</p>
       <div class="panel-g">
         <div id="m4list"></div>
         <div class="bar-actions"><button class="btn" id="m4go" disabled>Vérifier mes cinq réponses</button><button class="btn ghost" id="m4next" hidden>Voir mon score</button></div>
@@ -505,6 +538,7 @@ footer b{color:var(--ink)}
           <div><b>96,80 €</b><span>d'argent public par place d'opéra</span></div>
           <div><b>90 €</b><span>la place la plus chère, Festival Radio France</span></div>
           <div><b>858 333 €</b><span>versés pour deux plateaux de télévision</span></div>
+          <div><b>+29 %</b><span>la plus forte hausse depuis 2019, Montpellier Danse</span></div>
           <div><b>4 sur 5</b><span>des publications attendues sont absentes</span></div>
         </div>
         <div class="bar-actions" style="justify-content:center"><a class="btn" href="./">Voir les données complètes</a><button class="btn ghost" onclick="location.reload()">Rejouer</button></div>
@@ -526,7 +560,7 @@ document.getElementById('tgl').addEventListener('click',()=>{
  try{ localStorage.setItem('svs-theme',next); }catch(e){}
 });
 
-let pts=0, MAX=10, step=0;
+let pts=0, MAX=12, step=0;
 const pill=document.getElementById('pill'), ptsEl=document.getElementById('pts'), sEl=document.getElementById('s');
 function add(n){ if(!n) return; pts+=n; ptsEl.textContent=pts; sEl.textContent=pts>1?'points':'point';
   pill.classList.remove('pop'); void pill.offsetWidth; pill.classList.add('pop'); }
@@ -573,7 +607,38 @@ document.getElementById('m1go').addEventListener('click',e=>{
   if(bon) setTimeout(()=>add(1), 300+i*160);
  });
 });
-document.getElementById('m1next').addEventListener('click',()=>goto('m2',1));
+document.getElementById('m1next').addEventListener('click',()=>goto('mh',1));
+
+/* ---------- MH : la plus forte hausse ---------- */
+const HAUSSE=[
+ {n:"Opéra Orchestre national",d:"13 330 k€ en 2019, 13 875 k€ en 2025"},
+ {n:"Montpellier Danse",d:"1 538 k€ en 2019, 1 987 k€ en 2025",ok:1},
+ {n:"Le Printemps des Comédiens",d:"1 472 k€ en 2019, rien de publié pour 2025"},
+ {n:"Cinemed",d:"1 153 k€ en 2019, 700 k€ en 2025"}];
+document.getElementById('mhopts').innerHTML=HAUSSE.map((o,i)=>
+ `<button class="pick" data-i="${i}"><span class="t">${o.n}</span><span class="d">${o.d}</span></button>`).join('');
+document.querySelectorAll('#mhopts .pick').forEach(b=>b.addEventListener('click',()=>{
+ if(b.classList.contains('done'))return;
+ const bon=!!HAUSSE[+b.dataset.i].ok;
+ b.classList.add('mine');
+ document.querySelectorAll('#mhopts .pick').forEach(x=>x.classList.add('done', HAUSSE[+x.dataset.i].ok?'good':'bad'));
+ if(bon) add(1);
+ document.getElementById('mhnote').innerHTML=`<p class="lead" style="margin-top:16px"><span class="tag ${bon?'ok':'ko'}">${bon?'+1 point':'raté'}</span>C'est <b>Montpellier Danse</b>. La subvention n'avait pas bougé d'un euro entre 2018 et 2022, puis elle a gagné 399 000 € sur la seule année 2025. Sur la même période, l'Opéra Orchestre national progresse de 4 %. Le Printemps des Comédiens n'a aucune ligne publiée pour 2025, et Cinemed a baissé.</p>`;
+ document.getElementById('mhsub').classList.add('on');
+}));
+const PCT=[{t:"+8 %"},{t:"+29 %",ok:1},{t:"+62 %"},{t:"+115 %"}];
+document.getElementById('mhpct').innerHTML=PCT.map((o,i)=>
+ `<button class="pick pc" data-i="${i}"><span class="t">${o.t}</span></button>`).join('');
+document.querySelectorAll('#mhpct .pick').forEach(b=>b.addEventListener('click',()=>{
+ if(b.classList.contains('done'))return;
+ const bon=!!PCT[+b.dataset.i].ok;
+ b.classList.add('mine');
+ document.querySelectorAll('#mhpct .pick').forEach(x=>x.classList.add('done', PCT[+x.dataset.i].ok?'good':'bad'));
+ if(bon) add(1);
+ document.getElementById('mhnote2').innerHTML=`<p class="lead" style="margin-top:16px"><span class="tag ${bon?'ok':'ko'}">${bon?'+1 point':'raté'}</span><b>+29 %</b> : de 1 538 100 € à 1 987 000 €, soit 448 900 € de plus par an. Aucune délibération consultable en ligne n'explique cette hausse : l'open data des délibérations s'arrête au 31 décembre 2024.</p>`;
+ document.getElementById('mhnext').hidden=false;
+}));
+document.getElementById('mhnext').addEventListener('click',()=>goto('m2',2));
 
 /* ---------- M2 ---------- */
 const PRIX=[{n:"Festival Radio France",p:90,d:"Tarif A+, Opéra Berlioz",ok:1},
@@ -594,7 +659,7 @@ document.querySelectorAll('#m2opts .pick').forEach(b=>b.addEventListener('click'
  document.getElementById('m2note').innerHTML=`<p class="lead" style="margin-top:16px"><span class="tag ${bon?'ok':'ko'}">${bon?'+1 point':'raté'}</span>${bon?"Bien vu. ":""}C'est le <b>Festival Radio France</b> qui mène, à <b>90 €</b> la place, devant le Club Peyrou à 86 €. Le festival reçoit 1 094 k€ de subventions en 2025, et propose par ailleurs une trentaine de concerts gratuits. Les deux chiffres sont vrais en même temps.</p>`;
  document.getElementById('m2next').hidden=false;
 }));
-document.getElementById('m2next').addEventListener('click',()=>goto('m3',2));
+document.getElementById('m2next').addEventListener('click',()=>goto('m3',3));
 
 /* ---------- M3 ---------- */
 const MONT=[{t:"120 000 €",v:120000,d:"le prix d'une grosse soirée municipale"},
@@ -612,7 +677,7 @@ document.querySelectorAll('#m3opts .pick').forEach(b=>b.addEventListener('click'
  document.getElementById('m3note').innerHTML=`<p class="lead" style="margin-top:16px"><span class="tag ${bon?'ok':'ko'}">${bon?'+1 point':'raté'}</span><b>858 333 €</b> : 500 000 € TTC en 2021 pour les Estivales de Culturebox, 358 333 € HT en 2022 pour les Nuits du Peyrou, en deux lots. Les deux marchés ont été passés <b>sans publicité ni mise en concurrence préalables</b>, auprès du même attributaire. La même année 2022, la Ville a par ailleurs payé <b>605 000 € HT à France Télévisions</b> pour la Fête de la Musique.</p>`;
  document.getElementById('m3next').hidden=false;
 }));
-document.getElementById('m3next').addEventListener('click',()=>goto('m4',3));
+document.getElementById('m3next').addEventListener('click',()=>goto('m4',4));
 
 /* ---------- M4 ---------- */
 const OBL=[
@@ -644,7 +709,7 @@ document.getElementById('m4go').addEventListener('click',e=>{
   if(bon) setTimeout(()=>add(1),200+i*140); });
 });
 document.getElementById('m4next').addEventListener('click',()=>{
- goto('mf',4);
+ goto('mf',5);
  const t=pts/MAX;
  document.getElementById('fscore').textContent=pts+'/'+MAX;
  document.getElementById('ring').style.setProperty('--p', Math.round(t*100));
