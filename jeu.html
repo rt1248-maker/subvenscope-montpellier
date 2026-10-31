@@ -245,6 +245,12 @@ figcaption{font-size:13.5px;line-height:1.55;color:var(--ink-3);margin-top:11px}
  .keyblock p:last-of-type{margin-bottom:0}
  .keyblock.red{border-left-color:var(--hors)}
  .keyblock.red h4{color:var(--hors)}
+ .playbar{display:flex;flex-wrap:wrap;align-items:center;gap:16px 22px;margin-top:26px;padding:20px 24px;border-radius:var(--r);border:1px solid color-mix(in srgb,var(--accent) 34%,var(--rule));background:linear-gradient(100deg,color-mix(in srgb,var(--accent) 10%,var(--panel)),color-mix(in srgb,var(--accent-3) 9%,var(--panel)));box-shadow:var(--shadow)}
+ .playbar .pt{flex:1 1 320px;min-width:0}
+ .playbar b{display:block;font-family:var(--f-display);font-weight:800;font-size:clamp(17px,2.2vw,21px);letter-spacing:-.02em}
+ .playbar span{display:block;margin-top:6px;font-size:14.5px;color:var(--ink-2);line-height:1.5}
+ .playbtn{flex:none;display:inline-flex;align-items:center;gap:9px;text-decoration:none;font-weight:700;font-size:15px;color:var(--onfill);background:linear-gradient(96deg,var(--accent),var(--accent-2));border-radius:999px;padding:12px 22px;box-shadow:0 10px 24px -12px var(--accent)}
+ .playbtn:hover{filter:brightness(1.07)}
  section .wrap>.src{display:block;margin-top:16px;font-family:var(--f-num);font-size:11.5px;line-height:1.55;color:var(--ink-3);border-top:1px solid var(--rule-2);padding-top:10px}
  .card.acc{padding:0}
  .acc>summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:12px;padding:17px 19px;border-radius:var(--r)}
@@ -304,293 +310,352 @@ footer b{color:var(--ink)}
 </head>
 <body>
 <style>
- .gwrap{max-width:900px;margin-inline:auto;padding-block:40px 70px}
- .ghero h1{font-size:clamp(30px,5.4vw,52px);font-weight:800;letter-spacing:-.04em;line-height:1.02;margin:14px 0 0}
- .ghero h1 b{background:linear-gradient(96deg,var(--accent-2),var(--accent) 60%,var(--accent-3));-webkit-background-clip:text;background-clip:text;color:transparent}
- .ghero p{margin-top:16px;font-size:clamp(15px,1.9vw,18px);color:var(--ink-2);line-height:1.6;max-width:64ch}
+ body{overflow-x:hidden}
+ .gtop{position:sticky;top:0;z-index:30;background:color-mix(in srgb,var(--paper) 86%,transparent);backdrop-filter:blur(16px) saturate(1.5);border-bottom:1px solid var(--rule)}
+ .gtop .wrap{display:flex;align-items:center;gap:14px;padding-block:11px;flex-wrap:nowrap}
+ .gtop .brand{margin-right:auto}
+ .steps{display:flex;gap:6px;align-items:center}
+ .steps i{display:block;width:30px;height:6px;border-radius:999px;background:var(--rule);transition:background .35s,width .35s}
+ .steps i.on{background:linear-gradient(90deg,var(--accent),var(--accent-2));width:44px}
+ .steps i.ok{background:var(--lieu)}
+ .scorepill{display:inline-flex;align-items:center;gap:7px;font-family:var(--f-num);font-weight:600;font-size:14px;border:1px solid var(--rule);background:var(--panel);border-radius:999px;padding:6px 13px;white-space:nowrap}
+ .scorepill u{text-decoration:none;color:var(--accent);font-size:16px}
+ .scorepill em{font-style:normal}
+ .scorepill.pop{animation:pop .5s cubic-bezier(.2,1.4,.4,1)}
+ @keyframes pop{0%{transform:scale(1)}45%{transform:scale(1.18)}100%{transform:scale(1)}}
+ @media(max-width:560px){
+  .gtop .wrap{gap:9px}
+  .gtop .brand{font-size:14px;gap:7px}
+  .gtop .brand em{display:none}
+  .steps{gap:4px}
+  .steps i{width:14px;height:5px}
+  .steps i.on{width:22px}
+  .scorepill{font-size:12.5px;padding:5px 10px;gap:5px}
+  .scorepill u{font-size:14px}
+  .tgl{width:28px;height:28px}
+ }
+
+ .gwrap{max-width:880px;margin-inline:auto;padding-block:34px 80px}
+ .ghero h1{font-size:clamp(32px,6vw,58px);font-weight:800;letter-spacing:-.045em;line-height:1;margin:16px 0 0}
+ .ghero h1 b{background:linear-gradient(96deg,var(--accent-2),var(--accent) 55%,var(--accent-3));-webkit-background-clip:text;background-clip:text;color:transparent}
+ .ghero p{margin-top:18px;font-size:clamp(15px,1.9vw,18px);color:var(--ink-2);line-height:1.62;max-width:60ch}
  .back{display:inline-flex;align-items:center;gap:8px;font-size:14px;color:var(--ink-2);text-decoration:none;padding:7px 13px;border:1px solid var(--rule);border-radius:999px;background:var(--panel)}
  .back:hover{color:var(--accent);border-color:color-mix(in srgb,var(--accent) 40%,var(--rule))}
 
- .q{margin-top:26px;border:1px solid var(--rule);border-radius:var(--r);background:var(--panel);box-shadow:var(--shadow);overflow:hidden}
- .qhead{padding:20px 22px 0}
- .qnum{display:inline-flex;align-items:center;gap:8px;font-family:var(--f-num);font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);font-weight:700;background:color-mix(in srgb,var(--accent) 13%,transparent);border-radius:999px;padding:6px 13px}
- .q h2{font-size:clamp(19px,2.6vw,25px);font-weight:800;letter-spacing:-.025em;margin:13px 0 0;line-height:1.22}
- .q .lead{margin-top:9px;font-size:15px;color:var(--ink-2);line-height:1.6}
- .qbody{padding:18px 22px 22px}
+ .stage{position:relative;margin-top:30px}
+ .stage section.m{padding-block:0;background:none}
+ .stage section.m::before{content:none}
+ .m{display:none;animation:in .45s cubic-bezier(.2,.8,.3,1)}
+ .m.live{display:block}
+ @keyframes in{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+ .mtag{display:inline-flex;align-items:center;gap:9px;font-family:var(--f-num);font-size:11.5px;letter-spacing:.13em;text-transform:uppercase;color:var(--accent);font-weight:700;background:color-mix(in srgb,var(--accent) 13%,transparent);border-radius:999px;padding:7px 15px}
+ .m h2{font-size:clamp(24px,3.6vw,36px);font-weight:800;letter-spacing:-.035em;line-height:1.1;margin:15px 0 0}
+ .m .lead{margin-top:12px;font-size:16px;color:var(--ink-2);line-height:1.6;max-width:62ch}
+ .panel-g{margin-top:22px;border:1px solid var(--rule);border-radius:var(--r);background:var(--panel);box-shadow:var(--shadow);padding:22px}
+ @media(max-width:560px){.panel-g{padding:16px}}
 
- .sl{margin-top:18px}
- .sl .row{display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin-bottom:7px}
- .sl .nm{font-weight:600;font-size:15.5px}
- .sl .val{font-family:var(--f-num);font-size:19px;font-weight:600;color:var(--accent);font-variant-numeric:tabular-nums}
- input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:9px;border-radius:999px;background:linear-gradient(90deg,color-mix(in srgb,var(--accent) 55%,transparent),color-mix(in srgb,var(--accent-2) 55%,transparent));outline:none}
- input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:26px;height:26px;border-radius:50%;background:var(--panel);border:3px solid var(--accent);cursor:grab;box-shadow:0 3px 10px -3px rgba(0,0,0,.4)}
- input[type=range]::-moz-range-thumb{width:22px;height:22px;border-radius:50%;background:var(--panel);border:3px solid var(--accent);cursor:grab}
- .scale{display:flex;justify-content:space-between;font-family:var(--f-num);font-size:11px;color:var(--ink-3);margin-top:5px}
- .res{margin-top:10px;font-size:14.5px;color:var(--ink-2);line-height:1.55;display:none}
- .res.on{display:block}
- .res b.ok{color:var(--lieu)} .res b.ko{color:var(--hors)}
- .gauge{position:relative;height:10px;border-radius:999px;background:var(--panel-2);border:1px solid var(--rule);margin-top:9px;display:none}
- .gauge.on{display:block}
- .gauge i,.gauge u{position:absolute;top:50%;transform:translate(-50%,-50%);width:14px;height:14px;border-radius:50%}
- .gauge i{background:var(--accent);box-shadow:0 0 0 3px color-mix(in srgb,var(--accent) 22%,transparent)}
- .gauge u{background:var(--lieu);box-shadow:0 0 0 3px color-mix(in srgb,var(--lieu) 25%,transparent)}
+ /* curseurs */
+ .sl+.sl{margin-top:24px;border-top:1px solid var(--rule-2);padding-top:22px}
+ .sl .row{display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin-bottom:9px}
+ .sl .nm{font-weight:700;font-size:16px}
+ .sl .val{font-family:var(--f-num);font-size:24px;font-weight:600;color:var(--accent);font-variant-numeric:tabular-nums;letter-spacing:-.03em}
+ input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:10px;border-radius:999px;background:linear-gradient(90deg,color-mix(in srgb,var(--lieu) 50%,transparent),color-mix(in srgb,var(--regie) 55%,transparent),color-mix(in srgb,var(--hors) 55%,transparent));outline:none}
+ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:28px;height:28px;border-radius:50%;background:var(--panel);border:3px solid var(--accent);cursor:grab;box-shadow:0 4px 12px -3px rgba(0,0,0,.45)}
+ input[type=range]::-moz-range-thumb{width:24px;height:24px;border-radius:50%;background:var(--panel);border:3px solid var(--accent);cursor:grab}
+ .scale{display:flex;justify-content:space-between;font-family:var(--f-num);font-size:11px;color:var(--ink-3);margin-top:6px}
+ .track{position:relative;height:38px;margin-top:14px;display:none}
+ .track.on{display:block}
+ .track .line{position:absolute;left:0;right:0;top:19px;height:4px;border-radius:999px;background:var(--panel-2);border:1px solid var(--rule)}
+ .track .mk{position:absolute;top:19px;transform:translate(-50%,-50%);width:0;transition:left .8s cubic-bezier(.2,.8,.3,1)}
+ .track .mk s{display:block;width:16px;height:16px;border-radius:50%;margin-left:-8px;text-decoration:none}
+ .track .mk span{position:absolute;left:50%;transform:translateX(-50%);top:14px;white-space:nowrap;font-family:var(--f-num);font-size:11.5px;font-weight:600}
+ .track .you s{background:var(--ink-3);box-shadow:0 0 0 3px color-mix(in srgb,var(--ink-3) 25%,transparent)}
+ .track .you span{color:var(--ink-3)}
+ .track .real s{background:var(--accent);box-shadow:0 0 0 4px color-mix(in srgb,var(--accent) 26%,transparent)}
+ .track .real span{top:-20px;color:var(--accent);font-size:13px}
+ .verdict{display:none;margin-top:12px;font-size:14.5px;line-height:1.55;color:var(--ink-2)}
+ .verdict.on{display:block}
+ .tag{display:inline-block;font-family:var(--f-num);font-size:11px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;border-radius:999px;padding:4px 10px;margin-right:9px}
+ .tag.ok{color:var(--lieu);background:color-mix(in srgb,var(--lieu) 15%,transparent)}
+ .tag.ko{color:var(--hors);background:color-mix(in srgb,var(--hors) 14%,transparent)}
 
- .opts{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:12px;margin-top:18px}
- .opt{text-align:left;cursor:pointer;border:1px solid var(--rule);background:var(--panel-2);border-radius:var(--r-sm);padding:15px 16px;font:inherit;color:var(--ink);transition:border-color .15s,background .15s,transform .15s}
- .opt:hover{border-color:color-mix(in srgb,var(--accent) 45%,var(--rule));transform:translateY(-2px)}
- .opt .t{font-weight:700;font-size:15.5px;display:block}
- .opt .d{display:block;margin-top:5px;font-size:13px;color:var(--ink-3);line-height:1.45}
- .opt .rv{display:none;margin-top:9px;font-family:var(--f-num);font-size:17px;font-weight:600}
- .opt.done{cursor:default;transform:none}
- .opt.done .rv{display:block}
- .opt.good{border-color:var(--lieu);background:color-mix(in srgb,var(--lieu) 10%,transparent)}
- .opt.good .rv{color:var(--lieu)}
- .opt.bad{border-color:color-mix(in srgb,var(--hors) 45%,var(--rule));opacity:.78}
- .opt.bad .rv{color:var(--ink-2)}
- .opt.picked::after{content:"votre réponse";position:absolute;right:12px;top:12px;font-family:var(--f-num);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3)}
- .opt{position:relative}
+ /* cartes de choix */
+ .cards-g{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px}
+ .pick{position:relative;overflow:hidden;text-align:left;cursor:pointer;border:1px solid var(--rule);background:var(--panel-2);border-radius:var(--r-sm);padding:16px;font:inherit;color:var(--ink);transition:transform .18s,border-color .18s,box-shadow .18s}
+ .pick:hover{transform:translateY(-3px);border-color:color-mix(in srgb,var(--accent) 50%,var(--rule));box-shadow:0 10px 26px -16px var(--accent)}
+ .pick .t{display:block;font-weight:700;font-size:16px;line-height:1.25}
+ .pick .d{display:block;margin-top:6px;font-size:12.5px;color:var(--ink-3);line-height:1.4}
+ .pick .amt{display:block;margin-top:12px;font-family:var(--f-num);font-size:26px;font-weight:600;letter-spacing:-.04em;opacity:0;transform:translateY(6px);transition:opacity .4s,transform .4s}
+ .pick .bar{display:block;height:7px;border-radius:999px;background:var(--rule);margin-top:9px;overflow:hidden}
+ .pick .bar i{display:block;height:100%;width:0;border-radius:999px;background:linear-gradient(90deg,var(--accent),var(--accent-2));transition:width .9s cubic-bezier(.2,.8,.3,1)}
+ .pick.done{cursor:default;transform:none;box-shadow:none}
+ .pick.done .amt{opacity:1;transform:none}
+ .pick.good{border-color:var(--lieu);background:color-mix(in srgb,var(--lieu) 9%,transparent)}
+ .pick.good .amt{color:var(--lieu)}
+ .pick.good .bar i{background:var(--lieu)}
+ .pick.bad{opacity:.72}
+ .pick.mine::before{content:"";position:absolute;inset:0;border-radius:var(--r-sm);border:2px solid var(--accent);pointer-events:none}
+ .pick.mine .t{padding-right:74px}
+ .pick.mine::after{content:"choix retenu";position:absolute;right:10px;top:10px;font-family:var(--f-num);font-size:9.5px;letter-spacing:.09em;text-transform:uppercase;color:var(--accent)}
 
- .oblig{margin-top:18px;display:grid;gap:10px}
- .ob{border:1px solid var(--rule);border-radius:var(--r-sm);background:var(--panel-2);padding:14px 16px}
- .ob .txt{font-size:15px;line-height:1.5}
- .ob .btns{display:flex;gap:8px;margin-top:11px;flex-wrap:wrap}
- .ob button{cursor:pointer;font:inherit;font-size:13.5px;font-weight:600;border:1px solid var(--rule);background:var(--panel);color:var(--ink-2);border-radius:999px;padding:7px 15px}
+ /* vrai-faux */
+ .ob{border:1px solid var(--rule);border-radius:var(--r-sm);background:var(--panel-2);padding:15px 16px;transition:border-color .3s,background .3s}
+ .ob+.ob{margin-top:10px}
+ .ob .txt{font-size:15.5px;line-height:1.5}
+ .ob .btns{display:flex;gap:8px;margin-top:12px;flex-wrap:wrap}
+ .ob button{cursor:pointer;font:inherit;font-size:13.5px;font-weight:600;border:1px solid var(--rule);background:var(--panel);color:var(--ink-2);border-radius:999px;padding:8px 16px;transition:.15s}
  .ob button:hover{border-color:color-mix(in srgb,var(--accent) 45%,var(--rule));color:var(--accent)}
  .ob button.sel{background:var(--accent);border-color:var(--accent);color:var(--onfill)}
- .ob .ans{display:none;margin-top:11px;font-size:14px;line-height:1.55;color:var(--ink-2);border-top:1px solid var(--rule-2);padding-top:10px}
- .ob.done .ans{display:block}
- .ob.done button{pointer-events:none;opacity:.55}
+ .ob .ans{display:none;margin-top:12px;font-size:14px;line-height:1.58;color:var(--ink-2);border-top:1px solid var(--rule-2);padding-top:11px}
+ .ob.done .ans{display:block;animation:in .4s}
+ .ob.done button{pointer-events:none;opacity:.5}
  .ob.done button.sel{opacity:1}
- .ob .verdict{font-weight:700}
- .ob.win{border-color:color-mix(in srgb,var(--lieu) 55%,var(--rule))}
- .ob.lose{border-color:color-mix(in srgb,var(--hors) 45%,var(--rule))}
+ .ob.win{border-color:color-mix(in srgb,var(--lieu) 60%,var(--rule));background:color-mix(in srgb,var(--lieu) 7%,transparent)}
+ .ob.lose{border-color:color-mix(in srgb,var(--hors) 50%,var(--rule));background:color-mix(in srgb,var(--hors) 5%,transparent)}
 
- .btn{cursor:pointer;font:inherit;font-weight:700;font-size:15px;border:0;border-radius:999px;padding:11px 22px;color:var(--onfill);background:linear-gradient(96deg,var(--accent),var(--accent-2));box-shadow:0 8px 22px -10px var(--accent);margin-top:18px}
- .btn:disabled{opacity:.45;cursor:default;box-shadow:none}
- .srcq{display:block;margin-top:14px;font-family:var(--f-num);font-size:11px;line-height:1.5;color:var(--ink-3);border-top:1px solid var(--rule-2);padding-top:9px}
+ .btn{cursor:pointer;text-decoration:none;display:inline-block;font:inherit;font-weight:700;font-size:15.5px;border:0;border-radius:999px;padding:13px 26px;color:var(--onfill);background:linear-gradient(96deg,var(--accent),var(--accent-2));box-shadow:0 10px 26px -12px var(--accent);transition:filter .15s,opacity .15s}
+ .btn:hover{filter:brightness(1.07)}
+ .btn:disabled{opacity:.4;cursor:default;box-shadow:none}
+ .btn.ghost{background:none;color:var(--accent);border:1px solid color-mix(in srgb,var(--accent) 45%,var(--rule));box-shadow:none}
+ .bar-actions{display:flex;flex-wrap:wrap;gap:12px;align-items:center;margin-top:20px}
+ .srcq{display:block;margin-top:16px;font-family:var(--f-num);font-size:11px;line-height:1.55;color:var(--ink-3);border-top:1px solid var(--rule-2);padding-top:10px}
 
- .score{margin-top:30px;border-radius:var(--r);padding:26px 24px;border:1px solid color-mix(in srgb,var(--accent) 34%,var(--rule));background:color-mix(in srgb,var(--accent) 7%,var(--panel));text-align:center}
- .score b{display:block;font-family:var(--f-num);font-size:clamp(40px,8vw,64px);font-weight:600;letter-spacing:-.05em;line-height:1;background:linear-gradient(96deg,var(--accent-2),var(--accent));-webkit-background-clip:text;background-clip:text;color:transparent}
- .score p{margin-top:12px;font-size:16px;color:var(--ink-2);line-height:1.6;max-width:56ch;margin-inline:auto}
- @media(max-width:560px){.qhead{padding:16px 16px 0}.qbody{padding:14px 16px 18px}}
+ /* final */
+ .ring{width:186px;height:186px;border-radius:50%;margin:0 auto;display:grid;place-items:center;background:conic-gradient(var(--accent) calc(var(--p)*1%),var(--rule) 0);transition:--p 1s}
+ .ring>div{width:150px;height:150px;border-radius:50%;background:var(--panel);display:grid;place-items:center;text-align:center}
+ .ring b{font-family:var(--f-num);font-size:40px;font-weight:600;letter-spacing:-.05em;line-height:1;background:linear-gradient(96deg,var(--accent-2),var(--accent));-webkit-background-clip:text;background-clip:text;color:transparent}
+ .ring small{display:block;font-family:var(--f-num);font-size:12px;color:var(--ink-3);margin-top:5px}
+ .final{text-align:center;padding:34px 24px}
+ .final h2{font-size:clamp(25px,4vw,36px);font-weight:800;letter-spacing:-.035em;margin-top:20px}
+ .final p{margin-top:14px;font-size:16px;line-height:1.62;color:var(--ink-2);max-width:56ch;margin-inline:auto}
+ .recap{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin-top:26px;text-align:left}
+ .recap div{border:1px solid var(--rule);border-radius:var(--r-sm);background:var(--panel-2);padding:13px 14px}
+ .recap b{display:block;font-family:var(--f-num);font-size:19px;font-weight:600;letter-spacing:-.03em}
+ .recap span{display:block;font-size:12.5px;color:var(--ink-3);margin-top:4px;line-height:1.4}
 </style>
 
-<nav><div class="wrap">
+<nav class="gtop"><div class="wrap">
   <a class="brand" href="./" style="text-decoration:none;color:inherit"><span class="mk" aria-hidden="true"></span>Subven'Scope <em>Montpellier</em></a>
+  <div class="steps" id="steps" aria-label="Progression"><i class="on"></i><i></i><i></i><i></i></div>
+  <span class="scorepill" id="pill"><u id="pts">0</u><em id="s">point</em></span>
+  <button class="tgl" id="tgl" type="button" aria-label="Basculer entre le thème clair et le thème sombre" title="Thème clair ou sombre"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4.2"></circle><path d="M12 2.4v2.2M12 19.4v2.2M2.4 12h2.2M19.4 12h2.2M5.2 5.2l1.6 1.6M17.2 17.2l1.6 1.6M18.8 5.2l-1.6 1.6M6.8 17.2l-1.6 1.6"></path></svg></button>
 </div></nav>
 
 <main class="wrap gwrap">
-  <a class="back" href="./">&larr; Retour au site</a>
-  <div class="ghero">
+  <div class="ghero" id="intro">
+    <a class="back" href="./">&larr; Retour au site</a>
     <h1>Le jeu de la <b>dépense publique</b></h1>
-    <p>Quatre manches, quelques minutes. Toutes les réponses viennent d'actes publics : délibérations, décisions du maire, grilles tarifaires officielles, fichiers de subventions. Aucune n'est inventée, et chacune est sourcée. Le but n'est pas de piéger : c'est de voir à quel point ces montants sont difficiles à deviner quand on ne les a jamais lus.</p>
+    <p>Quatre manches, cinq minutes. Chaque réponse sort d'un acte public : une délibération, une décision du maire, une grille tarifaire, un fichier de subventions. Aucune n'est devinable. C'est précisément ce que ce jeu cherche à montrer : ces montants existent, ils sont publics, et personne ne les met jamais côte à côte.</p>
+    <div class="bar-actions"><button class="btn" id="start">Commencer la partie</button></div>
   </div>
 
-  <!-- 1 -->
-  <section class="q" id="q1">
-    <div class="qhead">
-      <span class="qnum">Manche 1 · à l'estime</span>
-      <h2>Combien d'argent public pour une place ?</h2>
-      <p class="lead">Pour ces trois structures, la subvention annuelle de la Ville et de la Métropole, divisée par le nombre de spectateurs. Placez les curseurs où vous pensez que se situe le montant par personne.</p>
-    </div>
-    <div class="qbody" id="q1body"></div>
-  </section>
+  <div class="stage" id="stage" hidden>
+    <!-- M1 -->
+    <section class="m live" id="m1">
+      <span class="mtag">Manche 1 sur 4 · à l'estime</span>
+      <h2>Combien d'argent public pour une seule place ?</h2>
+      <p class="lead">La subvention annuelle de la Ville et de la Métropole, divisée par le nombre de spectateurs accueillis. Placez chaque curseur là où le montant semble se situer.</p>
+      <div class="panel-g" id="m1body"></div>
+    </section>
 
-  <!-- 2 -->
-  <section class="q" id="q2">
-    <div class="qhead">
-      <span class="qnum">Manche 2 · le prix fort</span>
+    <!-- M2 -->
+    <section class="m" id="m2">
+      <span class="mtag">Manche 2 sur 4 · le prix fort</span>
       <h2>Lequel fait payer sa place le plus cher ?</h2>
-      <p class="lead">Quatre manifestations qui reçoivent de l'argent public ou occupent le domaine public. Une seule affiche le tarif plein le plus élevé. Cliquez sur celle que vous pensez être en tête.</p>
-    </div>
-    <div class="qbody"><div class="opts" id="q2opts"></div><span class="srcq">Grilles tarifaires officielles des organisateurs, éditions 2025 et 2026. Les pass et abonnements ne sont pas comptés : il s'agit du droit d'entrée à une séance ou à une soirée.</span></div>
-  </section>
+      <p class="lead">Quatre manifestations qui reçoivent de l'argent public ou occupent l'espace public. Une seule affiche le tarif plein le plus élevé.</p>
+      <div class="panel-g">
+        <div class="cards-g" id="m2opts"></div>
+        <div id="m2note"></div>
+        <div class="bar-actions"><button class="btn" id="m2next" hidden>Manche suivante</button></div>
+        <span class="srcq">Grilles tarifaires officielles des organisateurs, éditions 2025 et 2026. Droit d'entrée à une séance ou à une soirée ; les pass et abonnements ne sont pas comptés.</span>
+      </div>
+    </section>
 
-  <!-- 3 -->
-  <section class="q" id="q3">
-    <div class="qhead">
-      <span class="qnum">Manche 3 · la facture</span>
-      <h2>Combien la Ville a-t-elle payé pour les plateaux de France Télévisions ?</h2>
-      <p class="lead">En 2021, les Estivales de Culturebox. En 2022, les Nuits du Peyrou. Deux marchés passés par la Ville auprès d'une société de production audiovisuelle. Quel est le total des deux ?</p>
-    </div>
-    <div class="qbody"><div class="opts" id="q3opts"></div><span class="srcq">Décision VD2021-294 du 29 juin 2021, marché V1D0025CO, 500 000 € TTC. Décision VD2022-335 du 30 juin 2022, marché V2D0026DC, 258 333,33 € HT (lot 1) et 100 000 € HT (lot 2). Recueils des actes administratifs de la Ville de Montpellier.</span></div>
-  </section>
+    <!-- M3 -->
+    <section class="m" id="m3">
+      <span class="mtag">Manche 3 sur 4 · la facture</span>
+      <h2>Combien la Ville a-t-elle payé pour faire venir les plateaux de France Télévisions ?</h2>
+      <p class="lead">Les Estivales de Culturebox en 2021, les Nuits du Peyrou en 2022. Deux marchés passés par la Ville auprès de la même société de production. Quel est le total ?</p>
+      <div class="panel-g">
+        <div class="cards-g" id="m3opts"></div>
+        <div id="m3note"></div>
+        <div class="bar-actions"><button class="btn" id="m3next" hidden>Dernière manche</button></div>
+        <span class="srcq">Décision VD2021-294 du 29 juin 2021, marché V1D0025CO, 500 000 € TTC. Décision VD2022-335 du 30 juin 2022, marché V2D0026DC, 258 333,33 € HT et 100 000 € HT. Recueils des actes administratifs de la Ville de Montpellier.</span>
+      </div>
+    </section>
 
-  <!-- 4 -->
-  <section class="q" id="q4">
-    <div class="qhead">
-      <span class="qnum">Manche 4 · la règle</span>
-      <h2>Qu'est-ce que la collectivité doit publier, et qu'est-ce qu'elle publie ?</h2>
-      <p class="lead">Cinq obligations ou pratiques de publication. Pour chacune, dites si l'information est aujourd'hui accessible au public. Attention : tout n'est pas un manquement, et c'est justement l'intérêt de la manche.</p>
-    </div>
-    <div class="qbody"><div class="oblig" id="q4list"></div><button class="btn" id="q4go" disabled>Vérifier mes réponses</button></div>
-  </section>
+    <!-- M4 -->
+    <section class="m" id="m4">
+      <span class="mtag">Manche 4 sur 4 · la règle</span>
+      <h2>Qu'est-ce qui est publié, et qu'est-ce qui ne l'est pas ?</h2>
+      <p class="lead">Cinq affirmations sur ce que la collectivité met à disposition du public. Tout n'est pas un manquement : une de ces lignes est parfaitement conforme à la loi, et c'est la plus instructive.</p>
+      <div class="panel-g">
+        <div id="m4list"></div>
+        <div class="bar-actions"><button class="btn" id="m4go" disabled>Vérifier mes cinq réponses</button><button class="btn ghost" id="m4next" hidden>Voir mon score</button></div>
+      </div>
+    </section>
 
-  <div class="score" id="score" style="display:none">
-    <b id="scoreval">—</b>
-    <p id="scoretxt"></p>
-    <p style="margin-top:16px"><a class="back" href="./">&larr; Voir les données complètes</a></p>
+    <!-- FIN -->
+    <section class="m" id="mf">
+      <div class="panel-g final">
+        <div class="ring" id="ring" style="--p:0"><div><div><b id="fscore">0/10</b><small id="flab">—</small></div></div></div>
+        <h2 id="ftitle">—</h2>
+        <p id="ftext"></p>
+        <div class="recap">
+          <div><b>96,80 €</b><span>d'argent public par place d'opéra</span></div>
+          <div><b>90 €</b><span>la place la plus chère, Festival Radio France</span></div>
+          <div><b>858 333 €</b><span>versés pour deux plateaux de télévision</span></div>
+          <div><b>4 sur 5</b><span>des publications attendues sont absentes</span></div>
+        </div>
+        <div class="bar-actions" style="justify-content:center"><a class="btn" href="./">Voir les données complètes</a><button class="btn ghost" onclick="location.reload()">Rejouer</button></div>
+      </div>
+    </section>
   </div>
 </main>
 
 <script>
-const fr = new Intl.NumberFormat('fr-FR');
-let pts = 0, max = 0;
-
-/* ---------- Manche 1 ---------- */
-const SPECT = [
-  {n:"Opéra Orchestre national Montpellier", v:96.8, d:"13 330 k€ en 2022, 137 743 billets édités sur la saison 2022-2023."},
-  {n:"Le Printemps des Comédiens",           v:50.7, d:"1 522 k€ en 2023, environ 30 000 spectateurs par édition selon la chambre régionale des comptes."},
-  {n:"Montpellier Danse",                    v:49.6, d:"1 588 k€ en 2023, environ 32 000 spectateurs pour 57 représentations."}
-];
-const q1b = document.getElementById('q1body');
-q1b.innerHTML = SPECT.map((s,i)=>`<div class="sl">
-  <div class="row"><span class="nm">${s.n}</span><span class="val" id="v${i}">30 €</span></div>
-  <input type="range" min="0" max="120" step="1" value="30" id="r${i}" aria-label="${s.n}">
-  <div class="scale"><span>0 €</span><span>60 €</span><span>120 €</span></div>
-  <div class="gauge" id="g${i}"></div>
-  <div class="res" id="x${i}"></div>
-</div>`).join('') + `<button class="btn" id="q1go">Vérifier mes trois estimations</button>
-<span class="srcq">Subventions : fichier open data des subventions de la Ville et de la Métropole. Fréquentation : rapport de saison 2022-2023 de l'Opéra ; rapport de la chambre régionale des comptes sur Le Printemps des Comédiens ; conférence de bilan de la 43ᵉ édition de Montpellier Danse.</span>`;
-SPECT.forEach((s,i)=>{
-  const r=document.getElementById('r'+i), v=document.getElementById('v'+i);
-  r.addEventListener('input',()=>{ v.textContent = r.value+' €'; });
-});
-document.getElementById('q1go').addEventListener('click', e=>{
-  e.target.disabled = true;
-  SPECT.forEach((s,i)=>{
-    const guess = +document.getElementById('r'+i).value;
-    const ecart = Math.abs(guess - s.v);
-    const bon = ecart <= 12;
-    max++; if(bon) pts++;
-    const g=document.getElementById('g'+i);
-    g.classList.add('on');
-    g.innerHTML = `<i style="left:${Math.min(100,guess/120*100)}%" title="votre estimation"></i><u style="left:${Math.min(100,s.v/120*100)}%" title="montant réel"></u>`;
-    const x=document.getElementById('x'+i);
-    x.classList.add('on');
-    x.innerHTML = `Réponse : <b class="${bon?'ok':'ko'}">${s.v.toFixed(1).replace('.',',')} €</b> par personne. Vous avez dit ${guess} €, soit ${ecart.toFixed(1).replace('.',',')} € d'écart. <span style="color:var(--ink-3)">${s.d}</span>`;
-  });
-  fin();
+/* thème clair / sombre, même réglage que le reste du site */
+const root=document.documentElement;
+let stored=null; try{ stored=localStorage.getItem('svs-theme'); }catch(e){}
+if(stored) root.setAttribute('data-theme',stored);
+document.getElementById('tgl').addEventListener('click',()=>{
+ const dark = root.getAttribute('data-theme')==='dark'
+   || (!root.hasAttribute('data-theme') && matchMedia('(prefers-color-scheme:dark)').matches);
+ const next = dark ? 'light' : 'dark';
+ root.setAttribute('data-theme',next);
+ try{ localStorage.setItem('svs-theme',next); }catch(e){}
 });
 
-/* ---------- Manche 2 ---------- */
-const PRIX = [
-  {n:"Festival Radio France",        p:90, d:"Tarif A+, Opéra Berlioz",            ok:true},
-  {n:"Club Peyrou",                  p:86, d:"Soirée électro, promenade du Peyrou", ok:false},
-  {n:"Montpellier Danse",            p:50, d:"1ʳᵉ série, Opéra Berlioz",            ok:false},
-  {n:"Internationales de la Guitare",p:42, d:"1ʳᵉ catégorie, Opéra Comédie",        ok:false}
-];
-document.getElementById('q2opts').innerHTML = PRIX.map((o,i)=>
-  `<button class="opt" data-i="${i}"><span class="t">${o.n}</span><span class="d">${o.d}</span><span class="rv">${o.p} €</span></button>`).join('');
-document.querySelectorAll('#q2opts .opt').forEach(b=>{
-  b.addEventListener('click',()=>{
-    if(b.classList.contains('done')) return;
-    const i=+b.dataset.i; max++;
-    if(PRIX[i].ok) pts++;
-    b.classList.add('picked');
-    document.querySelectorAll('#q2opts .opt').forEach(x=>{
-      x.classList.add('done');
-      x.classList.add(PRIX[+x.dataset.i].ok?'good':'bad');
-    });
-    const note=document.createElement('p');
-    note.className='lead'; note.style.marginTop='14px';
-    note.innerHTML = PRIX[i].ok
-      ? "Bien vu. Le <b>Festival Radio France</b>, avec 1 094 k€ de subventions en 2025, monte à <b>90 €</b> la place — au-dessus du Club Peyrou, événement privé à 86 €. Il propose aussi une trentaine de concerts gratuits : les deux chiffres sont vrais en même temps."
-      : "Raté. C'est le <b>Festival Radio France</b> qui est en tête, à <b>90 €</b> la place, devant le Club Peyrou à 86 €. Le festival reçoit 1 094 k€ de subventions en 2025 et propose par ailleurs une trentaine de concerts gratuits.";
-    b.closest('.qbody').insertBefore(note, b.closest('.qbody').querySelector('.srcq'));
-    fin();
-  });
-});
-
-/* ---------- Manche 3 ---------- */
-const MONT = [
-  {t:"120 000 €",   ok:false, d:"Le prix d'une grosse soirée municipale"},
-  {t:"310 000 €",   ok:false, d:"Un budget de festival moyen"},
-  {t:"858 333 €",   ok:true,  d:"500 000 € en 2021 et 358 333 € en 2022"},
-  {t:"2,4 M€",      ok:false, d:"Plus que l'enveloppe événementielle de l'année"}
-];
-document.getElementById('q3opts').innerHTML = MONT.map((o,i)=>
-  `<button class="opt" data-i="${i}"><span class="t">${o.t}</span><span class="d">${o.d}</span><span class="rv">${o.ok?'exact':'non'}</span></button>`).join('');
-document.querySelectorAll('#q3opts .opt').forEach(b=>{
-  b.addEventListener('click',()=>{
-    if(b.classList.contains('done')) return;
-    const i=+b.dataset.i; max++;
-    if(MONT[i].ok) pts++;
-    b.classList.add('picked');
-    document.querySelectorAll('#q3opts .opt').forEach(x=>{
-      x.classList.add('done'); x.classList.add(MONT[+x.dataset.i].ok?'good':'bad');
-    });
-    const note=document.createElement('p');
-    note.className='lead'; note.style.marginTop='14px';
-    note.innerHTML = "<b>858 333 €</b> : 500 000 € TTC en 2021 pour les Estivales de Culturebox, 358 333 € HT en 2022 pour les Nuits du Peyrou, en deux lots. Les deux marchés ont été passés <b>sans publicité ni mise en concurrence préalables</b>, auprès du même attributaire. La même année 2022, la Ville a par ailleurs payé <b>605 000 € HT à France Télévisions</b> pour la Fête de la Musique.";
-    b.closest('.qbody').insertBefore(note, b.closest('.qbody').querySelector('.srcq'));
-    fin();
-  });
-});
-
-/* ---------- Manche 4 ---------- */
-const OBL = [
-  {t:"Le coût des manifestations que la Ville organise elle-même — Comédie du Livre, ZAT, Marché de Noël — est publié quelque part.",
-   pub:false,
-   a:"<b>Non publié.</b> Aucun texte n'impose de publier ce coût manifestation par manifestation. Un seul montant a pu être retrouvé, 605 000 € HT versés à France Télévisions pour la Fête de la Musique 2022 — dans une décision du maire noyée dans un PDF de plusieurs centaines de pages."},
-  {t:"Les données essentielles des marchés publics d'au moins 40 000 € HT sont publiées en données ouvertes, comme l'impose l'article R. 2196-1 du code de la commande publique.",
-   pub:false,
-   a:"<b>Non publié.</b> Le portail de données ouvertes de la Métropole ne propose aucun jeu de données sur la commande publique : ni liste de marchés, ni données essentielles, ni titulaires. Deux marchés d'inauguration repérés en 2025 n'ont ni montant ni attributaire publiés."},
-  {t:"Le fichier des subventions distingue les aides versées en argent de celles accordées en nature, comme le prévoit le format national.",
-   pub:false,
-   a:"<b>Non renseigné.</b> Le champ existe. Sur les 3 432 lignes du fichier courant, il indique « aide en numéraire » pour la totalité des lignes, sans une seule exception — alors que des délibérations approuvent par ailleurs plus de 2 M€ d'exonérations et de minorations de loyer."},
-  {t:"Le nom du titulaire retenu et la redevance payée après un appel à candidatures d'occupation du domaine public sont publiés.",
-   pub:false, trap:true,
-   a:"<b>Non publié — et c'est légal.</b> L'article L. 2122-1-1 du code général de la propriété des personnes publiques impose une procédure de sélection et sa publicité, mais <b>uniquement sur l'appel, pas sur le résultat</b>. C'est le piège de cette manche : ici la Ville respecte la règle, et c'est la règle qui laisse le trou."},
-  {t:"Les délibérations de l'exercice 2025 sont consultables en ligne.",
-   pub:false,
-   a:"<b>Non publiées.</b> L'open data des délibérations s'arrête au 31 décembre 2024, le portail des actes commence en mars 2026. L'exercice 2025 n'est publié nulle part — c'est l'année de la première aide de 40 000 € au Rockstore et de la première édition du Club Peyrou."}
-];
-document.getElementById('q4list').innerHTML = OBL.map((o,i)=>`<div class="ob" id="ob${i}">
-  <div class="txt">${o.t}</div>
-  <div class="btns"><button data-i="${i}" data-v="1">C'est publié</button><button data-i="${i}" data-v="0">Ce n'est pas publié</button></div>
-  <div class="ans">${o.a}</div></div>`).join('');
-const rep = {};
-document.querySelectorAll('#q4list button').forEach(b=>{
-  b.addEventListener('click',()=>{
-    const i=+b.dataset.i;
-    rep[i] = b.dataset.v === '1';
-    document.querySelectorAll(`#q4list button[data-i="${i}"]`).forEach(x=>x.classList.remove('sel'));
-    b.classList.add('sel');
-    document.getElementById('q4go').disabled = Object.keys(rep).length < OBL.length;
-  });
-});
-document.getElementById('q4go').addEventListener('click', e=>{
-  e.target.disabled = true;
-  OBL.forEach((o,i)=>{
-    max++;
-    const bon = rep[i] === o.pub;
-    if(bon) pts++;
-    const el=document.getElementById('ob'+i);
-    el.classList.add('done', bon?'win':'lose');
-  });
-  fin(true);
-});
-
-/* ---------- score ---------- */
-function fin(force){
-  const fini = document.getElementById('q1go').disabled
-    && document.querySelector('#q2opts .opt.done')
-    && document.querySelector('#q3opts .opt.done')
-    && document.getElementById('q4go').disabled;
-  if(!fini && !force) return;
-  if(!fini) return;
-  const el=document.getElementById('score');
-  el.style.display='block';
-  document.getElementById('scoreval').textContent = pts + ' / ' + max;
-  const t = pts/max;
-  document.getElementById('scoretxt').innerHTML = (
-    t >= .8 ? "Vous connaissez le dossier. Reste la question qui intéresse ce site : combien de temps faut-il à un habitant pour retrouver ces chiffres par lui-même ?"
-    : t >= .5 ? "Moitié du chemin. Aucun de ces montants n'est secret : ils sont tous dans des documents publics. Simplement, aucun n'est présenté de façon à être trouvé."
-    : "C'est le résultat le plus courant, et il n'a rien d'infamant : ces chiffres existent dans des délibérations, des décisions et des grilles tarifaires que personne ne lit. C'est précisément le sujet de ce site."
-  );
-  el.scrollIntoView({behavior:'smooth', block:'center'});
+let pts=0, MAX=10, step=0;
+const pill=document.getElementById('pill'), ptsEl=document.getElementById('pts'), sEl=document.getElementById('s');
+function add(n){ if(!n) return; pts+=n; ptsEl.textContent=pts; sEl.textContent=pts>1?'points':'point';
+  pill.classList.remove('pop'); void pill.offsetWidth; pill.classList.add('pop'); }
+function goto(id,idx){
+  document.querySelectorAll('.m').forEach(m=>m.classList.remove('live'));
+  document.getElementById(id).classList.add('live');
+  const st=document.querySelectorAll('#steps i');
+  st.forEach((e,i)=>{ e.classList.toggle('ok', i<idx); e.classList.toggle('on', i===idx); });
+  window.scrollTo({top:0,behavior:'smooth'});
 }
+document.getElementById('start').addEventListener('click',()=>{
+  document.getElementById('intro').hidden=true;
+  document.getElementById('stage').hidden=false;
+  window.scrollTo({top:0,behavior:'smooth'});
+});
+
+/* ---------- M1 ---------- */
+const SPECT=[
+ {n:"Opéra Orchestre national",v:96.8,d:"13 330 k€ en 2022, 137 743 billets édités sur la saison 2022-2023."},
+ {n:"Le Printemps des Comédiens",v:50.7,d:"1 522 k€ en 2023, environ 30 000 spectateurs par édition selon la chambre régionale des comptes."},
+ {n:"Montpellier Danse",v:49.6,d:"1 588 k€ en 2023, environ 32 000 spectateurs pour 57 représentations."}];
+document.getElementById('m1body').innerHTML = SPECT.map((s,i)=>`<div class="sl">
+ <div class="row"><span class="nm">${s.n}</span><span class="val" id="v${i}">30 €</span></div>
+ <input type="range" min="0" max="120" step="1" value="30" id="r${i}" aria-label="${s.n}">
+ <div class="scale"><span>0 €</span><span>60 €</span><span>120 €</span></div>
+ <div class="track" id="t${i}"><div class="line"></div>
+   <div class="mk you" id="y${i}"><s></s><span>estimation</span></div>
+   <div class="mk real" id="z${i}"><s></s><span></span></div></div>
+ <div class="verdict" id="x${i}"></div></div>`).join('')
+ + `<div class="bar-actions"><button class="btn" id="m1go">Vérifier mes estimations</button><button class="btn ghost" id="m1next" hidden>Manche suivante</button></div>
+ <span class="srcq">Subventions : fichier open data de la Ville et de la Métropole. Fréquentation : rapport de saison 2022-2023 de l'Opéra ; rapport de la chambre régionale des comptes sur Le Printemps des Comédiens ; bilan de la 43ᵉ édition de Montpellier Danse.</span>`;
+SPECT.forEach((s,i)=>{const r=document.getElementById('r'+i);r.addEventListener('input',()=>document.getElementById('v'+i).textContent=r.value+' €');});
+document.getElementById('m1go').addEventListener('click',e=>{
+ e.target.hidden=true; document.getElementById('m1next').hidden=false;
+ SPECT.forEach((s,i)=>{
+  const g=+document.getElementById('r'+i).value, ec=Math.abs(g-s.v), bon=ec<=12;
+  document.getElementById('r'+i).disabled=true;
+  const tr=document.getElementById('t'+i); tr.classList.add('on');
+  setTimeout(()=>{ document.getElementById('y'+i).style.left=Math.min(100,g/120*100)+'%';
+    const z=document.getElementById('z'+i); z.style.left=Math.min(100,s.v/120*100)+'%';
+    z.querySelector('span').textContent=s.v.toFixed(1).replace('.',',')+' €'; },60);
+  const x=document.getElementById('x'+i); x.classList.add('on');
+  x.innerHTML=`<span class="tag ${bon?'ok':'ko'}">${bon?'+1 point':'raté'}</span>${ec.toFixed(1).replace('.',',')} € d'écart. <span style="color:var(--ink-3)">${s.d}</span>`;
+  if(bon) setTimeout(()=>add(1), 300+i*160);
+ });
+});
+document.getElementById('m1next').addEventListener('click',()=>goto('m2',1));
+
+/* ---------- M2 ---------- */
+const PRIX=[{n:"Festival Radio France",p:90,d:"Tarif A+, Opéra Berlioz",ok:1},
+ {n:"Club Peyrou",p:86,d:"Soirée électro, promenade du Peyrou"},
+ {n:"Montpellier Danse",p:50,d:"1ʳᵉ série, Opéra Berlioz"},
+ {n:"Internationales de la Guitare",p:42,d:"1ʳᵉ catégorie, Opéra Comédie"}];
+document.getElementById('m2opts').innerHTML=PRIX.map((o,i)=>
+ `<button class="pick" data-i="${i}"><span class="t">${o.n}</span><span class="d">${o.d}</span><span class="amt">${o.p} €</span><span class="bar"><i></i></span></button>`).join('');
+document.querySelectorAll('#m2opts .pick').forEach(b=>b.addEventListener('click',()=>{
+ if(b.classList.contains('done'))return;
+ const i=+b.dataset.i, bon=!!PRIX[i].ok;
+ b.classList.add('mine');
+ document.querySelectorAll('#m2opts .pick').forEach(x=>{
+   const j=+x.dataset.i; x.classList.add('done', PRIX[j].ok?'good':'bad');
+   setTimeout(()=>x.querySelector('.bar i').style.width=(PRIX[j].p/90*100)+'%',80);
+ });
+ if(bon) add(1);
+ document.getElementById('m2note').innerHTML=`<p class="lead" style="margin-top:16px"><span class="tag ${bon?'ok':'ko'}">${bon?'+1 point':'raté'}</span>${bon?"Bien vu. ":""}C'est le <b>Festival Radio France</b> qui mène, à <b>90 €</b> la place, devant le Club Peyrou à 86 €. Le festival reçoit 1 094 k€ de subventions en 2025, et propose par ailleurs une trentaine de concerts gratuits. Les deux chiffres sont vrais en même temps.</p>`;
+ document.getElementById('m2next').hidden=false;
+}));
+document.getElementById('m2next').addEventListener('click',()=>goto('m3',2));
+
+/* ---------- M3 ---------- */
+const MONT=[{t:"120 000 €",v:120000,d:"le prix d'une grosse soirée municipale"},
+ {t:"310 000 €",v:310000,d:"un budget de festival moyen"},
+ {t:"858 333 €",v:858333,d:"500 000 € en 2021 et 358 333 € en 2022",ok:1},
+ {t:"2,4 M€",v:2400000,d:"plus que l'enveloppe événementielle de l'année"}];
+document.getElementById('m3opts').innerHTML=MONT.map((o,i)=>
+ `<button class="pick" data-i="${i}"><span class="t">${o.t}</span><span class="d">${o.d}</span><span class="amt" id="a${i}">${o.ok?'exact':'non'}</span></button>`).join('');
+document.querySelectorAll('#m3opts .pick').forEach(b=>b.addEventListener('click',()=>{
+ if(b.classList.contains('done'))return;
+ const i=+b.dataset.i, bon=!!MONT[i].ok;
+ b.classList.add('mine');
+ document.querySelectorAll('#m3opts .pick').forEach(x=>x.classList.add('done', MONT[+x.dataset.i].ok?'good':'bad'));
+ if(bon) add(1);
+ document.getElementById('m3note').innerHTML=`<p class="lead" style="margin-top:16px"><span class="tag ${bon?'ok':'ko'}">${bon?'+1 point':'raté'}</span><b>858 333 €</b> : 500 000 € TTC en 2021 pour les Estivales de Culturebox, 358 333 € HT en 2022 pour les Nuits du Peyrou, en deux lots. Les deux marchés ont été passés <b>sans publicité ni mise en concurrence préalables</b>, auprès du même attributaire. La même année 2022, la Ville a par ailleurs payé <b>605 000 € HT à France Télévisions</b> pour la Fête de la Musique.</p>`;
+ document.getElementById('m3next').hidden=false;
+}));
+document.getElementById('m3next').addEventListener('click',()=>goto('m4',3));
+
+/* ---------- M4 ---------- */
+const OBL=[
+ {t:"Le coût des manifestations que la Ville organise elle-même — Comédie du Livre, ZAT, Marché de Noël — est publié quelque part.",pub:false,
+  a:"<b>Non publié.</b> Aucun texte n'impose de le publier manifestation par manifestation. Un seul montant a été retrouvé : 605 000 € HT versés à France Télévisions pour la Fête de la Musique 2022, dans une décision du maire noyée au milieu d'un PDF de plusieurs centaines de pages."},
+ {t:"Les données essentielles des marchés publics d'au moins 40 000 € HT sont publiées en données ouvertes, comme l'impose l'article R. 2196-1.",pub:false,
+  a:"<b>Non publié.</b> Le portail de données ouvertes de la Métropole ne propose aucun jeu de données sur la commande publique : ni liste de marchés, ni données essentielles, ni titulaires. Deux marchés d'inauguration repérés en 2025 n'ont ni montant ni attributaire publiés."},
+ {t:"Le fichier des subventions distingue les aides versées en argent de celles accordées en nature, comme le prévoit le format national.",pub:false,
+  a:"<b>Non renseigné.</b> Le champ existe. Sur les 3 432 lignes du fichier courant, il indique « aide en numéraire » pour la totalité des lignes, sans une seule exception — alors que des délibérations approuvent par ailleurs plus de 2 M€ d'exonérations et de minorations de loyer."},
+ {t:"Le nom du titulaire retenu et la redevance payée après un appel à candidatures d'occupation du domaine public sont publiés.",pub:false,
+  a:"<b>Non publié — et c'est légal.</b> L'article L. 2122-1-1 du code général de la propriété des personnes publiques impose une procédure de sélection et sa publicité, mais <b>uniquement sur l'appel, pas sur le résultat</b>. Ici la Ville respecte la règle : c'est la règle qui laisse le trou."},
+ {t:"Les délibérations de l'exercice 2025 sont consultables en ligne.",pub:false,
+  a:"<b>Non publiées.</b> L'open data des délibérations s'arrête au 31 décembre 2024, le portail des actes commence en mars 2026. L'exercice 2025 n'est publié nulle part — c'est l'année de la première aide de 40 000 € au Rockstore et de la première édition du Club Peyrou."}];
+document.getElementById('m4list').innerHTML=OBL.map((o,i)=>`<div class="ob" id="ob${i}">
+ <div class="txt">${o.t}</div>
+ <div class="btns"><button data-i="${i}" data-v="1">C'est publié</button><button data-i="${i}" data-v="0">Ce n'est pas publié</button></div>
+ <div class="ans">${o.a}</div></div>`).join('');
+const rep={};
+document.querySelectorAll('#m4list button').forEach(b=>b.addEventListener('click',()=>{
+ const i=+b.dataset.i; rep[i]=b.dataset.v==='1';
+ document.querySelectorAll(`#m4list button[data-i="${i}"]`).forEach(x=>x.classList.remove('sel'));
+ b.classList.add('sel');
+ document.getElementById('m4go').disabled=Object.keys(rep).length<OBL.length;
+}));
+document.getElementById('m4go').addEventListener('click',e=>{
+ e.target.hidden=true; document.getElementById('m4next').hidden=false;
+ OBL.forEach((o,i)=>{ const bon=rep[i]===o.pub;
+  document.getElementById('ob'+i).classList.add('done',bon?'win':'lose');
+  if(bon) setTimeout(()=>add(1),200+i*140); });
+});
+document.getElementById('m4next').addEventListener('click',()=>{
+ goto('mf',4);
+ const t=pts/MAX;
+ document.getElementById('fscore').textContent=pts+'/'+MAX;
+ document.getElementById('ring').style.setProperty('--p', Math.round(t*100));
+ const lab = t>=.8?'enquêteur':t>=.5?'lecteur attentif':'comme tout le monde';
+ document.getElementById('flab').textContent=lab;
+ document.getElementById('ftitle').textContent = t>=.8?"Un score d'initié." : t>=.5?'À mi-chemin.' : 'Le score le plus courant.';
+ document.getElementById('ftext').innerHTML = t>=.8
+  ? "Reste la question qui intéresse ce site : combien de temps faut-il à un habitant pour retrouver ces chiffres seul ? Pour les deux derniers, il a fallu télécharger 360 Mo d'archives et passer des pages scannées à la reconnaissance de caractères."
+  : t>=.5 ? "Aucun de ces montants n'est secret : ils sont tous dans des documents publics. Simplement, aucun n'est présenté de façon à être trouvé."
+  : "Et il n'a rien d'infamant. Ces chiffres dorment dans des délibérations, des décisions du maire et des grilles tarifaires que personne ne lit. C'est exactement le sujet de ce site.";
+});
 </script>
 
 </body>
