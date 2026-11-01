@@ -206,6 +206,29 @@ figcaption{font-size:13.5px;line-height:1.55;color:var(--ink-3);margin-top:11px}
 .pill button{border:0;background:none;color:var(--ink-3);cursor:pointer;font-size:15px;line-height:1;padding:0 2px}
 .pill button:hover{color:var(--accent-2)}
 
+/* ── recherche élargie du registre ───────────────────────────────── */
+.bigq{margin-top:18px}
+.bigq .fld{position:relative}
+.bigq input{width:100%;font:500 clamp(15px,1.9vw,17px)/1.4 var(--f-body);color:var(--ink);background:var(--panel);border:1px solid var(--rule);border-radius:999px;padding:15px 46px 15px 48px;box-shadow:var(--shadow);transition:border-color .15s,box-shadow .15s}
+.bigq input::placeholder{color:var(--ink-3)}
+.bigq input:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 4px color-mix(in srgb,var(--accent) 16%,transparent)}
+.bigq .ic{position:absolute;left:18px;top:50%;transform:translateY(-50%);color:var(--ink-3);pointer-events:none}
+.bigq input::-webkit-search-cancel-button,.bigq input::-webkit-search-decoration{-webkit-appearance:none;appearance:none;display:none}
+.bigq .clr{position:absolute;right:12px;top:50%;transform:translateY(-50%);border:0;background:none;color:var(--ink-3);cursor:pointer;font:600 18px/1 var(--f-body);padding:7px 9px;border-radius:999px;display:none}
+.bigq .clr:hover{color:var(--accent);background:var(--panel-2)}
+.bigq input:not(:placeholder-shown)~.clr{display:block}
+.bigq .ex{display:flex;flex-wrap:wrap;align-items:center;gap:7px;margin-top:11px;font-size:13px;color:var(--ink-3)}
+.bigq .ex button{font:inherit;cursor:pointer;color:var(--ink-2);background:var(--panel-2);border:1px solid var(--rule);border-radius:999px;padding:5px 11px;transition:.15s}
+.bigq .ex button:hover{color:var(--accent);border-color:color-mix(in srgb,var(--accent) 45%,var(--rule))}
+.qout{margin-top:14px;border:1px solid color-mix(in srgb,var(--accent) 32%,var(--rule));border-radius:var(--r-sm);background:color-mix(in srgb,var(--accent) 6%,var(--panel));padding:14px 16px}
+.qout[hidden]{display:none}
+.qout .lb{font-family:var(--f-num);font-size:11px;letter-spacing:.11em;text-transform:uppercase;color:var(--accent);font-weight:700}
+.qout ul{list-style:none;margin:9px 0 0;padding:0;display:flex;flex-direction:column;gap:7px}
+.qout button.go{all:unset;cursor:pointer;display:flex;align-items:baseline;gap:9px;flex-wrap:wrap;font-size:14px;line-height:1.45;color:var(--ink)}
+.qout button.go:hover b{color:var(--accent)}
+.qout button.go b{font-weight:600}
+.qout button.go span{font-size:12.5px;color:var(--ink-3)}
+
 /* ── registre ────────────────────────────────────────────────────── */
 .grid{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:22px;margin-top:22px;align-items:start}
 @media(max-width:860px){.grid{grid-template-columns:minmax(0,1fr)}}
@@ -441,7 +464,17 @@ footer b{color:var(--ink)}
 <section id="registre"><div class="wrap">
   <div class="eyebrow">03 — Le registre</div>
   <h2>Ligne à ligne</h2>
-  <p class="sub">Filtrez par type de structure, triez, ouvrez une fiche. Le bouton <b class="kbd">+</b> au bout de chaque ligne ajoute la structure au comparateur de courbes, juste au-dessus.</p>
+  <p class="sub">Un seul champ pour tout chercher : le nom d'un festival, celui de l'association qui le porte, ou celui d'une salle. La recherche connaît aussi les noms d'usage, ceux qui ne figurent pas dans le fichier de la collectivité. Filtrez ensuite par type, triez, ouvrez une fiche. Le bouton <b class="kbd">+</b> au bout de chaque ligne ajoute la structure au comparateur de courbes, juste au-dessus.</p>
+
+  <div class="bigq">
+    <div class="fld">
+      <svg class="ic" width="19" height="19" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><circle cx="7" cy="7" r="4.6"/><path d="M10.4 10.4 14 14"/></svg>
+      <input id="q2" type="search" placeholder="Un événement, une association, un lieu…" autocomplete="off" aria-label="Chercher un événement, une association ou un lieu">
+      <button type="button" class="clr" id="q2clr" aria-label="Effacer la recherche">&times;</button>
+    </div>
+    <div class="ex"><span>Par exemple&nbsp;:</span><button type="button" data-q="Opéra Berlioz">Opéra Berlioz</button><button type="button" data-q="Victoire 2">Victoire 2</button><button type="button" data-q="Boutographies">Boutographies</button><button type="button" data-q="musée Fabre">musée Fabre</button><button type="button" data-q="Rockstore">Rockstore</button></div>
+    <div class="qout" id="qout" hidden></div>
+  </div>
   <div class="grid">
     <div class="reg">
       <div class="reghead">
@@ -803,8 +836,63 @@ function showTip(e, html){ tip.innerHTML = html; tip.style.opacity = 1;
 function hideTip(){ tip.style.opacity = 0; }
 const esc = s => s.replace(/[&<>]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
 
+const nrm = t => t.normalize('NFD').replace(/[̀-ͯ]/g,'').toLowerCase().replace(/[^a-z0-9]+/g,' ').trim();
+
+/* Noms d'usage : ce qu'un habitant tape, et qui ne figure pas dans le fichier
+   de la collectivité. La clé de recherche couvre le nom officiel et ces alias. */
+const ALIAS = [
+ ["Opéra Orchestre national", "opera berlioz opera comedie le corum orchestre national montpellier occitanie onm maison des choeurs"],
+ ["MO.CO", "moco la panacee panacee hotel des collections esba ecole des beaux arts art contemporain"],
+ ["Montpellier Danse", "agora cite internationale de la danse festival montpellier danse"],
+ ["Printemps des Comédiens", "domaine de grammont grammont theatre jean claude carriere"],
+ ["Théâtre des Treize Vents", "cdn centre dramatique national humain trop humain hth 13 vents grammont"],
+ ["Cinemed", "festival international du cinema mediterraneen cinema mediterraneen festival du cinema corum"],
+ ["Festival Radio France", "radio france montpellier festival de radio france musique classique corum"],
+ ["ENSAD", "ecole nationale superieure d art dramatique ensad conservatoire"],
+ ["Domaine d'O", "domaine do amphitheatre do theatre jean claude carriere pierresvives"],
+ ["Uni'Sons", "arabesques kosmik musiques du monde arabesques music forum"],
+ ["Folies Lyriques", "opera lyrique folies lyriques"],
+ ["Stand'Art", "victoire 2 v2 saint jean de vedas smac scene de musiques actuelles"],
+ ["Tropisme", "halle tropisme festival tropisme illusion et macadam"],
+ ["ICI — Centre chorégraphique", "ccn centre choregraphique national christian rizzo ici ccn"],
+ ["SEPM Rockstore", "rockstore club peyrou my life is a weekend promenade du peyrou"],
+ ["Brand à Part", "l illumine festival illumine"],
+ ["Confluences", "internationales de la guitare ig festival guitare"],
+ ["AFIVAM", "what a trip village du voyage"],
+ ["Art, Corps et Lumière", "swinging montpellier swinging peyrou bal swing"],
+ ["La Vista", "theatre de la mediterranee la vista"],
+ ["Grain d'Image", "boutographies photographie pavillon populaire"],
+ ["JAM —", "jazz action montpellier jam jazz"],
+ ["L'Atelline", "atelline villeneuve les maguelone art en espace public"],
+ ["Balthazar", "cirque balthazar ecole de cirque"],
+ ["Maison de la poésie", "maison de la poesie jean joubert"],
+ ["Koa Jazz", "koa jazz festival"],
+ ["Montpellier 2028", "capitale europeenne de la culture 2028 candidature"],
+ ["Théâtre Tà Lhers", "la rampe tio talhers"],
+ ["Machine théâtre", "machine theatre"],
+ ["L'Ardec", "ardec developpement des entreprises culturelles"],
+ ["Office central de la coopération", "occe classes decouvertes"]
+];
+const RALIAS = {
+ "Comédie du Livre": "livre salon du livre esplanade",
+ "Les ZAT — Zones Artistiques Temporaires": "zat zones artistiques temporaires quartier",
+ "Fête de la Musique": "21 juin france televisions plateau",
+ "Marché de Noël": "noel esplanade chalets",
+ "Les Dimanches du Peyrou": "peyrou promenade du peyrou dimanche",
+ "Musée Fabre": "fabre musee beaux arts collections",
+ "Pavillon Populaire": "photographie esplanade pavillon",
+ "Carré Sainte-Anne": "sainte anne eglise art contemporain carre",
+ "Théâtre Jean Vilar": "jean vilar mosson quartier",
+ "mille formes": "mille formes petite enfance eveil artistique",
+ "Espace Bagouet": "bagouet esplanade exposition",
+ "Espace Saint-Ravy": "saint ravy jeune creation place saint ravy"
+};
+const aliasOf = n => { const k = nrm(n);
+  const hit = ALIAS.find(([p]) => k.includes(nrm(p)));
+  return hit ? ' ' + hit[1] : ''; };
+
 const STR = DATA.rows.map(r => ({ ...r,
-  key:(r.n).normalize('NFD').replace(/[̀-ͯ]/g,'').toLowerCase(),
+  key: nrm(r.n) + aliasOf(r.n) + ' ' + nrm(CATS[r.c] || ''),
   tot: sum(r.v) }));
 const ENV = Y.map((_, i) => sum(STR.map(s => s.v[i])));
 const W_TOTAL = sum(STR.map(s => s.w));
@@ -1052,8 +1140,39 @@ function drawDetail(){
 }
 
 function draw(){ drawTop(); drawHors(); drawDist(); drawRows(); drawDetail(); }
-document.getElementById('q').addEventListener('input', e => {
-  query = e.target.value.trim().normalize('NFD').replace(/[̀-ͯ]/g,'').toLowerCase(); draw(); });
+const q1 = document.getElementById('q'), q2 = document.getElementById('q2');
+function setQuery(raw, from){
+  query = nrm(raw);
+  if (from !== 1) q1.value = raw;
+  if (from !== 2) q2.value = raw;
+  draw(); drawQout(raw);
+}
+q1.addEventListener('input', e => setQuery(e.target.value, 1));
+q2.addEventListener('input', e => setQuery(e.target.value, 2));
+document.getElementById('q2clr').addEventListener('click', () => { setQuery(''); q2.focus(); });
+document.querySelectorAll('.bigq .ex button').forEach(b =>
+  b.addEventListener('click', () => { setQuery(b.dataset.q);
+    document.getElementById('registre').scrollIntoView({behavior:'smooth',block:'start'}); }));
+
+/* Ce que le registre ne contient pas : les manifestations en régie et les cas
+   documentés. La recherche les signale au lieu de répondre « rien sous ce nom ». */
+const REGK = DATA.regie.map((r,i) => ({ i, n:r.n, k:nrm(r.n) + ' ' + nrm(RALIAS[r.n] || ''), kind:r.k }));
+const CASK = DATA.cases.map((c,i) => ({ i, n:c.t, k:nrm(c.t + ' ' + c.c) }));
+const qoutEl = document.getElementById('qout');
+function drawQout(raw){
+  const t = nrm(raw || '');
+  if (t.length < 2){ qoutEl.hidden = true; return; }
+  const reg = REGK.filter(r => r.k.includes(t)).slice(0, 4);
+  const cas = CASK.filter(c => c.k.includes(t)).slice(0, 3);
+  if (!reg.length && !cas.length){ qoutEl.hidden = true; return; }
+  let h = '<div class="lb">Aussi sur cette page, hors du fichier des subventions</div><ul>';
+  reg.forEach(r => h += `<li><button type="button" class="go" data-go="regie"><b>${esc(r.n)}</b><span>${esc(r.kind.toLowerCase())} en régie, aucune subvention, aucun coût publié</span></button></li>`);
+  cas.forEach(c => h += `<li><button type="button" class="go" data-go="cas"><b>${esc(c.n)}</b><span>parmi les douze cas documentés</span></button></li>`);
+  qoutEl.innerHTML = h + '</ul>';
+  qoutEl.hidden = false;
+  qoutEl.querySelectorAll('.go').forEach(b => b.addEventListener('click', () =>
+    document.getElementById(b.dataset.go).scrollIntoView({behavior:'smooth',block:'start'})));
+}
 document.getElementById('sort').addEventListener('change', e => { sortBy = e.target.value; drawRows(); });
 document.getElementById('fcat').addEventListener('change', e => { cat = e.target.value; syncCat(); draw(); });
 function syncCat(){ [...chipsEl.children].forEach(x => x.setAttribute('aria-pressed', x.dataset.c === cat));
