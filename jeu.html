@@ -515,7 +515,7 @@ footer b{color:var(--ink)}
     <section class="m live" id="m1">
       <span class="mtag">Manche 1 sur 7 · à l'estime</span>
       <h2>Combien d'argent public pour une seule place ?</h2>
-      <p class="lead">La subvention annuelle de la Ville et de la Métropole, divisée par le nombre de spectateurs accueillis. Placez chaque curseur là où le montant semble se situer.</p>
+      <p class="lead">La subvention annuelle de la Ville et de la Métropole, divisée par ce que chaque structure publie de sa fréquentation : des billets édités pour l'Opéra, des spectateurs pour les deux autres. Placez chaque curseur là où le montant semble se situer.</p>
       <div class="panel-g" id="m1body"></div>
     </section>
 
@@ -662,7 +662,7 @@ document.getElementById('start').addEventListener('click',()=>{
 /* ---------- M1 ---------- */
 const SPECT=[
  {n:"Opéra Orchestre national",v:96.8,d:"13 330 k€ en 2022, 137 743 billets édités sur la saison 2022-2023."},
- {n:"Le Printemps des Comédiens",v:50.7,d:"1 522 k€ en 2023, environ 30 000 spectateurs par édition selon la chambre régionale des comptes."},
+ {n:"Le Printemps des Comédiens",v:50.7,d:"1 522 k€ en 2023, environ 30 000 spectateurs par édition, chiffre de présentation repris par la presse locale."},
  {n:"Montpellier Danse",v:49.6,d:"1 588 k€ en 2023, environ 32 000 spectateurs pour 57 représentations."}];
 document.getElementById('m1body').innerHTML = SPECT.map((s,i)=>`<div class="sl">
  <div class="row"><span class="nm">${s.n}</span><span class="val" id="v${i}">30 €</span></div>
@@ -673,7 +673,7 @@ document.getElementById('m1body').innerHTML = SPECT.map((s,i)=>`<div class="sl">
    <div class="mk real" id="z${i}"><s></s><span></span></div></div>
  <div class="verdict" id="x${i}"></div></div>`).join('')
  + `<div class="bar-actions"><button class="btn" id="m1go">Vérifier mes estimations</button><button class="btn ghost" id="m1next" hidden>Manche suivante</button></div>
- <span class="srcq">Subventions : fichier open data de la Ville et de la Métropole. Fréquentation : rapport de saison 2022-2023 de l'Opéra ; rapport de la chambre régionale des comptes sur Le Printemps des Comédiens ; bilan de la 43ᵉ édition de Montpellier Danse.</span>`;
+ <span class="srcq">Subventions : fichier open data de la Ville et de la Métropole. Fréquentation : rapport de saison 2022-2023 de l'Opéra (billets édités) ; chiffre de présentation du Printemps des Comédiens repris par la presse locale, absent du rapport de la chambre régionale des comptes ; bilan de la 43ᵉ édition de Montpellier Danse.</span>`;
 SPECT.forEach((s,i)=>{const r=document.getElementById('r'+i);r.addEventListener('input',()=>document.getElementById('v'+i).textContent=r.value+' €');});
 document.getElementById('m1go').addEventListener('click',e=>{
  e.target.hidden=true; document.getElementById('m1next').hidden=false;
