@@ -1,0 +1,999 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Subven'Scope Économie — Montpellier</title>
+<meta name="description" content="Subventions de développement économique et aides au commerce de la Ville et de la Métropole de Montpellier, 2015-2026 : 255 bénéficiaires, un seul en capte 48,6 %.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Work+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<meta name="robots" content="index,follow">
+<meta property="og:site_name" content="Subven'Scope Montpellier">
+<meta property="og:title" content="Subven'Scope Économie">
+<meta property="og:description" content="255 bénéficiaires. Un seul en capte 48,6 %. Huit exercices de subventions au développement économique.">
+<meta property="og:type" content="website"><meta property="og:locale" content="fr_FR">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23101418'/%3E%3Ccircle cx='14' cy='14' r='7.5' fill='none' stroke='%2317855C' stroke-width='2.6'/%3E%3Cpath d='M19.4 19.4 L26 26' stroke='%23B5690A' stroke-width='3.2' stroke-linecap='round'/%3E%3C/svg%3E">
+<style>:root{color-scheme:light dark}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<style>
+/* Subven'Scope — surfaces, couleur et mouvement.
+   Trois blocs de jetons : clair par défaut, puis la préférence système, puis le
+   forçage manuel. Les quatre couleurs de catégorie sont validées séparément en
+   clair et en sombre (bande de clarté, plancher de chroma, séparation daltonisme,
+   contraste sur le fond). Le reste de la couleur est décoratif et n'encode rien. */
+:root{
+  --paper:#F7F6FB; --paper-2:#EFEEF9; --panel:#FFFFFF; --panel-2:#F2F2FA; --panel-3:#E6E6F3;
+  --ink:#10111A; --ink-2:#555A70; --ink-3:#878CA3;
+  --rule:#E3E3EF; --rule-2:#EFEFF7;
+  --lieu:#0E8F63; --evt:#2E63F0; --asso:#C62C9B; --regie:#C97208;
+  --s1:#0E8F63; --s2:#2E63F0; --s3:#C62C9B; --s4:#C97208;
+  --accent:#6B3FF2; --accent-2:#FF4D6D; --accent-3:#00A6BE; --hors:#C8102E;
+  --focus:#2E63F0; --onfill:#FFFFFF;
+  --shadow:0 1px 2px rgba(16,17,26,.05), 0 10px 30px -16px rgba(16,17,26,.28);
+  --shadow-lg:0 2px 4px rgba(16,17,26,.05), 0 24px 56px -22px rgba(16,17,26,.34);
+  --r:18px; --r-sm:12px;
+  --f-display:"Bricolage Grotesque",system-ui,sans-serif;
+  --f-body:"Work Sans",system-ui,-apple-system,sans-serif;
+  --f-num:"IBM Plex Mono",ui-monospace,SFMono-Regular,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --paper:#0B0D14; --paper-2:#10131C; --panel:#171B22; --panel-2:#1E2430; --panel-3:#28303D;
+  --ink:#ECEDF5; --ink-2:#A6ABBE; --ink-3:#7B8197;
+  --rule:#272D3A; --rule-2:#1C212B;
+  --lieu:#1FA073; --evt:#5A86F5; --asso:#D64FB0; --regie:#BC7C14;
+  --s1:#1FA073; --s2:#5A86F5; --s3:#D64FB0; --s4:#BC7C14;
+  --accent:#9B7BFF; --accent-2:#FF7E95; --accent-3:#35D0E0; --hors:#F2606F;
+  --focus:#7FA2FF; --onfill:#0B0D14;
+  --shadow:0 1px 2px rgba(0,0,0,.4), 0 12px 34px -18px rgba(0,0,0,.8);
+  --shadow-lg:0 2px 6px rgba(0,0,0,.45), 0 28px 64px -24px rgba(0,0,0,.9);
+  color-scheme:dark;
+}}
+:root[data-theme="dark"]{
+  --paper:#0B0D14; --paper-2:#10131C; --panel:#171B22; --panel-2:#1E2430; --panel-3:#28303D;
+  --ink:#ECEDF5; --ink-2:#A6ABBE; --ink-3:#7B8197;
+  --rule:#272D3A; --rule-2:#1C212B;
+  --lieu:#1FA073; --evt:#5A86F5; --asso:#D64FB0; --regie:#BC7C14;
+  --s1:#1FA073; --s2:#5A86F5; --s3:#D64FB0; --s4:#BC7C14;
+  --accent:#9B7BFF; --accent-2:#FF7E95; --accent-3:#35D0E0; --hors:#F2606F;
+  --focus:#7FA2FF; --onfill:#0B0D14;
+  --shadow:0 1px 2px rgba(0,0,0,.4), 0 12px 34px -18px rgba(0,0,0,.8);
+  --shadow-lg:0 2px 6px rgba(0,0,0,.45), 0 28px 64px -24px rgba(0,0,0,.9);
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+body{background:var(--paper);color:var(--ink);font-family:var(--f-body);font-size:17px;line-height:1.62;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:30;background:var(--paper)}
+.wrap{max-width:1180px;margin-inline:auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+h1,h2,h3{font-family:var(--f-display);text-wrap:balance;margin:0;letter-spacing:-.03em}
+a{color:inherit}
+svg{display:block;max-width:100%}
+:focus-visible{outline:2px solid var(--focus);outline-offset:3px;border-radius:4px}
+.num{font-family:var(--f-num);font-variant-numeric:tabular-nums}
+
+/* ── barre de navigation ─────────────────────────────────────────── */
+nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:color-mix(in srgb,var(--paper) 78%,transparent);backdrop-filter:blur(16px) saturate(1.5);border-bottom:1px solid var(--rule)}
+nav .wrap{display:flex;align-items:center;gap:11px;padding-block:10px;flex-wrap:wrap}
+.brand{font-family:var(--f-display);font-weight:800;font-size:16.5px;margin-right:auto;display:inline-flex;align-items:center;gap:9px;letter-spacing:-.03em}
+.brand em{font-style:normal;color:var(--ink-3);font-weight:500}
+.brand .mk{width:22px;height:22px;border-radius:7px;flex:none;background:linear-gradient(135deg,var(--accent),var(--evt) 55%,var(--accent-3));box-shadow:0 0 0 1px color-mix(in srgb,var(--accent) 35%,transparent),0 6px 16px -8px var(--accent)}
+nav a.lnk{font-size:13.5px;color:var(--ink-2);text-decoration:none;padding:5px 9px;border-radius:999px;transition:color .15s,background .15s}
+nav a.lnk:hover{color:var(--ink);background:color-mix(in srgb,var(--accent) 12%,transparent)}
+.tgl{border:1px solid var(--rule);background:var(--panel);color:var(--ink-2);width:32px;height:32px;border-radius:999px;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;flex:none;transition:color .15s,border-color .15s,transform .15s}
+.tgl:hover{color:var(--accent);border-color:var(--accent);transform:rotate(-18deg)}
+@media(max-width:760px){nav a.lnk{display:none}}
+
+/* ── ouverture ───────────────────────────────────────────────────── */
+.hero{position:relative;padding-block:68px 44px;overflow:hidden;isolation:isolate}
+.hero::before{content:"";position:absolute;inset:-45% -15% -10%;z-index:-1;pointer-events:none;
+  background:
+    radial-gradient(44% 52% at 12% 22%, color-mix(in srgb,var(--accent) 55%,transparent) 0, transparent 68%),
+    radial-gradient(40% 48% at 80% 8%,  color-mix(in srgb,var(--evt) 48%,transparent) 0, transparent 70%),
+    radial-gradient(46% 46% at 62% 86%, color-mix(in srgb,var(--accent-3) 42%,transparent) 0, transparent 72%),
+    radial-gradient(34% 40% at 36% 68%, color-mix(in srgb,var(--asso) 32%,transparent) 0, transparent 74%);
+  filter:blur(34px);opacity:.62;animation:drift 26s ease-in-out infinite alternate}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .hero::before{opacity:.5}}
+:root[data-theme="dark"] .hero::before{opacity:.5}
+.prog{position:fixed;inset:env(safe-area-inset-top,0px) auto auto 0;height:3px;width:100%;transform:scaleX(0);transform-origin:0 50%;z-index:31;background:linear-gradient(90deg,var(--accent),var(--evt) 35%,var(--lieu) 68%,var(--accent-2));will-change:transform}
+@keyframes drift{from{transform:translate3d(-2%,-1%,0) scale(1)}to{transform:translate3d(3%,2%,0) scale(1.1)}}
+.hero .wrap{position:relative;z-index:1}
+.kicker{display:inline-block;font-family:var(--f-num);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);font-weight:600;background:color-mix(in srgb,var(--accent) 13%,transparent);border:1px solid color-mix(in srgb,var(--accent) 26%,transparent);border-radius:999px;padding:6px 13px}
+.hero h1{font-size:clamp(31px,4.9vw,60px);line-height:.98;font-weight:800;margin:18px 0 0;letter-spacing:-.04em}
+@media(max-width:900px){.hero h1{font-size:clamp(31px,7.4vw,56px)}}
+@media(max-width:560px){.kicker{font-size:10px;letter-spacing:.1em;padding:5px 11px;line-height:1.5}.hero{padding-block:40px 32px}}
+.hero h1 b{background:linear-gradient(96deg,var(--evt),var(--accent) 42%,var(--asso) 86%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.sig{display:flex;align-items:center;gap:11px;margin-top:16px;font-family:var(--f-num);font-size:clamp(13px,1.45vw,15.5px);color:var(--ink-2);letter-spacing:-.01em}
+.sig::before{content:"";flex:none;width:28px;height:2px;border-radius:2px;background:linear-gradient(90deg,var(--accent-2),var(--accent))}
+.heronote{margin-top:20px;max-width:62ch;font-size:clamp(14px,1.5vw,15.5px);line-height:1.6;color:var(--ink-3);border-left:2px solid color-mix(in srgb,var(--accent) 30%,var(--rule));padding-left:15px}
+.sig>span{min-width:0}
+.sig b{color:var(--ink);font-weight:600}
+@media(max-width:560px){.sig{gap:9px}.sig::before{width:20px}}
+.hero p{font-size:clamp(16px,2vw,19.5px);color:var(--ink-2);max-width:62ch;margin:20px 0 0}
+.herogrid{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,.82fr);gap:38px;align-items:center}
+.heroart{min-width:0}
+.heroart img{display:block;width:100%;height:auto;border-radius:50%;filter:drop-shadow(0 18px 38px color-mix(in srgb,var(--accent) 26%,transparent))}
+@media(max-width:900px){.herogrid{grid-template-columns:minmax(0,1fr);gap:26px}.heroart{max-width:380px;margin-inline:auto}}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:13px;margin-top:34px}
+.stat{position:relative;background:var(--panel);border:1px solid var(--rule);border-radius:var(--r);padding:17px 18px 16px;box-shadow:var(--shadow);overflow:hidden;transition:transform .2s cubic-bezier(.2,.8,.3,1),box-shadow .2s}
+.stat::after{content:"";position:absolute;inset:0 0 auto;height:4px;background:var(--sc,var(--accent))}
+.stat:nth-child(1){--sc:linear-gradient(90deg,var(--accent),var(--evt))}
+.stat:nth-child(2){--sc:linear-gradient(90deg,var(--evt),var(--accent-3))}
+.stat:nth-child(3){--sc:linear-gradient(90deg,var(--lieu),var(--accent-3))}
+.stat:nth-child(4){--sc:linear-gradient(90deg,var(--asso),var(--accent-2))}
+.stat:hover{transform:translateY(-3px);box-shadow:var(--shadow-lg)}
+.stat>b{display:block;font-family:var(--f-num);font-weight:600;font-size:clamp(21px,3vw,30px);letter-spacing:-.045em;line-height:1.06}
+.stat small b{font:inherit;font-weight:600;color:var(--ink);display:inline}
+.stat small{display:block;color:var(--ink-2);font-size:13.5px;margin-top:8px;line-height:1.45}
+
+/* ── sections ────────────────────────────────────────────────────── */
+section{padding-block:56px;position:relative}
+section:nth-of-type(even){background:var(--paper-2)}
+section:nth-of-type(even)::before{content:"";position:absolute;inset:0 0 auto;height:1px;background:linear-gradient(90deg,transparent,var(--accent),var(--evt),var(--accent-3),transparent);opacity:.45}
+section:nth-of-type(odd)::before{content:"";position:absolute;inset:0 0 auto;height:1px;background:var(--rule)}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;font-family:var(--f-num);font-size:14px;letter-spacing:.11em;text-transform:uppercase;color:var(--accent);font-weight:700;background:color-mix(in srgb,var(--accent) 13%,transparent);border-radius:999px;padding:8px 16px;line-height:1.25}
+@media(max-width:560px){.eyebrow{font-size:12px;letter-spacing:.08em;padding:6px 13px}}
+#evolution .eyebrow{color:var(--evt);background:color-mix(in srgb,var(--evt) 13%,transparent)}
+#registre .eyebrow{color:var(--lieu);background:color-mix(in srgb,var(--lieu) 14%,transparent)}
+#regie .eyebrow{color:var(--regie);background:color-mix(in srgb,var(--regie) 15%,transparent)}
+#cas .eyebrow{color:var(--accent-2);background:color-mix(in srgb,var(--accent-2) 13%,transparent)}
+#urgence .eyebrow{color:var(--accent-3);background:color-mix(in srgb,var(--accent-3) 15%,transparent)}
+h2{font-size:clamp(27px,4vw,42px);font-weight:800;margin-top:13px;letter-spacing:-.04em}
+.sub{color:var(--ink-2);max-width:68ch;margin-top:12px;font-size:18px;line-height:1.6}
+figcaption{font-size:13.5px;line-height:1.55;color:var(--ink-3);margin-top:11px}
+
+/* ── commandes ───────────────────────────────────────────────────── */
+.bar-tools{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:24px}
+.search{position:relative;flex:1 1 240px;min-width:0}
+.search input{width:100%;font:500 15px/1.4 var(--f-body);color:var(--ink);background:var(--panel);border:1px solid var(--rule);border-radius:999px;padding:11px 15px 11px 38px;box-shadow:var(--shadow);transition:border-color .15s,box-shadow .15s}
+.search input:focus{border-color:var(--accent);box-shadow:0 0 0 4px color-mix(in srgb,var(--accent) 16%,transparent)}
+.search svg{position:absolute;left:14px;top:50%;transform:translateY(-50%);color:var(--ink-3)}
+.chips{display:flex;flex-wrap:wrap;gap:7px}
+.chip{font:600 13px var(--f-body);border:1px solid var(--rule);background:var(--panel);color:var(--ink-2);border-radius:999px;padding:9px 15px;cursor:pointer;display:inline-flex;align-items:center;gap:7px;transition:background .15s,color .15s,border-color .15s,transform .12s}
+.chip:hover{transform:translateY(-1px)}
+.chip i{width:9px;height:9px;border-radius:999px;background:currentColor;flex:none}
+.chip[data-c="evt"]{color:var(--evt)} .chip[data-c="lieu"]{color:var(--lieu)} .chip[data-c="asso"]{color:var(--asso)}
+.chip[aria-pressed="true"]{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.chip[data-c="evt"][aria-pressed="true"]{background:var(--evt);border-color:var(--evt);color:#fff}
+.chip[data-c="lieu"][aria-pressed="true"]{background:var(--lieu);border-color:var(--lieu);color:#fff}
+.chip[data-c="asso"][aria-pressed="true"]{background:var(--asso);border-color:var(--asso);color:#fff}
+
+/* ── blocs graphiques ────────────────────────────────────────────── */
+.tmwrap{margin-top:18px;border:1px solid var(--rule);border-radius:var(--r);overflow:hidden;background:var(--panel);box-shadow:var(--shadow)}
+.regieband{display:flex;flex-wrap:wrap;align-items:center;gap:9px;padding:15px 17px;background:repeating-linear-gradient(135deg,color-mix(in srgb,var(--regie) 8%,var(--panel)) 0 8px,color-mix(in srgb,var(--regie) 15%,var(--panel)) 8px 16px)}
+.regieband b{font-family:var(--f-display);font-weight:800;font-size:14.5px;color:var(--regie)}
+.regieband span{color:var(--ink-2);font-size:13px}
+.chartbox{position:relative;border:1px solid var(--rule);border-radius:var(--r);background:var(--panel);padding:22px;margin-top:18px;box-shadow:var(--shadow);overflow:hidden}
+.chartbox::before{content:"";position:absolute;inset:0 0 auto;height:3px;background:linear-gradient(90deg,var(--accent),var(--evt) 50%,var(--accent-3))}
+.cbt{font-size:17.5px;font-weight:800;display:flex;align-items:center;gap:9px}
+.cbt::before{content:"";width:10px;height:10px;border-radius:3px;background:var(--accent);flex:none;box-shadow:0 0 0 4px color-mix(in srgb,var(--accent) 16%,transparent)}
+#evolution .cbt::before{background:var(--evt);box-shadow:0 0 0 4px color-mix(in srgb,var(--evt) 18%,transparent)}
+#evolution .chartbox::before{background:linear-gradient(90deg,var(--evt),var(--lieu) 55%,var(--accent-3))}
+.kbd{display:inline-block;min-width:20px;text-align:center;border:1px solid color-mix(in srgb,var(--accent) 40%,transparent);border-radius:6px;background:color-mix(in srgb,var(--accent) 13%,transparent);font-family:var(--f-num);font-size:12px;padding:1px 6px;color:var(--accent);font-weight:600}
+.tb{display:grid;grid-template-columns:minmax(0,1fr);gap:8px}
+.tbrow{display:grid;grid-template-columns:minmax(120px,215px) minmax(0,1fr) 80px 28px;gap:11px;align-items:center}
+@media(max-width:620px){.tbrow{grid-template-columns:minmax(0,1fr) 72px 26px;grid-template-areas:"n n n" "b v a"}.tbrow .tbn{grid-area:n}}
+.tbn{font-size:13.8px;font-weight:500;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;cursor:pointer}
+.tbn:hover{color:var(--accent)}
+.tbb{height:18px;border-radius:999px;position:relative;background:var(--panel-2);overflow:hidden}
+.tbb i{position:absolute;inset:0 auto 0 0;border-radius:999px;transition:width .5s cubic-bezier(.2,.8,.3,1);box-shadow:inset 0 0 0 1px rgba(255,255,255,.12)}
+.tbb u{position:absolute;top:0;bottom:0;border-radius:999px;text-decoration:none;background:var(--hors);
+  background-image:repeating-linear-gradient(135deg,rgba(255,255,255,.34) 0 3px,transparent 3px 6px)}
+.hors{color:var(--hors)}
+.htag{display:inline-block;font:700 9.5px var(--f-num);letter-spacing:.05em;text-transform:uppercase;background:color-mix(in srgb,var(--hors) 15%,transparent);border:1px solid color-mix(in srgb,var(--hors) 45%,transparent);color:var(--hors);border-radius:999px;padding:1px 6px;margin-left:6px;vertical-align:1px}
+.hbox{margin-top:14px;padding:13px 15px;border-radius:var(--r-sm);border:1px solid color-mix(in srgb,var(--hors) 38%,transparent);background:color-mix(in srgb,var(--hors) 7%,var(--panel))}
+.hbox h4{margin:0 0 7px;font:800 13.5px var(--f-display);color:var(--hors)}
+.hbox ul{margin:8px 0 0;padding-left:18px;font-size:13.5px;line-height:1.6;color:var(--ink-2)}
+.hbox li{margin-bottom:3px}
+.hleg{display:flex;flex-wrap:wrap;gap:14px;align-items:center;margin-top:14px;font-size:13.5px;color:var(--ink-2)}
+.hleg b{display:inline-flex;align-items:center;gap:7px;font-weight:500}
+.hleg s{width:22px;height:11px;border-radius:3px;display:inline-block;text-decoration:none}
+#horsbars .tbrow{grid-template-columns:minmax(120px,215px) minmax(0,1fr) 108px 28px}
+@media(max-width:620px){#horsbars .tbrow{grid-template-columns:minmax(0,1fr) 100px 26px}}
+.tbv{font-family:var(--f-num);font-variant-numeric:tabular-nums;font-size:13.5px;text-align:right;color:var(--ink-2)}
+.dist{position:relative}
+.legend{display:flex;flex-wrap:wrap;gap:13px;margin-top:13px;font-size:13.5px;color:var(--ink-2)}
+.legend b{display:inline-flex;align-items:center;gap:6px;font-weight:500}
+.legend i{width:17px;height:3px;border-radius:2px;display:inline-block}
+.selbar{display:flex;flex-wrap:wrap;gap:7px;align-items:center;margin-top:15px;font-size:13.8px;color:var(--ink-2)}
+.pill{display:inline-flex;align-items:center;gap:7px;border:1px solid var(--rule);border-radius:999px;padding:6px 10px 6px 12px;font-size:12.5px;background:var(--panel-2)}
+.pill i{width:9px;height:9px;border-radius:999px}
+.pill button{border:0;background:none;color:var(--ink-3);cursor:pointer;font-size:15px;line-height:1;padding:0 2px}
+.pill button:hover{color:var(--accent-2)}
+
+/* ── registre ────────────────────────────────────────────────────── */
+.grid{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:22px;margin-top:22px;align-items:start}
+@media(max-width:860px){.grid{grid-template-columns:minmax(0,1fr)}}
+.reg{border:1px solid var(--rule);border-radius:var(--r);background:var(--panel);overflow:hidden;box-shadow:var(--shadow)}
+.reghead{display:flex;gap:10px;align-items:center;padding:12px 15px;border-bottom:1px solid var(--rule);font-size:13px;color:var(--ink-2);flex-wrap:wrap;background:var(--panel-2)}
+.reghead select{font:600 12.5px var(--f-body);background:var(--panel);color:var(--ink);border:1px solid var(--rule);border-radius:999px;padding:6px 11px;cursor:pointer}
+.reghead select:hover{border-color:var(--accent)}
+.rows{max-height:540px;overflow-y:auto;scrollbar-width:thin}
+.r{display:grid;grid-template-columns:10px minmax(0,1fr) 74px 54px 28px;gap:10px;align-items:center;width:100%;text-align:left;background:none;border:0;border-bottom:1px solid var(--rule-2);padding:9px 14px;cursor:pointer;font:inherit;color:inherit;transition:background .12s}
+.r:hover{background:var(--panel-2)}
+.r[aria-current="true"]{background:color-mix(in srgb,var(--accent) 9%,var(--panel));box-shadow:inset 3px 0 0 var(--accent)}
+.r .dot{width:10px;height:10px;border-radius:999px;box-shadow:0 0 0 3px color-mix(in srgb,currentColor 0%,transparent)}
+.r .nm{min-width:0;font-size:14.5px;font-weight:500;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.r .nm small{display:block;color:var(--ink-3);font-weight:400;font-size:12px}
+ @media(max-width:560px){.r .nm{font-size:13.5px}.r .nm small{font-size:11.5px}}
+.r .amt{font-family:var(--f-num);font-variant-numeric:tabular-nums;font-size:13.5px;text-align:right}
+.r .add{border:1px solid var(--rule);border-radius:8px;background:var(--panel);color:var(--ink-3);font:700 13px var(--f-body);width:26px;height:26px;line-height:1;cursor:pointer;transition:background .15s,color .15s,border-color .15s}
+.r .add:hover{border-color:var(--accent);color:var(--accent)}
+.r .add[data-on="1"]{background:var(--accent);color:#fff;border-color:var(--accent)}
+.tag{display:inline-block;font:700 9.5px var(--f-num);letter-spacing:.06em;text-transform:uppercase;background:color-mix(in srgb,var(--accent-2) 16%,transparent);border:1px solid color-mix(in srgb,var(--accent-2) 40%,transparent);color:var(--accent-2);border-radius:999px;padding:1px 6px;margin-left:6px;vertical-align:1px}
+.empty{padding:26px 16px;color:var(--ink-2);font-size:15px}
+.panel{border:1px solid var(--rule);border-radius:var(--r);background:var(--panel);padding:21px;min-width:0;position:sticky;top:80px;box-shadow:var(--shadow)}
+@media(max-width:860px){.panel{position:static}}
+.panel h3{font-size:22px;font-weight:800}
+.kv{display:flex;flex-wrap:wrap;gap:7px;margin-top:14px}
+.kv span{font-family:var(--f-num);font-size:12.5px;border:1px solid var(--rule);border-radius:999px;padding:5px 10px;color:var(--ink-2);background:var(--panel-2)}
+.kv b{color:var(--ink);font-weight:600}
+
+.note{margin-top:14px;padding:13px 15px;background:color-mix(in srgb,var(--accent) 8%,var(--panel-2));border-radius:var(--r-sm);border-left:3px solid var(--accent);font-size:14.5px;line-height:1.6;color:var(--ink-2)}
+
+/* ── cartes ──────────────────────────────────────────────────────── */
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(256px,1fr));gap:14px;margin-top:24px}
+.card{position:relative;background:var(--panel);border:1px solid var(--rule);border-radius:var(--r);padding:19px;box-shadow:var(--shadow);transition:transform .2s cubic-bezier(.2,.8,.3,1),box-shadow .2s}
+.card:hover{transform:translateY(-3px);box-shadow:var(--shadow-lg)}
+.card h3{font-size:17px;font-weight:800;line-height:1.3}
+ .chead{display:flex;align-items:center;gap:12px;margin-bottom:2px}
+ .chead h3{margin:0}
+ .chead .ico{flex:none;width:36px;height:36px;border-radius:11px;display:grid;place-items:center;color:var(--accent);background:color-mix(in srgb,var(--accent) 12%,transparent);border:1px solid color-mix(in srgb,var(--accent) 26%,transparent)}
+ .card.acc{padding:0}
+ .acc>summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:12px;padding:17px 19px;border-radius:var(--r)}
+ .acc>summary::-webkit-details-marker{display:none}
+ .acc>summary::before{content:none;display:none}
+ .acc>summary h3{margin:0;flex:1;font-size:17px;font-weight:800;line-height:1.3}
+ .acc>summary .ico{flex:none;width:36px;height:36px;border-radius:11px;display:grid;place-items:center;color:var(--accent);background:color-mix(in srgb,var(--accent) 12%,transparent);border:1px solid color-mix(in srgb,var(--accent) 26%,transparent)}
+ .acc>summary .pm{flex:none;font-family:var(--f-num);font-weight:600;font-size:15px;width:24px;height:24px;border-radius:8px;display:grid;place-items:center;color:var(--accent);background:color-mix(in srgb,var(--accent) 12%,transparent)}
+ .acc>summary .pm::before{content:"+"}
+ .acc[open]>summary .pm::before{content:"\2212"}
+ .acc[open]{border-color:color-mix(in srgb,var(--accent) 34%,var(--rule))}
+ .acc>summary:hover h3{color:var(--accent)}
+ .accbd{padding:0 19px 19px 19px}
+ .accbd>p:first-child{margin-top:0}
+ @media(max-width:560px){.acc>summary{padding:15px}.acc>summary .ico{width:32px;height:32px;border-radius:10px}.accbd{padding:0 15px 15px}}
+ @media(max-width:560px){.chead .ico{width:32px;height:32px;border-radius:10px}.chead{gap:10px}}
+.card .big{font-family:var(--f-num);font-size:30px;font-weight:600;letter-spacing:-.045em;display:block;margin-bottom:6px;background:linear-gradient(96deg,var(--accent-2),var(--accent));-webkit-background-clip:text;background-clip:text;color:transparent}
+.card p{font-size:15px;line-height:1.6;color:var(--ink-2);margin:10px 0 0}
+.card .src{display:block;margin-top:12px;font-family:var(--f-num);font-size:11.5px;line-height:1.5;color:var(--ink-3);border-top:1px solid var(--rule-2);padding-top:9px}
+.rcard{background:repeating-linear-gradient(135deg,var(--panel) 0 9px,color-mix(in srgb,var(--regie) 10%,var(--panel)) 9px 18px)}
+.rcard .k{font:700 10px var(--f-num);letter-spacing:.07em;text-transform:uppercase;color:var(--regie)}
+
+/* ── tableau, dépliants, pied ────────────────────────────────────── */
+.scroller{overflow-x:auto;margin-top:22px;border:1px solid var(--rule);border-radius:var(--r);background:var(--panel);box-shadow:var(--shadow)}
+table{border-collapse:collapse;width:100%;font-size:15px}
+th,td{text-align:left;padding:12px 14px;border-bottom:1px solid var(--rule-2)}
+th{font-family:var(--f-display);font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-2);border-bottom:1.5px solid var(--rule);background:var(--panel-2);position:sticky;top:0}
+ .spt tbody tr:nth-child(odd){background:color-mix(in srgb,var(--ink) 3.5%,transparent)}
+ .spt tbody tr:hover{background:color-mix(in srgb,var(--accent) 7%,transparent)}
+ .spt td.n,.spt td:nth-child(3){white-space:nowrap}
+ .spt td:first-child{font-weight:500}
+ .vp{display:inline-flex;align-items:center;justify-content:center;min-width:78px;padding:5px 11px;border-radius:999px;font-family:var(--f-num);font-weight:600;font-variant-numeric:tabular-nums;font-size:14px;letter-spacing:-.02em}
+ .v-hi{color:var(--hors);background:color-mix(in srgb,var(--hors) 14%,transparent)}
+ .v-mid{color:var(--regie);background:color-mix(in srgb,var(--regie) 16%,transparent)}
+ .v-lo{color:var(--lieu);background:color-mix(in srgb,var(--lieu) 15%,transparent)}
+ @media(max-width:560px){.vp{min-width:0;padding:4px 9px;font-size:13px}}
+tbody tr:hover{background:var(--panel-2)}
+td.n,th.n{text-align:right;font-family:var(--f-num);font-variant-numeric:tabular-nums}
+details{border:1px solid var(--rule);border-radius:var(--r-sm);background:var(--panel);margin-top:10px;box-shadow:var(--shadow);transition:border-color .15s}
+details[open]{border-color:color-mix(in srgb,var(--accent) 40%,var(--rule))}
+summary{cursor:pointer;padding:14px 16px;font-weight:700;font-size:14.5px;list-style:none;display:flex;align-items:center;gap:11px}
+summary::-webkit-details-marker{display:none}
+summary::before{content:"+";font-family:var(--f-num);font-weight:600;width:20px;height:20px;border-radius:7px;background:color-mix(in srgb,var(--accent) 14%,transparent);color:var(--accent);display:inline-flex;align-items:center;justify-content:center;flex:none;transition:transform .2s}
+details[open] summary::before{content:"−";transform:rotate(180deg)}
+details .bd{padding:0 16px 16px 47px;color:var(--ink-2);font-size:14px}
+footer{padding-block:38px 54px;color:var(--ink-2);font-size:13px;background:var(--paper-2);position:relative}
+footer::before{content:"";position:absolute;inset:0 0 auto;height:2px;background:linear-gradient(90deg,var(--accent),var(--evt) 33%,var(--lieu) 66%,var(--accent-2))}
+footer b{color:var(--ink)}
+.tip{position:fixed;pointer-events:none;z-index:40;background:var(--ink);color:var(--paper);font:500 12px/1.35 var(--f-body);padding:8px 11px;border-radius:9px;opacity:0;transition:opacity .12s;max-width:280px;box-shadow:var(--shadow-lg)}
+.tip .v{font-family:var(--f-num);font-weight:600}
+
+/* ── apparition à la lecture ─────────────────────────────────────── */
+.rv{opacity:0;transform:translateY(16px);transition:opacity .6s cubic-bezier(.2,.8,.3,1),transform .6s cubic-bezier(.2,.8,.3,1)}
+.rv.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.rv{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+
+<style>
+/* Compléments propres au volet économie. Mêmes jetons que le site culture :
+   Métropole = --evt, Ville = --lieu, Ville et Métropole = --asso, commerce = --regie. */
+.draft{display:flex;gap:10px;align-items:flex-start;margin-top:22px;max-width:70ch;padding:12px 15px;border-radius:var(--r-sm);border:1px dashed color-mix(in srgb,var(--regie) 55%,var(--rule));background:color-mix(in srgb,var(--regie) 7%,var(--panel));font-size:14px;line-height:1.55;color:var(--ink-2)}
+.draft b{color:var(--regie);font-family:var(--f-num);font-size:11px;letter-spacing:.1em;text-transform:uppercase;flex:none;padding-top:2px}
+#commerce .eyebrow{color:var(--regie);background:color-mix(in srgb,var(--regie) 15%,transparent)}
+#gouvernance .eyebrow{color:var(--accent-3);background:color-mix(in srgb,var(--accent-3) 15%,transparent)}
+#methode .eyebrow{color:var(--ink-2);background:color-mix(in srgb,var(--ink) 8%,transparent)}
+.chip[data-c="M"]{color:var(--evt)} .chip[data-c="V"]{color:var(--lieu)}
+.chip[data-c="M"][aria-pressed="true"]{background:var(--evt);border-color:var(--evt);color:#fff}
+.chip[data-c="V"][aria-pressed="true"]{background:var(--lieu);border-color:var(--lieu);color:#fff}
+.yrs{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:4px;align-items:end;height:120px;margin-top:16px}
+.yrs div{display:flex;flex-direction:column;justify-content:flex-end;align-items:center;height:100%;gap:4px;min-width:0}
+.yrs i{display:block;width:100%;border-radius:5px 5px 2px 2px;background:var(--evt);min-height:2px}
+.yrs i.z{background:var(--panel-3)}
+.yrs span{font:500 10px var(--f-num);color:var(--ink-3)}
+.subs{margin-top:14px;display:grid;gap:6px}
+.subs div{display:grid;grid-template-columns:minmax(0,1fr) 84px;gap:10px;font-size:13.5px;color:var(--ink-2)}
+.subs div b{font-family:var(--f-num);font-weight:500;text-align:right;color:var(--ink)}
+.hint{color:var(--ink-3);font-size:13.5px;margin-top:10px}
+.twocol{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:18px}
+@media(max-width:860px){.twocol{grid-template-columns:minmax(0,1fr)}}
+.small{font-size:13.5px}
+td.dim{color:var(--ink-3)}
+tr.tot td{font-weight:700;border-top:1.5px solid var(--rule)}
+.timeline{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px;margin-top:18px}
+@media(max-width:620px){.timeline{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.tl{border:1px solid var(--rule);border-radius:var(--r-sm);padding:13px;background:var(--panel);box-shadow:var(--shadow)}
+.tl .y{font:600 12px var(--f-num);color:var(--ink-3);letter-spacing:.06em}
+.tl b{display:block;font:600 21px var(--f-num);letter-spacing:-.03em;margin-top:6px}
+.tl small{display:block;color:var(--ink-2);font-size:12.5px;margin-top:4px;line-height:1.4}
+.tl.on{border-color:color-mix(in srgb,var(--regie) 50%,var(--rule));background:color-mix(in srgb,var(--regie) 9%,var(--panel))}
+.tl.on b{color:var(--regie)}
+.tl.off b{color:var(--hors)}
+.flow{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-top:20px;counter-reset:f}
+@media(max-width:860px){.flow{grid-template-columns:minmax(0,1fr)}}
+.flow div{position:relative;border:1px solid var(--rule);border-radius:var(--r-sm);background:var(--panel);padding:15px 15px 15px 52px;box-shadow:var(--shadow);font-size:14px;line-height:1.5;color:var(--ink-2)}
+.flow div::before{counter-increment:f;content:counter(f);position:absolute;left:14px;top:14px;width:26px;height:26px;border-radius:9px;display:grid;place-items:center;font:600 13px var(--f-num);color:var(--accent-3);background:color-mix(in srgb,var(--accent-3) 14%,transparent)}
+.flow div b{color:var(--ink)}
+ol.req{margin:18px 0 0;padding-left:22px;color:var(--ink-2);max-width:72ch}
+ol.req li{margin-bottom:8px}
+ol.req b{color:var(--ink)}
+</style>
+
+<nav><div class="wrap">
+  <a class="brand" href="./" style="text-decoration:none"><span class="mk" aria-hidden="true"></span>Subven'Scope <em>Économie</em></a>
+  <a class="lnk" href="./">Culture</a>
+  <a class="lnk" href="#panorama">Panorama</a>
+  <a class="lnk" href="#evolution">Évolution</a>
+  <a class="lnk" href="#registre">Registre</a>
+  <a class="lnk" href="#commerce">Commerçants</a>
+  <a class="lnk" href="#cas">Les cas</a>
+  <a class="lnk" href="#regie">En régie</a>
+  <a class="lnk" href="#methode">Méthode</a>
+  <button class="tgl" id="tgl" type="button" aria-label="Basculer entre le thème clair et le thème sombre" title="Thème clair ou sombre">
+    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="8" cy="8" r="3.4"/><path d="M8 .9v1.8M8 13.3v1.8M.9 8h1.8M13.3 8h1.8M3 3l1.3 1.3M11.7 11.7 13 13M13 3l-1.3 1.3M4.3 11.7 3 13"/></svg>
+  </button>
+</div></nav>
+<div class="prog" id="prog" aria-hidden="true"></div>
+
+<header class="hero"><div class="wrap">
+  <div class="kicker">Ville et Métropole · exercices 2015 à 2026</div>
+  <h1>Où va l'argent<br><b>du développement économique ?</b></h1>
+  <p class="sig"><span><b>255 bénéficiaires.</b> Un seul en capte 48,6 %.</span></p>
+  <p>La ligne « développement économique » paraît technique : congrès, incubateurs, insertion, commerce. Reconstituée sur huit exercices, elle raconte autre chose. La moitié de l'argent va à l'Office de tourisme. Des festivals passent par la ligne « Emploi et insertion », un club de rugby par la ligne « Économie ». Une même subvention change trois fois de case en trois ans. <b>Reste ce que le fichier ne montre pas</b> : les aides aux entreprises, qui n'y figurent jamais.</p>
+  <p class="heronote">Analyse citoyenne de données publiques. Les montants viennent des fichiers ouverts de la Ville et de la Métropole. Aucune des structures citées n'est mise en cause : le sujet est ce que la collectivité publie. L'auteur porte le festival What a Trip !, bénéficiaire de subventions de la Ville et de la Métropole, dont 20 000 € en 2022 sur la ligne étudiée ici.</p>
+  
+  <div class="stats">
+    <div class="stat"><b class="num">38,8 M€</b><small>votés de 2019 à 2026 sur les dispositifs <b>développement économique</b></small></div>
+    <div class="stat"><b class="num">48,6 %</b><small>pour un seul bénéficiaire, l'<b>Office de tourisme et des congrès</b></small></div>
+    <div class="stat"><b class="num">0,8 %</b><small>versé par la <b>Ville</b> ; le reste vient de la Métropole</small></div>
+    <div class="stat"><b class="num">212 694 €</b><small>pour <b>neuf associations de commerçants</b> en douze ans</small></div>
+  </div>
+</div></header>
+
+<section id="panorama"><div class="wrap">
+  <span class="eyebrow">01 · Panorama</span>
+  <h2>Quatre structures, trois quarts de l'argent</h2>
+  <p class="sub">Les quinze premiers bénéficiaires de 2019 à 2026, à la même échelle. L'Office de tourisme reçoit à lui seul presque autant que les 254 autres réunis.</p>
+  <div class="chartbox">
+    <div class="cbt">Montant cumulé 2019-2026, en milliers d'euros</div>
+    <div class="tb" id="topbars" style="margin-top:16px"></div>
+    <div class="legend"><b><i style="background:var(--evt)"></i>Métropole</b><b><i style="background:var(--lieu)"></i>Ville</b><b><i style="background:var(--asso)"></i>Ville et Métropole</b></div>
+    <figcaption>Cliquer un nom ouvre sa fiche dans le registre. Le bouton <span class="kbd">+</span> l'ajoute au comparateur.</figcaption>
+  </div>
+  <div class="cards">
+    <div class="card"><span class="big">72,8 %</span><h3>pour les quatre premiers</h3><p>Office de tourisme, Mission locale, Université de Montpellier, Agence de développement et des transitions.</p></div>
+    <div class="card"><span class="big">80,0 %</span><h3>pour les dix premiers</h3><p>Dans la culture, les quatre premiers événements captaient 80 %. Ici, le premier bénéficiaire en capte presque la moitié à lui seul.</p></div>
+    <div class="card"><span class="big">115</span><h3>bénéficiaires sous 10 000 €</h3><p>En huit ans, cumulés. La plupart sont des congrès scientifiques aidés une seule fois, pour 500 à 5 000 €.</p></div>
+  </div>
+</div></section>
+
+<section id="evolution"><div class="wrap">
+  <span class="eyebrow">02 · Évolution</span>
+  <h2>Une enveloppe stable, des cases qui bougent</h2>
+  <p class="sub">De 2015 à 2018, le fichier ne couvre que la Ville : la série homogène commence en 2019. En 2025, la politique agroalimentaire quitte le développement économique ; la part hachurée la réintègre pour comparer à périmètre constant.</p>
+  <div class="chartbox">
+    <div class="cbt">Subventions votées par exercice, en milliers d'euros</div>
+    <div id="evochart" style="margin-top:14px"></div>
+    <div class="hleg"><b><s style="background:var(--evt)"></s>Dispositifs « développement économique »</b><b><s style="background:repeating-linear-gradient(135deg,var(--regie) 0 3px,transparent 3px 6px);border:1px solid var(--regie)"></s>Même objet, autre libellé (2025-2026)</b><b><s style="background:var(--panel-3)"></s>Ville seule (2015-2018)</b></div>
+    <figcaption>Montants votés, non versés. L'exercice 2026 est incomplet.</figcaption>
+  </div>
+  <div class="chartbox">
+    <div class="cbt">Comparateur, quatre structures au maximum</div>
+    <div class="selbar" id="selbar"></div>
+    <div id="cmpchart" style="margin-top:12px"></div>
+    <figcaption>Ajouter une structure depuis le panorama ou le registre avec le bouton <span class="kbd">+</span>.</figcaption>
+  </div>
+  <div class="scroller">
+    <table class="spt">
+      <thead><tr><th>Sous-dispositif métropolitain, en k€</th><th class="n">2022</th><th class="n">2023</th><th class="n">2024</th><th class="n">2025</th><th class="n">2026</th></tr></thead>
+      <tbody>
+        <tr><td>Tourisme</td><td class="n dim">—</td><td class="n">2 405</td><td class="n">2 360</td><td class="n">2 280</td><td class="n">2 435</td></tr>
+        <tr><td>Emploi et insertion</td><td class="n"><span class="vp v-hi">4 608</span></td><td class="n">1 148</td><td class="n">1 192</td><td class="n">1 180</td><td class="n">1 849</td></tr>
+        <tr><td>Contrat de plan État-Région</td><td class="n dim">—</td><td class="n">854</td><td class="n">1 578</td><td class="n">888</td><td class="n dim">—</td></tr>
+        <tr><td>Commerce, artisanat</td><td class="n dim">—</td><td class="n">132</td><td class="n">53</td><td class="n"><span class="vp v-mid">763</span></td><td class="n">103</td></tr>
+        <tr><td>Politique agroalimentaire</td><td class="n dim">—</td><td class="n">274</td><td class="n">320</td><td class="n dim">sortie</td><td class="n dim">sortie</td></tr>
+        <tr><td>Congrès</td><td class="n dim">—</td><td class="n">197</td><td class="n">169</td><td class="n">173</td><td class="n">161</td></tr>
+        <tr><td>Industries créatives, numérique</td><td class="n dim">—</td><td class="n">192</td><td class="n">182</td><td class="n">162</td><td class="n">163</td></tr>
+        <tr><td>Autres (croissance, santé, environnement, recherche, services à la personne, vin)</td><td class="n dim">—</td><td class="n">300</td><td class="n">470</td><td class="n">240</td><td class="n">230</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="hint">En 2022, l'Office de tourisme est publié sous « Emploi et insertion » : c'est lui qui fait le pic. En 2025, l'Agence de développement et des transitions représente 92 % de « Commerce, artisanat ».</p>
+</div></section>
+
+<section id="registre"><div class="wrap">
+  <span class="eyebrow">03 · Registre</span>
+  <h2>Les 273 bénéficiaires, ligne à ligne</h2>
+  <p class="sub">Tous les organismes ayant reçu au moins une subvention sur un dispositif économique, de 2015 à 2026. Les montants affichés ne comptent que ces dispositifs ; ce que la structure reçoit ailleurs est indiqué à part, en rouge.</p>
+  <div class="bar-tools">
+    <label class="search" for="q"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="7" cy="7" r="5"/><path d="m11 11 3.5 3.5"/></svg><input id="q" type="search" placeholder="Rechercher une structure" autocomplete="off"></label>
+    <div class="chips" role="group" aria-label="Collectivité">
+      <button class="chip" type="button" data-c="all" aria-pressed="true">Toutes</button>
+      <button class="chip" type="button" data-c="M" aria-pressed="false"><i></i>Métropole</button>
+      <button class="chip" type="button" data-c="V" aria-pressed="false"><i></i>Ville</button>
+    </div>
+  </div>
+  <div class="grid">
+    <div class="reg">
+      <div class="reghead"><span id="count"></span><label for="sort" style="margin-left:auto">Trier par</label>
+        <select id="sort"><option value="t">Montant total</option><option value="last">Dernier exercice</option><option value="n">Nom</option><option value="multi">Nombre de lignes différentes</option></select></div>
+      <div class="rows" id="rows"></div>
+    </div>
+    <aside class="panel" id="fiche" aria-live="polite"></aside>
+  </div>
+</div></section>
+
+<section id="commerce"><div class="wrap">
+  <span class="eyebrow">04 · Commerçants</span>
+  <h2>Le commerce de centre-ville, c'est surtout Noël</h2>
+  <p class="sub">Neuf associations de commerçants ont reçu 212 694 € en douze ans, toutes de la Ville. Une seule en capte 80 %. La Métropole ne leur verse rien en direct : ses aides au commerce passent par les chambres consulaires.</p>
+  <div class="timeline">
+    <div class="tl on"><span class="y">NOËL 2021</span><b class="num">65 000 €</b><small>voté le 30 novembre 2021, ligne sans dispositif</small></div>
+    <div class="tl off"><span class="y">NOËL 2022</span><b class="num">0 €</b><small>aucune ligne publiée</small></div>
+    <div class="tl on"><span class="y">NOËL 2023</span><b class="num">52 000 €</b><small>voté le 11 décembre 2023</small></div>
+    <div class="tl off"><span class="y">NOËL 2024</span><b class="num">0 €</b><small>aucune ligne publiée</small></div>
+    <div class="tl on"><span class="y">NOËL 2025</span><b class="num">52 644 €</b><small>voté le 11 décembre 2025, « animation Noël centre-ville »</small></div>
+  </div>
+  <p class="hint">Subventions au Comité Plein Centre. Pour 2022 et 2024, soit l'association n'a rien reçu, soit les animations ont été payées par un autre canal, absent de ce fichier.</p>
+  <div class="twocol">
+    <div class="scroller">
+      <table class="spt small">
+        <thead><tr><th>Association de commerçants</th><th class="n">Total</th><th>Années</th></tr></thead>
+        <tbody>
+          <tr><td>Comité Plein Centre</td><td class="n"><span class="vp v-mid">169 644 €</span></td><td>2021, 2024, 2025</td></tr>
+          <tr><td>Les Voies du Palais</td><td class="n">12 600 €</td><td>2015 à 2024</td></tr>
+          <tr><td>Au Cœur de Saint-Roch</td><td class="n">10 000 €</td><td>2024, 2025</td></tr>
+          <tr><td>Pari du Jeu de Paume, Maison du Père Noël</td><td class="n">8 000 €</td><td>2025, 2026</td></tr>
+          <tr><td>Rassemblement des citoyens et commerçants</td><td class="n">4 200 €</td><td>2016 à 2021</td></tr>
+          <tr><td>Commerçants de l'Ancien Courrier</td><td class="n">3 400 €</td><td>2016, 2017, 2024</td></tr>
+          <tr><td>La Rue de l'U</td><td class="n">2 350 €</td><td>2019</td></tr>
+          <tr><td>Commerçants de l'Aiguillerie</td><td class="n">2 000 €</td><td>2018, 2019</td></tr>
+          <tr><td>Commerçants de Sainte-Anne</td><td class="n">500 €</td><td>2019</td></tr>
+          <tr class="tot"><td>Total</td><td class="n">212 694 €</td><td></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="scroller">
+      <table class="spt small">
+        <thead><tr><th>Chambres et organisations</th><th class="n">Total</th><th>Années</th></tr></thead>
+        <tbody>
+          <tr><td>CCI de l'Hérault</td><td class="n"><span class="vp v-mid">444 664 €</span></td><td>2020 à 2026</td></tr>
+          <tr><td>Capeb Hérault</td><td class="n">60 000 €</td><td>2021 à 2026</td></tr>
+          <tr><td>Chambre de métiers et de l'artisanat</td><td class="n">58 000 €</td><td>2023 à 2026</td></tr>
+          <tr><td>Confédération de l'alimentation en détail</td><td class="n">28 000 €</td><td>2022 à 2026</td></tr>
+          <tr><td>Union professionnelle artisanale</td><td class="n">11 500 €</td><td>2015</td></tr>
+          <tr class="tot"><td>Total</td><td class="n">602 164 €</td><td></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="cards">
+    <div class="card"><span class="big">40 000 €</span><h3>pour accueillir un congrès national</h3><p>En 2025, la Ville finance l'organisation à Montpellier des 19es Assises nationales du centre-ville, sur la même ligne que le commerce de proximité. C'est 93 % de ce que les huit associations de quartier ont reçu en douze ans.</p><span class="src">Fichier courant 2025-2026, Centre-Ville en Mouvement</span></div>
+    <div class="card"><span class="big">2 × 60 000 €</span><h3>un doublon possible à la CCI</h3><p>60 000 € votés le 9 juillet 2024 pour la prévention des déchets, puis 60 000 € le 22 avril 2025, même dispositif, objet « demande de subvention 2024 ». Deux annuités ou une seule subvention publiée deux fois : la convention tranchera.</p><span class="src">Classeur 2023-2024 et fichier courant</span></div>
+    <div class="card"><span class="big">2 lignes</span><h3>des commerçants passés en « vie associative »</h3><p>Les Voies du Palais (2023-2024) et l'Ancien Courrier (2024) quittent la ligne économique. Suivre le commerce par le seul intitulé en sous-estime une part croissante.</p><span class="src">Classeurs 2022-2024</span></div>
+  </div>
+</div></section>
+
+<section id="cas"><div class="wrap">
+  <span class="eyebrow">05 · Les cas</span>
+  <h2>Ce que les intitulés ne disent pas</h2>
+  <p class="sub">Chaque cas est établi à partir des fichiers publiés. Le montant, la ligne et la source sont donnés ; l'interprétation reste prudente.</p>
+  <div class="cards" id="cards"></div>
+</div></section>
+
+<section id="regie"><div class="wrap">
+  <span class="eyebrow">06 · En régie</span>
+  <h2>Ce que coûtent les grandes soirées télévisées</h2>
+  <p class="sub">Quand la Ville accueille une émission de France Télévisions ou une étape du Tour de France, elle ne verse pas de subvention : elle achète une prestation. Ces achats n'apparaissent pas dans le fichier des subventions. Ils figurent en revanche dans les données nationales de la commande publique, avec leur montant et leur titulaire.</p>
+  <div class="scroller">
+    <table class="spt">
+      <thead><tr><th>Événement</th><th>Acheteur</th><th>Titulaire</th><th class="n">Montant HT</th><th>Notifié le</th><th class="n">Public</th></tr></thead>
+      <tbody>
+        <tr><td>Nuits du Peyrou 2021, cinq soirées Estivales de Culturebox</td><td>Ville</td><td>Electron Libre Productions</td><td class="n"><span class="vp v-mid">416 667 €</span></td><td>30 juin 2021</td><td class="n">≈ 1 000 par soir</td></tr>
+        <tr><td>Africa, le grand concert, Peyrou, 9 juillet 2021</td><td>Métropole</td><td>Electron Libre Productions</td><td class="n"><span class="vp v-mid">247 000 €</span></td><td>6 et 9 juillet 2021</td><td class="n">≈ 1 000</td></tr>
+        <tr><td>Fête de la musique 2022, concert de France 2, place de l'Europe</td><td>Ville</td><td>France.tv Studio</td><td class="n"><span class="vp v-hi">605 000 €</span></td><td>21 juin 2022</td><td class="n">15 000 places</td></tr>
+        <tr><td>Nuits du Peyrou 2022, deux lots</td><td>Ville</td><td>Electron Libre Productions</td><td class="n"><span class="vp v-mid">358 333 €</span></td><td>1er juillet 2022</td><td class="n">≈ 20 000 sur quatre soirs</td></tr>
+        <tr><td>Tour de France 2025, départ de la 16e étape</td><td>Ville</td><td>Amaury Sport Organisation</td><td class="n"><span class="vp v-lo">160 000 €</span></td><td>17 juin 2025</td><td class="n">≈ 10 000 visiteurs annoncés</td></tr>
+        <tr><td>Tour de France 2027, arrivée le 16 juillet et départ le 17 juillet</td><td>—</td><td>Amaury Sport Organisation</td><td class="n dim">non publié</td><td class="dim">aucun marché notifié</td><td class="n dim">—</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="hint">Montants hors taxes, tels que déclarés par l'acheteur. Ils couvrent la prestation achetée au producteur ou à l'organisateur, pas la sécurité, le nettoyage, la voirie ni le temps des agents municipaux. Pour Africa, le marché de la Métropole est publié à 125 000 € le 6 juillet puis à 247 000 € le 9 juillet : le second montant semble remplacer le premier, sans certitude.</p>
+  <div class="cards">
+    <div class="card"><span class="big">≈ 110 €</span><h3>par place aux Nuits du Peyrou 2021</h3><p>Environ 664 000 € HT pour la Ville et la Métropole, pour six soirées d'environ mille spectateurs tirés au sort. Les concerts étaient gratuits pour le public ; ils ont été payés par le contribuable puis rediffusés en août sur France Télévisions.</p><span class="src">Données essentielles de la commande publique ; En Commun, septembre 2021</span></div>
+    <div class="card"><span class="big">Le jour J</span><h3>un marché notifié le soir du concert</h3><p>Le marché de 605 000 € avec France.tv Studio est notifié le 21 juin 2022, le jour même de la Fête de la musique. Celui de 2021 l'est deux jours avant la première soirée. La procédure suivie reste à vérifier.</p><span class="src">Données essentielles de la commande publique</span></div>
+    <div class="card"><span class="big">160 000 €</span><h3>pour l'étape de 2025, 400 000 € annoncés</h3><p>Le marché avec A.S.O. s'élève à 160 000 € HT. Le vice-président métropolitain aux sports évoque un coût total d'environ 400 000 €, que la presse a rapporté comme « 5 % du budget annuel de la ville ». C'est faux : le budget de la Ville se compte en centaines de millions d'euros.</p><span class="src">Données essentielles ; France 3 Occitanie, 23 juillet 2025</span></div>
+    <div class="card"><span class="big">2 étapes</span><h3>en 2027, aucun chiffre encore</h3><p>Montpellier accueillera une arrivée et un départ. Aucun montant n'est publié à ce jour : ni délibération, ni marché notifié. Le coût de 2025 portait sur un seul départ.</p><span class="src">En Commun, 23 octobre 2026</span></div>
+  </div>
+  <div class="note">Les marchés de télévision de 2021 et 2022 sont détaillés, avec leurs numéros de décision, dans la section <a href="./#evenements">La facture</a> du volet culture. Les montants de ce tableau couvrent la prestation achetée ; le coût complet de chaque soirée n'est publié nulle part.</div>
+</div></section>
+
+<section id="methode"><div class="wrap">
+  <span class="eyebrow">07 · Méthode</span>
+  <h2>Comment la série a été reconstituée</h2>
+  <details open><summary>Une seule publication par exercice, la plus récente</summary><div class="bd">L'archive contient sept classeurs qui republient en partie les mêmes exercices. Seule la publication la plus récente de chaque exercice est retenue. Dans un même classeur, une subvention présente plusieurs fois est gardée autant de fois qu'elle figure dans l'onglet où elle est la plus fréquente.</div></details>
+  <details><summary>Les votes de décembre relèvent de l'exercice suivant</summary><div class="bd">Les classeurs 2018-2019 ne donnent qu'une date de vote. Le classeur 2020-2021 rattache lui-même à l'exercice 2020 des votes du 19 décembre 2019 : la même règle est appliquée partout. Sans elle, 2019 compte deux fois les votes de décembre 2019. Cette règle n'avait pas été appliquée dans le volet culture : ses colonnes 2018 et 2019 sont à corriger, les suivantes ne le sont pas.</div></details>
+  <details><summary>La collectivité se lit dans le dispositif, pas dans l'onglet</summary><div class="bd">L'onglet « VILLE 2020 » du classeur 2020-2021 contient 421 lignes métropolitaines, pour 66,6 M€, publiées aussi dans les onglets « 3M ». Se fier au nom de l'onglet double la Métropole en 2020.</div></details>
+  <details><summary>157 lignes de 2021 ont perdu leur dispositif</summary><div class="bd">Les votes de novembre 2021 de l'onglet « VILLE 2021 » sont publiés avec des colonnes décalées. Les bénéficiaires ont été remis en place ; leur dispositif d'origine est perdu, pour 1,15 M€. C'est le cas des 65 000 € du Comité Plein Centre.</div></details>
+  <details><summary>Les noms ont été rapprochés</summary><div class="bd">Une même structure figure souvent sous plusieurs libellés : l'Office de tourisme sous deux, la Mission locale sous trois, l'ADIE sous quatre. Après rapprochement, on compte 255 bénéficiaires de 2019 à 2026, contre 282 libellés distincts dans les fichiers.</div></details>
+  <details><summary>Ce qui est compté comme développement économique</summary><div class="bd">Les dispositifs « Économie » (Ville, 2015-2017), « Économie / Dev Éco Commercial » (Ville, 2018-2026), « Développement économique » (Métropole, 2019-2021) et ses quinze sous-dispositifs (Métropole, 2022-2026). « Économie des ressources et du patrimoine » est écarté : il relève de l'écologie urbaine.</div></details>
+  <details><summary>Ce qui n'est dans aucun fichier</summary><div class="bd">Les aides directes aux entreprises, les exonérations de redevances et de droits de terrasse, les aides en nature, les marchés publics, les contributions statutaires aux opérateurs. Le fichier s'intitule « subventions aux associations » mais contient des universités, des chambres consulaires et une coopérative ; aucune société commerciale n'y figure.</div></details>
+  <details><summary>Sources</summary><div class="bd">Open data de Montpellier Méditerranée Métropole, jeu « Attribution des subventions aux associations de la Ville Montpellier et de la Métropole de Montpellier » : fichier courant 2025-2026 et archive 2011-2024, consultés le 31 octobre 2026. Rapport d'activité 2024 de l'Office de tourisme et des congrès. Dossier de presse de l'Agence de développement et des transitions, novembre 2023. Article L. 1111-6 du code général des collectivités territoriales. Données essentielles de la commande publique, data.economie.gouv.fr, consultées le 31 octobre 2026.</div></details>
+</div></section>
+
+<footer><div class="wrap">
+  <p><b>Subven'Scope Économie</b> · analyse citoyenne de données publiques · mise à jour au 1er novembre 2026 · <a href="./">volet culture</a> · <a href="mentions-legales.html">mentions légales et droit de réponse</a>.</p>
+  <p>Données sous licence ODbL, Montpellier Méditerranée Métropole. Aucune des structures citées n'est mise en cause. L'auteur déclare son lien avec le festival What a Trip !, bénéficiaire de subventions.</p>
+</div></footer>
+<div class="tip" id="tip"></div>
+<script>
+const YEARS=[2015,2016,2017,2018,2019,2020,2021,2022,2023,2024,2025,2026];
+const SUBS=["Ville, commerce","Congrès","Emploi et insertion","Non ventilé (2019-2021)","Politique agroalimentaire","Contrat de plan État-Région","Enseignement supérieur, recherche","Tourisme","Commerce, artisanat","Industries créatives, numérique","Services à la personne","Santé","Croissance","Environnement","Vin"];
+/* nom | montants k€ 2015→2026 | sous-dispositifs | collectivité | reçu hors dév. éco 2019-2026 (k€) */
+const RAW=`Office de tourisme et des congrès de la Métropole|,,,,2279.8,2279.8,2479.8,2360,2405,2360,2280,2435|3.2.7|M|0
+Mission locale des jeunes de la Métropole|,,,,633.1,633.1,643.8,643.8,698,700.4,700,700|3.2|M|112
+Université de Montpellier|,,,,19,,5,37.5,714.4,1017,492.5,26|3.2.1.5.6|M|26
+Agence de développement et des transitions|,,,,,,,,,300,700,700|12.10.8.2|M|0
+CNRS|,,,,,,,80.5,77.7,418.5,50,64.5|2.1.6.5|M|213
+France Active AIRDIE Occitanie|,,,,75,65,85,85,65,73.5,61,61|3.2|M|29
+EUROBIOMED|,,,,,60,75,60,60,60,60,60|2.11.3|M|0
+INITIATIVE MONTPELLIER PIC SAINT LOUP|,,,,50,30,38,55,62,62,58,58|3.2|M|20
+French Tech Méditerranée|,,,,,,48.8,65,65,65,58,58|2.9.3|M|0
+Agropolis International|,,,,,8,83,79,77.5,75,,|2.4.1.3|M|130
+CCI de l'Hérault|,,,,,10,1.5,72.1,46.1,36,48,86|2.8.0.3|VM|145
+Institut Agro Montpellier|,,,,,,,,5,5,242.7,5|4.5.1|M|15
+Cirad|,,,,,,,10,162,67,4,|2.4.1.5|M|5
+Digital 113|,,,,,35,35,35,40,35,30,30|2.9.3|M|0
+Ateliers d'Art de France|,,,,38,38,38,38,78,,,|3.2.8.0|VM|0
+CHU de Montpellier|,,,,,,40,40,40,,40,65|2.11.1.3|M|57
+INRAE|,,,,,,,7,6.5,186.5,,|2.4.1.5|M|11
+Derbi|,,,,,30,30,30,30,20,20,20|2.13.3|M|0
+AGRI SUD OUEST INNOVATION|,,,,,30,30,30,,30,30,30|2.4.13.3|M|0
+CREALEAD|,,,,30,30,30,30,,,25,25|3.2|M|0
+Chambre d'agriculture de l'Hérault|,,,,,42,,42,42,42,,|2.4.3|M|37
+HAUTS VAL CO|,,,,,,,,,75,60,30|2.4|M|2
+Pôle Aqua-Valley|,,,,,40,,40,40,,20,20|2.13.3|M|0
+PUSH START SUD|,,,,6,6,6,15,30,30,30,30|3.2.9|M|0
+URSCOP Occitanie|,,,,,20,20,20,20,20,20,20|2.3|M|0
+FEDERATION REGIONALE DES CIVAM D OCCITANIE|,,,,,,4,33,63,35,,|2.4.3|M|74
+AXENTS LE TREMPLIN DES ENTREPRENEURS|,,,,12.5,12.5,28,28,12.5,12.5,12.5,12.5|3.2|M|31
+AEROSPACE VALLEY|,,,,,20,20,20,20,20,15,15|2.9.3|M|0
+LE PASSE MURAILLE|,,,,15,15,15,,15,15,15,30|3.2|M|24
+ECOLE NATIONALE SUPERIEURE DE CHIMIE MONTPELLIER ENSCM|,,,,,,,,,,120,|5|M|0
+Comité Plein Centre|,,,,,,,,,52,52.6,|0|V|65
+INSTITUT DE L AUDIOVISUEL ET DES TELECOMM EN EUROPE IDATE|,,,,57.5,,22.5,22.5,,,,|3.2|M|0
+RE CYCLE ET VOUS|,,,,,,15,15,15,15,15,25|2.3|M|0
+MONTPELLIER RUGBY CLUB|,,97.5,,,,,,,,,|0|V|3219
+JESSICA FRANCE|,,,,,,15,15,15,15,15,15|2.10.9.3|M|0
+POUR L INSERTION PAR L ECONOMIQUE|,,,,,,,,21,21,21,21|2|M|4
+INITIATIVES POUR UNE AGRICULTURE CITOYENNE ET TERRITORIALE OCCITANIE PYRENEES MEDITERRANEE|,,,,,,,27,27,27,,|2.4|M|54
+INFORMATIQUE PLUS|,,,,40,40,,,,,,|3|M|0
+SYNDICAT AOC LANGUEDOC|,,,,,,,,20,60,,|8.0|VM|0
+POUR DROIT A L INITIATIVE ECONOMIQUE|,,,,,,,15,15,15,15,15|2|M|0
+PASSERELLES SYNERGIES|,,,,,,,15,15,15,15,15|2|M|0
+FACE HERAULT|4,4,2,,,24,28,4,4,,4,|0.2.3|VM|83
+CENTRE COMMUNAL D ACTION SOCIALE|,,,,,,,,28,15,15,15|2|M|62611
+BGE MONTPELLIER|,,,,,29,38,3,,,,|2.3|M|43
+INSTITUT MEDITERRANEEN D ETUDE D INGENERIE ET DE FORMATION|,,,,,,,10,30,30,,|2|M|118
+LES PREMIERES OCCITANIE|,,,,,,15,15,12,10,10,|2.9.3|M|0
+POLE OPTITEC|,,,,,15,15,15,15,,,|2.9.3|M|0
+Capeb Hérault|,,,,,,10,10,10,10,10,10|2.8.3|M|0
+LES JARDINS DE COCAGNE MIRABEAU|,,,,,,15,15,,,15,15|2.3|M|0
+FORMATION CAP EMPLOI|,,,,,,,,15,15,15,15|2|M|0
+CREA LEAD|,,,,,,,,30,30,,|2|M|0
+MOUVEMENT IMPACT FRANCE|,,,,,,10,10,10,10,8,8|2.3|M|0
+POUR PERSONNES EN SITUATION DE HANDICAP|,,,,,,,11,16,,13,13|2|M|29
+FEDERATION CGT|,,,,50,,,,,,,|3|M|0
+CENTRE DE RESSOURCES DES GROUPEMENTS D EMPLOYEURS D OCCITANIE PYRENEES MEDITERRANEE|,,,,,,,10,10,10,10,10|2|M|0
+COMITE POUR UNE REPARTITION EQUITABLE DE L EMPLOI ET DES REVENUS|,,,,,,,,,,25,25|2|M|0
+PASSERELLES INSERTION|,,,,15,15,16.9,,,,,|3|M|0
+FORMATION CAP EMPLOI FOR C E|,,,,15,15,15,,,,,|3|M|0
+COMIT POUR REPART EQUIT EMPLO ET REVENUS|,,,,,,,15,15,15,,|2|M|0
+CHAMBRE REGIONALE DE L ECONOMIE SOCIALE ET SOLIDARITE OCCITANIE|,,,,,,,,10,10,15,10|2|M|50
+ECOLE NATIONALE SUPERIEURE D ARCHITECTURE DE MONTPELLIER|,,,,,,,,,,45,|5|M|7
+SCIC TROPISME|,,,,,,,3,40,,,|2.1|M|434
+CREER MAISON DES CHOMEURS|4,4,,,9,9,15,,,,,|0.3|VM|0
+CHAMBRE REGIONALE DE L ECONOMIE SOCIALE ET SOLIDAIRE OCCITANIE|,,,,10,10,10,10,,,,|3.2|M|0
+CENTRE VILLE EN MOUVEMENT|,,,,,,,,,,40,|0|V|0
+LA MELEE|,,,,,2,2,5,7,7,7,7|2.9.1.3|M|0
+LES NOUVELLES GRISETTES|,,,,,,,17.5,17.5,,,|2.8|M|0
+OCCITANIE PLACE FINANCIERE|,,,,,,,7.5,15,10,,|2.12|M|0
+CENTRE DES JEUNES DIRIGEANTS DE MONTPELLIER|,,,,,,5,8,5,5,5,3|2.12.3|M|0
+COODIO|,,,,,,15,15,,,,|2.3|M|8
+LA CAV COOP DE MURVIEL|,,,,,,,30,,,,|2|M|0
+L AVITARELLE|,,,,,,,30,,,,|2|M|1388
+KAINA|,,,,,,,,6,24,,|2|M|185
+ENVIE OCCITANIE|,,,,,,30,,,,,|3|M|0
+CENTRE COMMUNAL D ACTION SOCIALE CCAS|,,,,,,28,,,,,|3|M|1008
+POUR LE DROIT A L INITIATIVE ECONOMIQUE ADIE|,,,,,11,15,,,,,|3|M|0
+LEADER MONTPELLIER|,,,,,,5,5,5,5,5,|2.12.3|M|0
+SYNDICAT NATIONAL DES ENSEIGNEMENTS DE SECOND DEGRE|,,,,,,15,10,,,,|2.3|M|0
+60 000 REBONDS OCCITANIE|,,,,,,,5,5,5,5,5|2|M|0
+CONSEIL REGIONAL DE L ORDRE DES EXPERTS COMPTABLES D OCCITANIE|,,,,,,,,25,,,|1|M|0
+SOCIETE REGIONALE DE MEDECINE DU TRAVAIL DE MONTPELLIER|,,,,,,,,,25,,|1|M|0
+PSYCHIATRIE ET PSYCHOBIOLOGIE|,,,,,,25,,,,,|3|M|0
+COMITE DEVELOP ECONOMIE REGIONALE|,,,,,,,4.8,4.8,4.8,4.8,4.8|2|M|0
+APSH 34 POUR PERSONNES EN SITUATION DE HANDICAP|,,,,6,6,11,,,,,|3|M|16
+SOCIETE FRANCAISE DE PHYSIOTHERAPIE|,,,,5,,,,,,18,|3.1|M|0
+TERRACOOPA|,,,,,,,10,3,10,,|2.4|M|77
+RESEAU DES SEMEURS DE JARDINS|,,,,,,7.5,10,2.5,2.5,,|2.4.3|M|34
+PHILATELIQUE MONTPELLIERAINE|,,,,22,,,,,,,|3|M|0
+SUNNY TECH|,,,,,2,,6,3,,5,5|2.1.3|M|0
+CONFEDERATION GALE ALIMENTATION DETAIL|,,,,,,,,,7,7,7|8|M|0
+COMIDER COMITE POUR LE DEVELOPPEMENT DE L ECONOMIE REGIONALE|2.8,2.8,,,4.8,4.8,4.8,,,,,|0.3|VM|0
+CENTRE DE COOPERATION INTERNATIONALE EN RECHERCHE AGRONOMIQUE POUR LE DEVELOPPEMENT CIRAD|,,,,15,,5,,,,,|3|M|0
+CENTRE DE RESSOURCES DES GROUPEMENTS D EMPLOYEURS REGION OCCITANIE|,,,,5,5,10,,,,,|3|M|0
+LABSUD|,,,,,5,5,5,5,,,|2.9.3|M|0
+INITIATIVES POUR UNE ECONOMIE SOLIDAIRE I E S|,,,,,,,10,10,,,|2|M|0
+ACTEURS DU TOURISME|,,,,,,,20,,,,|2|M|0
+AFIVAM (What a Trip !)|,,,,,,,20,,,,|2|M|55
+UNIVERSITE DE PERPIGNAN VIA DOMITIA|,,,,,,,10,10,,,|2.6|M|0
+UNIVERSITE DE NIMES|,,,,,,,10,10,,,|2.6|M|0
+COBATY MONTPELLIER MEDITERRANEE|,,,,,,,,20,,,|1|M|0
+ASSOCIATIONS DES INGENIEURS ET INGENIEURS EN CHEF TERRITORIAUX FRANCE|,,,,,,,,,20,,|1|M|0
+SYNDICAT NATIONAL DES PHARMACIENS DES ETABLISSEMENTS PUBLICS DE SANTE|,,,,,,,,,,,20|1|M|0
+MRBC MONTPELLIER REBUILDING CENTER CENTRE DU REEMPLOI DES MATERIAUX DU BATIMENT|,,,,,,20,,,,,|3|M|55
+FRANCE RENOUVELABLES|,,,,,,,,,,18,|1|M|0
+JEUNE CHAMBRE ECONOMIQUE DE MONTPELLIER|1,1,,,,,,,,,15,|0.1|VM|6
+POUR L INSERTION DES JEUNES PAR L EMPLOI APIJE|,,,,,,16.9,,,,,|3|M|15
+OCEBIO OCCITANIE ENTREPRISES BIO|,,,,,,,5,5,6.5,,|2.4|M|14
+SOC FR DE CHIRURGIE RACHIDIENNE|,,,,,,,,,16,,|1|M|0
+ECOLE NATIONALE D ARCHITECTURE DE MONTPELLIER ENSAM|,,,,,,,15,,,,|2|M|0
+TECH4TOMORROW|,,,,,,,15,,,,|2|M|0
+CHAMBRE PROFESSIONNELLE DES CONSEILS D ENTREPRISES EN OCCITANIE CPCO|,,,,,,,5,,5,5,|2.12|M|0
+LES PETITS DEBROUILLARDS OCCITANIE|,,,,,,,5,3,7,,|2.4|M|77
+PAC COMMUNICATION|,,,,,,,,15,,,|1|M|0
+ENVIROBAT OCCITANIE|,,,,,,,,15,,,|1|M|35
+STE FR DE RADIOTHERAPIE ONCOLOGIQUE|,,,,,,,,15,,,|1|M|0
+WAKE UP CAFE|,,,,,,,,5,,5,5|2|M|0
+AGENTS DE MAINTENANCE BIOMEDICALE|,,,,,,,,,15,,|1|M|0
+INPACT OCCITANIE|,,,,,,15,,,,,|3|M|0
+RACINES SUD|,,,,7,7,,,,,,|3|M|40
+AGROPOL EAT|,,,,,,,4,6,4,,|2.4|M|31
+CICAT OCCITANIE|,,,,,,,,6,,7,|1|M|0
+ASSO EMPLOI DEVELOPPEMENT ENTREPRISES BOUTIQUE GESTION|4,4,4,,,,,,,,,|0|V|0
+C DIT VIN|,,,,,,,12,,,,|2|M|0
+PROFESSION SPORT LOISIRS 34|,,,,,,,3,,3,3,3|2|M|6
+CENTR TECHNI REGION CONSOMM LANGUE ROUSS|,,,,,,,3,6,3,,|0|V|0
+IMAGERIE LAPEYRONIE|,,,,,,,,,,,12|1|M|0
+GEMINI WAY|,,,,,6,6,,,,,|3|M|10
+UNION PROFESSIONNELLE ARTISANALE DE L HERAULT|11.5,,,,,,,,,,,|0|V|0
+FEDERATION DES ACTEURS DE LA SOLIDARITE OCCITANIE|,,,,,,,,,11.5,,|4|M|0
+MONTPELLIER SUPAGRO|,,,,1,,5,5,,,,|3.2|M|20
+POUR LE DROIT A L INITIATIVE ECONOMIQUE|,,,,11,,,,,,,|3|M|0
+MABDESIGN|,,,,,,,4,,,,7|2.1|M|0
+CONTEXT ART|,,,,0.9,,,,,,5,5|3.2|M|14
+Les Voies du Palais|1.2,1.2,1.2,1.2,1.2,1.2,1.8,1.8,,,,|0|V|2
+UNIVERSITE MONTPELLIER III PAUL VALERY|,,,,,,,,2.5,8,,|1|M|148
+UNION NATIONALE DES MISSIONS LOCALES UNML|,,,,10,,,,,,,|3|M|0
+PLATE FORME DE LA CREATION D ACTIVITES DE L HERAULT|,,,,10,,,,,,,|3|M|0
+UNION NATIONALE DES ASSOCIATIONS DE PARENTS D ENFANTS INADAPTES LES PAPILLONS BLANCS ET GROUPEMENTS SIMILAIRES|,,,,,,,10,,,,|2|M|0
+CENTRE D ACTIONS ET DE REALISATIONS INTERNATIONALES CARI|,,,,,,,10,,,,|2|M|0
+FEDERAT NATIONAL ORTHOPHONISTE|,,,,,,,,10,,,|1|M|0
+DES PRODUC ET EDITEURS DE MUSIQUE EN LANGUEDOC ROUSSILLON|,,,,,,,,,10,,|14|M|20
+OFFICE FRANCAIS DE LA BIODIVERSITE|,,,,,,,,,10,,|1|M|0
+AU COEUR DE SAINT ROCH DES ARTISANS ET COMMERCANTS DU QUARTIER SAINT ROCH|,,,,,,,,,5,5,|0|V|0
+INTERDISCIPLINAIRE POST UNIVERSITAIRE DE SEXOLOGIE|,,,,,,,,,,10,|1|M|0
+TOULON VAR TECHNOLOGIES|,,,,,,,,,,10,|13|M|0
+INSTITUT REGIONAL DU CANCER DE MONTPELLIER|,,,,,,,,,,5,5|1|M|0
+SOCIETE GEOLOGIQUE DE FRANCE|,,,,,,,,,,10,|1|M|0
+CONSEIL NATIONAL DES ECONOMIES REGIONALES|,,,,,,,,,,10,|1|M|0
+POLE MER MEDITERRANEE|,,,,,,,,,,,10|13|M|0
+SOCIETE FRANCAISE DE MYOLOGIE|,,,,,,,,,,,10|1|M|0
+VAINCRE LA MUCOVISCIDOSE|,,,,,,,,,,,10|1|M|0
+OCEBIO|,,,,,5,5,,,,,|3|M|0
+INTERNATIONAL NEW TECHNOLOGY INSTITUTE|,,,,,,10,,,,,|3|M|0
+SENTINELLES DE RIVIERES|,,,,,,10,,,,,|3|M|0
+MARCHES PAYSANS|,,,0.5,0.5,0.5,,6,2,,,|0.2.4|VM|2
+MEILLEURS OUVRIERS DE FRANCE|3,3,3,,,,,,,,,|0|V|0
+CENTRE TECHNIQUE REGIONAL DE LA CONSOMMATION|,,1.5,1.5,1.5,1.5,3,,,,,|0|V|0
+SOCIETE NATIONALE DES MEILLEURS OUVRIERS DE FRANCE GROUPEMENT DE L HERAULT|,,,,,3,,3,3,,,|2.3|M|0
+SYNDICAT UNSA CCAS MAIRIE ET METROPOLE DE MONTPELLIER|,,,,,,,,,9,,|1|M|0
+NATIONALE DES DIRECTEURS TRICES ET DES CADRES DE L EDUCATION DES VILLES ET DES COLLECTIVITES TERRITORIALES|,,,,,,,,,9,,|1|M|0
+UNIVERSITE DE MONTPELLIER PAUL VALERY|,,,,,,,,,,4,5|1|M|64
+AGENCE LOCALE DE L ENERGIE ET DU CLIMAT MONTPELLIER METROPOLE|,,,,,,,,,8.7,,|4|M|5217
+MONTPELLIER IMAGES ANIMEES|,,,,,,,,,,5,3.4|9|M|0
+CENTRE DE RECHERCHE MEDECINE INTERNE ET HYPERTENSION ARTERIELLE|,,,,8,,,,,,,|3|M|0
+FESTIVAL DU JEU DE MONTPELLIER|,,,,8,,,,,,,|3|M|1
+FEDERATION FRANCAISE DE SEXOLOGIE ET DE SANTE SEXUELLE|,,,,8,,,,,,,|3|M|0
+AIUS INTERDISCIPLINAIRE POST UNIVERSITAIRE DE S|,,,,,,,8,,,,|2|M|0
+BANQUE ALIMENTAIRE DE L HERAULT|,,,,,,,8,,,,|2|M|283
+LA CANTINA RESTAURANT ASSOCIATIF ANTI GASPI CHANTIER D INSERTION ET ESPACE D ECHANGES CULTURELS ET SOLIDAIRES|,,,,,,,,4,4,,|4|M|48
+VRAC COCINAS COOPERATIONS CITOYENNES POUR L ALIMENTATION ET LA SOLIDARITE|,,,,,,,,4,4,,|4|M|75
+PARI DU JEU DE PAUME|,,,,,,,,,,4,4|0|V|0
+ASSO EURO MEDITERRANEENNE POUR LE TRAVAIL ET LES ECHANGES|2.5,2.5,2.5,,,,,,,,,|0|V|0
+MILLENERGIES|7.5,,,,,,,,,,,|0|V|0
+FIG FOOD INDEX FOR GOOD|,,,,,,,,3.5,4,,|4|M|5
+CONGRES INTERNATIONAL FRACOPHONE SUR L AGRESSION SEXUELLE CIFAS FRANCE|,,,,7,,,,,,,|3|M|0
+CONFEDERATION GENERALE DE L ALIMENTATION EN DETAIL DE L HERAULT|,,,,,,,7,,,,|2|M|0
+SANTE MENTALE FRANCE|,,,,,,,,,,7,|1|M|0
+HERAULT FOR PEDIATRIC AND PRENATAL IMAGING|,,,,,,,,,,7,|1|M|0
+OCSIGGRAPH|,,,,,,,,,,2,5|9|M|0
+SOCIETE DES NEUROSCIENCES|,,,,,,,,,,7,|1|M|0
+BRICABRAC ARS FABRIC|6,,,,,,,,,,,|0|V|0
+OASIS CITADINE|,,,,,,3,3,,,,|2.3|M|14
+DE PREVENTION ET D ETUDES DES MALADIES MOLECULAIRES APEMM|,,,,,,,6,,,,|2|M|0
+JEUNES AGRICULTEURS DE L HERAULT|,,,,,,,3,3,,,|2.4|M|10
+UNION FEDERALE CONSOMMATEURS MONTP|,,,,,,,2,2,2,,|0|V|0
+CENTRE SOCIOCULTUREL GUTENBERG|,,,,,,,,6,,,|2|M|0
+ALTERNATIVES POUR UN DEVELOPPEMENT ECONOMIQUE ET SOCIAL|,,,,,,,,6,,,|4|M|0
+AGILE MONTPELLIER|,,,,,,,,1.5,,4,0.5|1|M|0
+TERRE DE LIENS LANGUEDOC ROUSSILLON|,,,,,,,,,6,,|4|M|6
+L ESPERLUETTE|,,,,,,,,,6,,|4|M|93
+NON PHARMACOLOGICAL INTERVENTION SOCIETY|,,,,,,,,3.5,,,2|1|M|0
+MIAMUSE LES MONDES DE L IMAGE ANIMATION MUSIQUE SAVEURS EVEIL|,,,,,,,,3,2.5,,|4|M|24
+PROCOMEVENT|,,,,5,,,,,,,|3|M|0
+OPENSTREETMAP FRANCE|,,,,5,,,,,,,|3|M|0
+THE LYMPHOMA STUDY|,,,,5,,,,,,,|3|M|0
+SOCIETE FRANCAISE DE MICROBIOLOGIE|,,,,,,,5,,,,|2|M|0
+BIERES D OCCITANIE|,,,,,,,5,,,,|2|M|0
+GROUPE DES ANIMATEURS EN GERONTOLOGIE GERIATRIE STRUCTURES ET SERVICES POUR PERSONNES AGEES G A G|,,,,,,,,,5,,|1|M|0
+SOCIETE FRANCOPHONE POUR LA RHUMATOLOGIE ET LES MALADIES INFLAMMATOIRES EN PEDIATRIE SOFREMIP|,,,,,,,,,,5,|1|M|0
+FAIR FINANCER ACCOMPAGNER IMPACTER RASSEMBLER|,,,,,,,,,,5,|2|M|0
+SOCIETE FRANCOPHONE DE SANTE ET ENVIRONNEMENT|,,,,,,,,,,5,|1|M|0
+LIGUE NATIONALE CONTRE LE CANCER COMITE DEPARTEMENTAL|,,,,,,,,,,5,|1|M|60
+AGCE RECHERC INFORMAT FRUITS LEGUMES FRA|,,,,,,,,,,,5|1|M|0
+DES ANESTHESISTES REANIMATION FRANCAISE|,,,,,2.5,2.5,,,,,|3|M|0
+INSTITUT NATIONAL DE RECHERCHE AGRICULTURE ALIMENTATION ET ENVIRONNEMENT INRAE|,,,,,,5,,,,,|3|M|0
+CHAMBRE PROFESSIONNELLE DU CONSEIL LR|,,,,,,4.9,,,,,|3|M|0
+MONTPELLIER BEACH VOLLEY|,,4.8,,,,,,,,,|0|V|320
+FRANCAISE DU PERSONNEL PARAMEDICAL D ELECTRORADIOLOGIE|,,,,4.5,,,,,,,|3|M|0
+SOCIETE DES MEMBRES DE LA LEGION D HONNEUR|,,,,,,,1.5,1.5,1.5,,|2|M|1
+UNION LOCALE CGT|,,4,,,,,,,,,|0|V|13
+ANCREMIN|,,,,,,,4,,,,|2|M|0
+UNION FEDERALE DES CONSOMMATEURS QUE CHOISIR MONTPELLIER|,,,,,,,,,,2,2|0|V|0
+IEM YOUNG CHEMISTS NETWORK|,,,,,,,,,,,4|1|M|0
+INNOVUS|,,,,,,4,,,,,|3|M|0
+MONTPELLIER CUBA SOLIDARITE|,,,,,,,3.5,,,,|2|M|6
+COMITE HERAULT CUBA COOPERATION|,,,,,,,3.5,,,,|2|M|1
+SOLIDARITE DOM TOM HERAULT|,,,,,,,,3.5,,,|4|M|339
+ACTION ALIMENTATION POSITIVE|,,,,,,,,,3.1,,|4|M|5
+UFC QUE CHOISIR|1,,,1,1,,,,,,,|0|V|0
+COMITE DE MONTPELLIER D ENTRAIDE MEMBRES LEGION D HONNEUR|1.5,1.5,,,,,,,,,,|0|V|0
+FONDATION ROVALTAIN|,,,,,,,3,,,,|2|M|0
+SOS AMITIE MONTPELLIER LANGUEDOC|,,,,,,,,3,,,|1|M|2
+GARANTIR L ACCUEIL A L HOPITAL INFANTILE GALHOPIN|,,,,,,,,,3,,|1|M|0
+PROFESSION SPORT ET LOISIRS 34 PSL|,,,,,,3,,,,,|3|M|0
+1SENSCULTUREL|,,,,2.5,,,,,,,|3|M|0
+LABORATOIRE SFIL|,,,,2.5,,,,,,,|3|M|0
+PIC ASSIETTE|,,,,,,,1.5,1,,,|2.4|M|8
+MONTPEL LIBRE|,,,,,,,,,2.5,,|1|M|5
+DES INTERNES EN PHARMACIE DES HOPITAUX DE MONTPELLIER NIMES|,,,,,,,,,,0.5,2|1|M|0
+LA RUE DE L U|,,,,2.4,,,,,,,|0|V|0
+SOCIETE REGIONALE DE SANTE PUBLIQUE OCCITANIE|,,,,,,,,0.5,0.5,0.5,0.8|1|M|0
+ASSO POUR LE DROIT A L INITIATIVE ECONOMIQUE|1,1,,,,,,,,,,|0|V|0
+QUARTIER DE L ANCIEN COURRIER ASSOCIATIONS DES COMMERCANTS|,1,1,,,,,,,,,|0|V|0
+DU QUARTIER DE L AIGUILLERIE DES COMMERCANTS|,,,1,1,,,,,,,|0|V|0
+CNRS CENTRE NATIONAL DE LA RECHERCHE SCIENTIFIQUE|,,,,2,,,,,,,|3|M|71
+EDUQUER CREER DIVERTIR CULTIVER ECDC|,,,,2,,,,,,,|3|M|0
+C EST DE L ART|,,,,2,,,,,,,|3|M|15
+FONDATION POUR LA RECHERCHE MEDICALE|,,,,,,,2,,,,|2|M|0
+DES ANESTHESISTES REANIMATEURS PEDIATRIQUES D EXPRESSION FRANCAISE|,,,,,,,2,,,,|2|M|0
+MONTPELLIERAINE SANTE PUBLIQUE ORALE|,,,,,,,2,,,,|2|M|0
+BIO TRACE|,,,,,,,,1.2,,,0.8|1|M|0
+ALUMN IAE MONTPELLIER|,,,,,,,,1,,1,|1|M|0
+VEG NATURE FEDERATION NATIONALE DES VEGETARIENS VEGETALIENS VEGECRUDIVORES ET VEGANS ECO RESPONSABLES EN FRANCE|,,,,,,,,1,1,,|4|M|4
+LES ECOLOSAURES|,,,,,,,,1,1,,|4|M|1
+LES PETITES CANTINES MONTPELLIER|,,,,,,,,,2,,|4|M|5
+INSTITUT DE RECHERCHE POUR LE DEVELOPPEMENT|,,,,,,,,,,2,|1|M|0
+DES RENCONTRES ECOLOGY BEHAVIOUR|,,,,,,,,,,2,|1|M|0
+MULTIDISCIPLINAIRE ORGANISEE NAVIGUANT POUR TRAITER DES PROBLEMATIQUES EVIDENTES DE SANTE|,,,,,,,,,,2,|1|M|0
+SOCIETE CHIMIQUE DE FRANCE SECTION OCCITANIE MEDITERANNEE|,,,,,,,,,,2,|1|M|0
+TERRE NOURRICIERE|,,,,,2,,,,,,|3|M|0
+UNION FEDERALE DES CONSOMMATEURS UFC QUE CHOISIR|,,,,,1,1,,,,,|0|V|0
+FEDERATION FRANCAISE DE MUSICOTHERAPIE|,,,,,,2,,,,,|3|M|0
+N U NOS URGENCES COLLECTIF D ARTISTES|,,,,1.5,,,,,,,|3|M|25
+BRAQUAGE SONORE CIE|,,,,1.5,,,,,,,|3|M|21
+CAVE ET PARTAGE|,,,,,,,1.5,,,,|2|M|0
+ACTION ANTALGIE|,,,,,,,,1.5,,,|1|M|0
+OCCITANIE PYRENEES EN INTELLIGENCE GEOMATIQUE|,,,,,,,,,1.5,,|1|M|0
+SOLINUM|,,,,,,,,,1.5,,|4|M|31
+FRANCE CHOROIDEREMIE|,,,,,,,,,1.5,,|1|M|0
+ORGANISATRICE DU CONGRES NATIONAL DES INTERNES DE SANTE PUBLIQUE AO CNISP|,,,,,,,,,,1.5,|1|M|0
+AMICALE FRANCAIS D OUTRE MER ET LEURS AMIS|,,1.2,,,,,,,,,|0|V|4
+DES MARCHES PAYSANS DE L HERAULT|0.3,0.3,0.5,,,,,,,,,|0|V|0
+CLUB ENTREPRENARIAT ET RESSOURCES DU LANGUEDOC ROUSSILLON|1,,,,,,,,,,,|0|V|0
+UNION FEDERALE DES CONSOMMATEURS QUE CHOISIR|,1,,,,,,,,,,|0|V|0
+SALON DE L ECOLOGIE|,,,,1,,,,,,,|3|M|63
+FRANCAISE D AGROFORESTERIE|,,,,1,,,,,,,|3|M|0
+DE PREVENTION ET D ETUDES DES MALADIES MOLECULAIRES|,,,,1,,,,,,,|3|M|0
+ETUDIANTE BRIN DE FORET|,,,,0.5,,0.5,,,,,|3|M|1
+WET MONTPELLIER 2019|,,,,1,,,,,,,|3|M|0
+SOCIETE REGIONALE DE SANTE PUBLIQUE|,,,,,,,1,,,,|2|M|0
+DES JUGES ADMINISTRATIFS FRANCAIS ITALIENS ET ALLEMANDS|,,,,,,,,1,,,|1|M|0
+CLUB D ETUDE DES CELLULES EPITHELIALES DIGESTIVES C EC E D|,,,,,,,,,1,,|1|M|0
+A BUT NON LUCRATIF|,,,,,,,,,1,,|1|M|0
+COLLEGE DES SOCIETES SAVANTES ACADEMIQUES DE FRANCE|,,,,,,,,,,1,|1|M|0
+CLUB DES CELLULES GLIALES|,,,,,,,,,,1,|1|M|0
+ROBOTICS PLACE|,,,,,,,,,,,1|1|M|0
+METROPOLES DU SUD|,,,,,,1,,,,,|3|M|0
+SOCIETE CHIMIQUE DE FRANCE GROUPE THEMATIQUE DE CHIMIE SUPRAMOLECULAIRE|,,,,,,,,0.8,,,|1|M|0
+FRANCE ISRAEL ALLIANCE GENERAL KOENIG|,,0.7,,,,,,,,,|0|V|3
+DES COMMERCANTS DE SAINT ANNE|,,,,0.5,,,,,,,|0|V|0
+ASPARTAM|,,,,0.5,,,,,,,|3|M|0
+POUR LE CONGRES NATIONAL 2019 DE L ANEPF A MONTPELLIER|,,,,0.5,,,,,,,|3|M|0
+SOCIETE DE PHYSIOLOGIE ET BIOLOGIE INTEGRATIVE|,,,,0.5,,,,,,,|3|M|0
+ENV AGROTECH|,,,,0.5,,,,,,,|3|M|1
+ARCHEOLOGIQUE POUR L ETUDE DU COMMERCE ET DE L ARTISANAT ANTIQUE 2AEC2A|,,,,0.5,,,,,,,|3|M|0
+BIOTRACE|,,,,0.5,,,,,,,|3|M|0
+GROUPE FRANCAIS DE LA CERAMIQUE|,,,,0.5,,,,,,,|3|M|0
+D ELEVES DU MASTER TIC SANTE|,,,,0.5,,,,,,,|3|M|1
+ANTENNE LOCALE CFTC MONTPELLIER ET ENVIRONS|,,,,,,,0.5,,,,|2|M|1
+DE PREVENTION EN ORTOPHONIE DE L HERAULT APOH|,,,,,,,,0.5,,,|1|M|1
+ECOHABITONS POUR UN HABITAT BIO CLIMATIQUE ECOLOGIQUE ET GROUPE AUX ENVIRONS DE MONTPELLIER|,,,,,,,,,,0.5,|1|M|1
+LES AMOUREUX DE CANDOLLE|,,,,,,,,,,0.5,|0|V|9
+INFORMATION ET RECHERCHE SUR LA RETINITE PIGMENTAIRE IRRP|,,,,,,0.5,,,,,|3|M|1
+COMITE DE QUARTIER SAINT ROCH ET ECUSSON|,,0.4,,,,,,,,,|0|V|3
+SUD PICCEL|,,,,0.3,,,,,,,|3|M|0
+ORDRE UNIVERSEL DES CHEVALIERS DU CEP|,,,,,,,0.3,,,,|2|M|0
+NATIONALE DES CHEMINOTS ANCIENS COMBATTANTS|,,0.2,,,,,,,,,|0|V|0
+OBSERVATOIRE DES PRATIQUES PRPFESSIONNELLES EN SANTE INTEGRATIVE|,,,,,,,,,,,|1|M|0
+POLE SOLUTIONS COMMUNICANTES SECURISEES|,,,,,,,,,,,|9|M|0`;
+
+/* Rapprochement des libellés restés distincts dans les fichiers sources */
+const ALIAS={"CREA LEAD":"CREALEAD","CHAMBRE REGIONALE DE L ECONOMIE SOCIALE ET SOLIDAIRE OCCITANIE":"CHAMBRE REGIONALE DE L ECONOMIE SOCIALE ET SOLIDARITE OCCITANIE","CENTRE DE COOPERATION INTERNATIONALE EN RECHERCHE AGRONOMIQUE POUR LE DEVELOPPEMENT CIRAD":"Cirad","CNRS CENTRE NATIONAL DE LA RECHERCHE SCIENTIFIQUE":"CNRS","INSTITUT NATIONAL DE RECHERCHE AGRICULTURE ALIMENTATION ET ENVIRONNEMENT INRAE":"INRAE","POUR LE DROIT A L INITIATIVE ECONOMIQUE ADIE":"ADIE","POUR DROIT A L INITIATIVE ECONOMIQUE":"ADIE","POUR LE DROIT A L INITIATIVE ECONOMIQUE":"ADIE","ASSO POUR LE DROIT A L INITIATIVE ECONOMIQUE":"ADIE","COMIT POUR REPART EQUIT EMPLO ET REVENUS":"COMITE POUR UNE REPARTITION EQUITABLE DE L EMPLOI ET DES REVENUS","FORMATION CAP EMPLOI FOR C E":"FORMATION CAP EMPLOI","CENTRE DE RESSOURCES DES GROUPEMENTS D EMPLOYEURS REGION OCCITANIE":"CENTRE DE RESSOURCES DES GROUPEMENTS D EMPLOYEURS D OCCITANIE PYRENEES MEDITERRANEE","OCEBIO":"OCEBIO OCCITANIE ENTREPRISES BIO","BIOTRACE":"BIO TRACE","UNIVERSITE DE MONTPELLIER PAUL VALERY":"UNIVERSITE MONTPELLIER III PAUL VALERY","PROFESSION SPORT ET LOISIRS 34 PSL":"PROFESSION SPORT LOISIRS 34","DES MARCHES PAYSANS DE L HERAULT":"MARCHES PAYSANS","DE PREVENTION ET D ETUDES DES MALADIES MOLECULAIRES":"DE PREVENTION ET D ETUDES DES MALADIES MOLECULAIRES APEMM","AIUS INTERDISCIPLINAIRE POST UNIVERSITAIRE DE S":"INTERDISCIPLINAIRE POST UNIVERSITAIRE DE SEXOLOGIE","CENTRE COMMUNAL D ACTION SOCIALE CCAS":"CENTRE COMMUNAL D ACTION SOCIALE","UFC QUE CHOISIR":"UFC Que Choisir Montpellier","UNION FEDERALE CONSOMMATEURS MONTP":"UFC Que Choisir Montpellier","UNION FEDERALE DES CONSOMMATEURS QUE CHOISIR MONTPELLIER":"UFC Que Choisir Montpellier","UNION FEDERALE DES CONSOMMATEURS UFC QUE CHOISIR":"UFC Que Choisir Montpellier","UNION FEDERALE DES CONSOMMATEURS QUE CHOISIR":"UFC Que Choisir Montpellier","CENTR TECHNI REGION CONSOMM LANGUE ROUSS":"CENTRE TECHNIQUE REGIONAL DE LA CONSOMMATION","COMITE DEVELOP ECONOMIE REGIONALE":"COMIDER COMITE POUR LE DEVELOPPEMENT DE L ECONOMIE REGIONALE","CONFEDERATION GENERALE DE L ALIMENTATION EN DETAIL DE L HERAULT":"CONFEDERATION GALE ALIMENTATION DETAIL"};
+
+const ACR=new Set("CNRS CCI CHU ADIE IDATE ENSCM ENSAM URSCOP CGT CFTC UFC AOC BGE FACE CIVAM INRAE SCIC CCAS UNML CARI CPCO APIJE APSH MRBC IAE CIFAS CNISP APEMM APOH IRRP ECDC SOFREMIP SFIL LR III UNSA III 34 AIRDIE IES MABDESIGN".split(" "));
+const SMALL=new Set("de des du d la le les l et en pour a au aux par sur un une".split(" "));
+function pretty(n){
+  if(/[a-zé]/.test(n)) return n;
+  const w=n.toLowerCase().split(" ");
+  return w.map((x,i)=>{const U=x.toUpperCase(); if(ACR.has(U)) return U; if(i>0&&SMALL.has(x)) return x==="d"||x==="l"?x+"'":x; return x.charAt(0).toUpperCase()+x.slice(1);}).join(" ").replace(/ (d|l)' /g," $1'");
+}
+
+const map={};
+RAW.split("\n").forEach(line=>{
+  const [n0,ys,subs,coll,hors]=line.split("|");
+  const n=ALIAS[n0]||n0;
+  const v=ys.split(",").map(x=>x===""?0:+x);
+  const m=map[n]||(map[n]={n,y:YEARS.map(()=>0),s:new Set(),c:new Set(),h:0});
+  v.forEach((x,i)=>m.y[i]+=x);
+  subs.split(".").forEach(k=>m.s.add(+k));
+  (coll==="VM"?["V","M"]:[coll]).forEach(c=>m.c.add(c));
+  m.h+=+hors;
+});
+const DATA=Object.values(map).map(m=>{
+  const t=m.y.reduce((a,b)=>a+b,0);
+  const t19=m.y.slice(4).reduce((a,b)=>a+b,0);
+  let last=0; m.y.forEach((x,i)=>{if(x>0) last=YEARS[i];});
+  const subs=[...m.s].filter(k=>k!==3);
+  return {n:m.n,label:pretty(m.n),y:m.y,t,t19,last,subs:[...m.s],multi:subs.length,c:m.c.has("M")&&m.c.has("V")?"VM":m.c.has("M")?"M":"V",h:m.h};
+}).sort((a,b)=>b.t-a.t);
+
+const fmt=(k,d)=>{const v=Math.round(k*1000);return v.toLocaleString("fr-FR")+" €";};
+const fk=k=>k>=1000?(k/1000).toLocaleString("fr-FR",{maximumFractionDigits:2})+" M€":Math.round(k).toLocaleString("fr-FR")+" k€";
+const col=c=>c==="M"?"var(--evt)":c==="V"?"var(--lieu)":"var(--asso)";
+const esc=s=>String(s).replace(/[&<>"]/g,ch=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[ch]));
+
+/* ── thème ── */
+(function(){const r=document.documentElement;let s=null;try{s=localStorage.getItem("ssEco-theme")}catch(e){}if(s)r.dataset.theme=s;
+document.getElementById("tgl").addEventListener("click",()=>{const dark=r.dataset.theme?r.dataset.theme==="dark":matchMedia("(prefers-color-scheme: dark)").matches;r.dataset.theme=dark?"light":"dark";try{localStorage.setItem("ssEco-theme",r.dataset.theme)}catch(e){}drawEvo();drawCmp();});})();
+/* ── barre de progression ── */
+addEventListener("scroll",()=>{const h=document.documentElement;const p=h.scrollTop/(h.scrollHeight-h.clientHeight||1);document.getElementById("prog").style.transform="scaleX("+p+")";},{passive:true});
+
+/* ── comparateur ── */
+let cmp=["Office de tourisme et des congrès de la Métropole","Mission locale des jeunes de la Métropole","Agence de développement et des transitions"];
+function toggleCmp(n){const i=cmp.indexOf(n);if(i>=0)cmp.splice(i,1);else{if(cmp.length>=4)cmp.shift();cmp.push(n);}drawCmp();renderTop();renderRows();}
+
+/* ── panorama ── */
+function renderTop(){
+  const top=[...DATA].sort((a,b)=>b.t19-a.t19).slice(0,15);const max=top[0].t19;
+  document.getElementById("topbars").innerHTML=top.map(d=>`<div class="tbrow"><span class="tbn" data-n="${esc(d.n)}" title="${esc(d.label)}">${esc(d.label)}</span><span class="tbb"><i style="width:${(d.t19/max*100).toFixed(2)}%;background:${col(d.c)}"></i></span><span class="tbv">${Math.round(d.t19).toLocaleString("fr-FR")}</span><button class="r add" style="all:unset" aria-label="Comparer ${esc(d.label)}"><span class="add" data-add="${esc(d.n)}" data-on="${cmp.includes(d.n)?1:0}" style="display:inline-grid;place-items:center;border:1px solid var(--rule);border-radius:8px;width:26px;height:26px;cursor:pointer;font:700 13px var(--f-body);${cmp.includes(d.n)?"background:var(--accent);color:#fff;border-color:var(--accent)":"color:var(--ink-3)"}">+</span></button></div>`).join("");
+}
+document.getElementById("topbars").addEventListener("click",e=>{const a=e.target.closest("[data-add]");if(a){toggleCmp(a.dataset.add);return;}const t=e.target.closest(".tbn");if(t){select(t.dataset.n);document.getElementById("registre").scrollIntoView({behavior:"smooth"});}});
+
+/* ── graphique d'évolution ── */
+const A=[52,27,124,5,3534,3627,4300,4615,5549,6446,5792,4947], Bk=[0,0,0,0,0,0,0,0,0,0,729,535];
+function svgEl(w,h,inner){return `<svg viewBox="0 0 ${w} ${h}" width="100%" role="img" style="overflow:visible">${inner}</svg>`;}
+function drawEvo(){
+  const W=760,H=280,L=46,R=10,T=14,Bm=30,max=7000;const bw=(W-L-R)/12;const y=v=>T+(H-T-Bm)*(1-v/max);let g="";
+  for(let v=0;v<=7000;v+=1000){g+=`<line x1="${L}" x2="${W-R}" y1="${y(v)}" y2="${y(v)}" stroke="var(--rule)" stroke-width="1"/><text x="${L-8}" y="${y(v)+4}" text-anchor="end" font-size="11" font-family="IBM Plex Mono,monospace" fill="var(--ink-3)">${(v/1000).toLocaleString("fr-FR")} M</text>`;}
+  g+=`<defs><pattern id="hb" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="6" height="6" fill="var(--panel)"/><rect width="3" height="6" fill="var(--regie)"/></pattern></defs>`;
+  YEARS.forEach((yr,i)=>{const x=L+i*bw+bw*.18,w=bw*.64;const fill=i<4?"var(--panel-3)":"var(--evt)";
+    g+=`<rect x="${x}" y="${y(A[i])}" width="${w}" height="${H-Bm-y(A[i])}" rx="4" fill="${fill}"><title>${yr} : ${A[i].toLocaleString("fr-FR")} k€</title></rect>`;
+    if(Bk[i]) g+=`<rect x="${x}" y="${y(A[i]+Bk[i])}" width="${w}" height="${y(A[i])-y(A[i]+Bk[i])}" rx="2" fill="url(#hb)" stroke="var(--regie)" stroke-width="1"><title>${yr} : +${Bk[i]} k€ hors libellé</title></rect>`;
+    g+=`<text x="${x+w/2}" y="${H-Bm+17}" text-anchor="middle" font-size="11" font-family="IBM Plex Mono,monospace" fill="var(--ink-2)">${yr}</text>`;
+    if(i>=4) g+=`<text x="${x+w/2}" y="${y(A[i]+Bk[i])-6}" text-anchor="middle" font-size="10.5" font-family="IBM Plex Mono,monospace" fill="var(--ink-2)">${(Math.round((A[i]+Bk[i])/100)/10).toLocaleString("fr-FR")}</text>`;});
+  document.getElementById("evochart").innerHTML=`<div style="overflow-x:auto">${svgEl(W,H,g)}</div>`;
+}
+function drawCmp(){
+  const sel=cmp.map(n=>DATA.find(d=>d.n===n)).filter(Boolean);
+  const cols=["var(--s1)","var(--s2)","var(--s3)","var(--s4)"];
+  document.getElementById("selbar").innerHTML=sel.length?sel.map((d,i)=>`<span class="pill"><i style="background:${cols[i]}"></i>${esc(d.label)}<button type="button" data-rm="${esc(d.n)}" aria-label="Retirer ${esc(d.label)}">×</button></span>`).join(""):`<span>Aucune structure sélectionnée.</span>`;
+  if(!sel.length){document.getElementById("cmpchart").innerHTML="";return;}
+  const W=760,H=250,L=52,R=12,T=12,Bm=28;const max=Math.max(...sel.flatMap(d=>d.y))*1.1||1;
+  const step=max>2000?500:max>500?100:max>100?25:max>20?5:1;const top=Math.ceil(max/step)*step;
+  const x=i=>L+(W-L-R)*i/11,y=v=>T+(H-T-Bm)*(1-v/top);let g="";
+  for(let v=0;v<=top+0.001;v+=top/5){g+=`<line x1="${L}" x2="${W-R}" y1="${y(v)}" y2="${y(v)}" stroke="var(--rule)"/><text x="${L-8}" y="${y(v)+4}" text-anchor="end" font-size="11" font-family="IBM Plex Mono,monospace" fill="var(--ink-3)">${Math.round(v).toLocaleString("fr-FR")}</text>`;}
+  YEARS.forEach((yr,i)=>{g+=`<text x="${x(i)}" y="${H-Bm+17}" text-anchor="middle" font-size="11" font-family="IBM Plex Mono,monospace" fill="var(--ink-2)">${String(yr).slice(2)}</text>`;});
+  sel.forEach((d,j)=>{g+=`<polyline fill="none" stroke="${cols[j]}" stroke-width="2.4" stroke-linejoin="round" points="${d.y.map((v,i)=>x(i)+","+y(v)).join(" ")}"/>`+d.y.map((v,i)=>v?`<circle cx="${x(i)}" cy="${y(v)}" r="3.4" fill="${cols[j]}"><title>${esc(d.label)}, ${YEARS[i]} : ${fmt(v)}</title></circle>`:"").join("");});
+  document.getElementById("cmpchart").innerHTML=`<div style="overflow-x:auto">${svgEl(W,H,g)}</div><figcaption>En milliers d'euros, par exercice (20xx).</figcaption>`;
+}
+document.getElementById("selbar").addEventListener("click",e=>{const b=e.target.closest("[data-rm]");if(b)toggleCmp(b.dataset.rm);});
+
+/* ── registre ── */
+let filt="all",current=DATA[0].n;
+function list(){
+  const q=document.getElementById("q").value.trim().toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g,"");
+  let L=DATA.filter(d=>(filt==="all"||d.c.includes(filt))&&(!q||d.label.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g,"").includes(q)));
+  const s=document.getElementById("sort").value;
+  if(s==="n")L.sort((a,b)=>a.label.localeCompare(b.label,"fr"));else if(s==="last")L.sort((a,b)=>b.last-a.last||b.t-a.t);else if(s==="multi")L.sort((a,b)=>b.multi-a.multi||b.t-a.t);else L.sort((a,b)=>b.t-a.t);
+  return L;
+}
+function renderRows(){
+  const L=list();document.getElementById("count").textContent=L.length+" structure"+(L.length>1?"s":"");
+  document.getElementById("rows").innerHTML=L.length?L.map(d=>`<div class="r" role="button" tabindex="0" data-n="${esc(d.n)}" aria-current="${d.n===current}"><span class="dot" style="background:${col(d.c)}"></span><span class="nm">${esc(d.label)}${d.multi>=3?'<span class="tag">'+d.multi+' lignes</span>':""}<small>${d.c==="M"?"Métropole":d.c==="V"?"Ville":"Ville et Métropole"} · dernier exercice ${d.last||"—"}</small></span><span class="amt">${fk(d.t)}</span><span class="amt" style="color:var(--ink-3)">${d.last?fk(d.y[YEARS.indexOf(d.last)]):"—"}</span><button class="add" type="button" data-add="${esc(d.n)}" data-on="${cmp.includes(d.n)?1:0}" aria-label="Comparer">+</button></div>`).join(""):`<div class="empty">Aucune structure ne correspond à cette recherche.</div>`;
+}
+function select(n){current=n;renderRows();renderFiche();}
+function renderFiche(){
+  const d=DATA.find(x=>x.n===current);if(!d)return;const max=Math.max(...d.y,1);
+  const subs=d.subs.map(k=>SUBS[k]);
+  document.getElementById("fiche").innerHTML=`<h3>${esc(d.label)}</h3>
+  <div class="kv"><span>Total <b>${fmt(d.t)}</b></span><span>${d.c==="M"?"Métropole":d.c==="V"?"Ville":"Ville et Métropole"}</span><span>Dernier exercice <b>${d.last||"—"}</b></span></div>
+  <div class="yrs">${d.y.map((v,i)=>`<div title="${YEARS[i]} : ${fmt(v)}"><i class="${v?"":"z"}" style="height:${v?Math.max(4,v/max*96):2}px;${v?"background:"+col(d.c):""}"></i><span>${String(YEARS[i]).slice(2)}</span></div>`).join("")}</div>
+  <div class="subs">${subs.map(s=>`<div><span>${esc(s)}</span></div>`).join("")}</div>
+  ${d.multi>=3?`<div class="note">Publiée sous <b>${d.multi} sous-dispositifs</b> différents. L'évolution par ligne ne reflète que des choix d'imputation.</div>`:""}
+  ${d.h>0?`<div class="hbox"><h4>Reçu hors développement économique, 2019-2026</h4><span class="hors num">${fk(d.h)}</span></div>`:""}
+  ${NOTES[d.n]?`<div class="note">${NOTES[d.n]}</div>`:""}
+  <p class="hint">Montants votés, en euros, reconstitués depuis l'open data. 2026 est incomplet.</p>`;
+}
+const NOTES={
+ "Office de tourisme et des congrès de la Métropole":"Publié sous « Emploi et insertion » en 2022, sous « Tourisme » ensuite. Présidé par un élu métropolitain.",
+ "Agence de développement et des transitions":"Association créée en novembre 2023. 300 000 € en 2024, puis 700 000 € classés sous « Commerce, artisanat » en 2025 et sous « Emploi et insertion » en 2026.",
+ "Comité Plein Centre":"S'y ajoutent 65 000 € votés le 30 novembre 2021, publiés sans dispositif. Aucune ligne pour Noël 2022 ni Noël 2024.",
+ "MONTPELLIER RUGBY CLUB":"78 % de la ligne « Économie » de la Ville en 2017.",
+ "AFIVAM (What a Trip !)":"Lien déclaré : l'auteur porte ce festival. 20 000 € en 2022 sur « Emploi et insertion ».",
+ "SCIC TROPISME":"40 000 € sur la ligne « Congrès » en 2023, la même année que des aides culture et international.",
+ "CCI de l'Hérault":"Une quarantaine de lignes numérotées. Doublon possible de 60 000 € sur la prévention des déchets, 2024 et 2025.",
+ "CENTRE VILLE EN MOUVEMENT":"Organisation à Montpellier des 19es Assises nationales du centre-ville, 2025.",
+ "Université de Montpellier":"L'essentiel relève du contrat de plan État-Région : 704 000 € en 2023, 978 000 € en 2024, 480 000 € en 2025."
+};
+document.getElementById("rows").addEventListener("click",e=>{const a=e.target.closest("[data-add]");if(a){e.stopPropagation();toggleCmp(a.dataset.add);return;}const r=e.target.closest(".r");if(r)select(r.dataset.n);});
+document.getElementById("rows").addEventListener("keydown",e=>{if(e.key==="Enter"||e.key===" "){const r=e.target.closest(".r");if(r){e.preventDefault();select(r.dataset.n);}}});
+document.getElementById("q").addEventListener("input",renderRows);
+document.getElementById("sort").addEventListener("change",renderRows);
+document.querySelectorAll('#registre .chip').forEach(b=>b.addEventListener("click",()=>{filt=b.dataset.c;document.querySelectorAll('#registre .chip').forEach(x=>x.setAttribute("aria-pressed",x===b));renderRows();}));
+
+/* ── les cas ── */
+const CASES=[
+ ["2 360 000 €","L'Office de tourisme sur « Emploi et insertion »","En 2022, la subvention de l'Office est publiée sur la ligne d'insertion. C'est elle qui porte cette ligne à 4,6 M€, contre 1,1 à 1,8 M€ les autres années.","Classeur 2022-2023, onglet Métropole"],
+ ["45 500 €","Des festivals financés au titre de l'insertion","En 2022, la même ligne finance What a Trip ! (20 000 €), Les Nouvelles Grisettes (17 500 €), le Beer Love Fest (5 000 €) et Tropisme (3 000 €).","Classeur 2022-2023"],
+ ["97 500 €","Un club de rugby sur la ligne « Économie »","En 2017, le Montpellier Rugby Club représente 78 % de la ligne économique de la Ville, avec le Beach Masters, l'union locale CGT et une amicale d'anciens combattants.","Classeur 2011-2017"],
+ ["3 lignes","Une subvention, trois cases","L'Agence de développement et des transitions est publiée sous « Croissance » et « Services à la personne » en 2024, « Commerce, artisanat » en 2025, « Emploi et insertion » en 2026.","Classeur 2023-2024 et fichier courant"],
+ ["3,3 M€","De l'investissement universitaire dans un fichier « associations »","De 2023 à 2025, le contrat de plan État-Région finance l'Université, le CNRS, l'INRAE, le Cirad, l'Institut Agro et deux écoles. Ce sont des établissements publics.","Classeurs 2023-2024 et fichier courant"],
+ ["−10 %","Une baisse qui n'en est pas une","En 2025, la politique agroalimentaire devient un dispositif autonome. Lu au libellé, le développement économique baisse de 10 %. À périmètre constant, il est stable.","Fichier courant"],
+ ["7 lignes","Des subventions votées à 0 €","Quatre pour l'Université de Montpellier sur « Congrès », deux sur « Industries créatives », une pour un observatoire de santé. Demandes rejetées ou montants non reportés.","Classeurs 2023-2024"],
+ ["1 000 €","Un dossier test publié","Le fichier courant contient une ligne « DOSSIER TEST - NE PAS TRAITER », rattachée au dispositif International de la Métropole. La publication est une extraction brute, sans relecture.","Fichier courant 2025-2026"],
+ ["66,6 M€","Un onglet « Ville » plein de Métropole","L'onglet « VILLE 2020 » contient 421 lignes métropolitaines déjà publiées dans les onglets « 3M ». Qui s'y fie compte deux fois l'Office de tourisme en 2020.","Classeur 2020-2021"]
+];
+document.getElementById("cards").innerHTML=CASES.map(c=>`<div class="card"><span class="big">${c[0]}</span><h3>${c[1]}</h3><p>${c[2]}</p><span class="src">${c[3]}</span></div>`).join("");
+
+/* ── infobulle ── */
+const tip=document.getElementById("tip");
+document.addEventListener("mousemove",e=>{const t=e.target.closest("[title]");if(t&&t.closest("#fiche .yrs")){tip.textContent=t.getAttribute("title");tip.style.opacity=1;tip.style.left=(e.clientX+12)+"px";tip.style.top=(e.clientY+12)+"px";}else tip.style.opacity=0;});
+
+renderTop();drawEvo();drawCmp();renderRows();renderFiche();
+</script>
+
+</body>
+</html>
