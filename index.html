@@ -272,7 +272,7 @@ figcaption{font-size:13.5px;line-height:1.55;color:var(--ink-3);margin-top:11px}
  .billc>b{display:block;font-family:var(--f-num);font-size:clamp(32px,4.6vw,48px);font-weight:600;letter-spacing:-.055em;line-height:1;background:linear-gradient(96deg,var(--accent-2),var(--accent));-webkit-background-clip:text;background-clip:text;color:transparent}
  .billc>u{display:block;text-decoration:none;font-family:var(--f-num);font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3);margin-top:8px}
  .billc>p{margin-top:12px;font-size:14.5px;line-height:1.55;color:var(--ink-2)}
- .billc>span.src{margin-top:12px}
+ .billc>span.src{display:block;margin-top:14px;font-family:var(--f-num);font-size:11.5px;line-height:1.5;color:var(--ink-3);border-top:1px solid var(--rule-2);padding-top:9px}
  .billtot{margin-top:14px;display:flex;flex-wrap:wrap;align-items:baseline;gap:8px 18px;padding:22px;border-radius:var(--r);border:1px solid color-mix(in srgb,var(--hors) 36%,var(--rule));background:color-mix(in srgb,var(--hors) 7%,var(--panel))}
  .billtot>b{font-family:var(--f-num);font-size:clamp(34px,5.2vw,54px);font-weight:600;letter-spacing:-.055em;line-height:1;color:var(--hors)}
  .billtot>span{font-size:15px;color:var(--ink-2);max-width:62ch;line-height:1.55}
@@ -638,7 +638,7 @@ footer b{color:var(--ink)}
 <section id="evenements"><div class="wrap">
   <div class="eyebrow">07 — La facture</div>
   <h2>Combien coûtent les grands événements accueillis aux Montpelliérains ?</h2>
-  <p class="sub">La Ville n'organise pas ces soirées : elle les achète. Trois marchés passés en deux ans, auprès d'une chaîne publique et d'une société de production audiovisuelle, pour faire venir à Montpellier des plateaux de télévision. Voici ce qu'ils coûtent, et ce qu'il a fallu faire pour le savoir.</p>
+  <p class="sub">La Ville n'organise pas ces soirées : elle les achète. Trois marchés passés en deux ans, auprès d'une chaîne publique et d'une société de production audiovisuelle, pour faire venir à Montpellier des plateaux de télévision. Voici ce qu'ils coûtent, ce que cela fait par spectateur, et ce qu'il a fallu faire pour le savoir.</p>
 
   <div class="bill">
     <div class="billc"><b>605 000 €</b><u>HT · 2022</u><p><b>Fête de la Musique.</b> Marché V2D0024DC, « achat d'actions de communication », conclu avec <b>France Télévisions</b>. Grande scène esplanade de l'Europe, 15 000 personnes.</p><span class="src">Décision VD2022-323</span></div>
@@ -647,6 +647,16 @@ footer b{color:var(--ink)}
   </div>
 
   <div class="billtot"><b>1 463 333 €</b><span>pour trois soirées télévisées en deux exercices, en additionnant un montant TTC et deux montants HT. À quoi s'ajoutent la mise à disposition gratuite du domaine public et des prestations municipales qui ne sont chiffrées nulle part.</span></div>
+
+  <h3 class="cbt" style="margin-top:30px">Ce que ces montants deviennent une fois rapportés à quelque chose</h3>
+  <div class="bill">
+    <div class="billc"><b>≈ 110 €</b><u>par place · 2021</u><p><b>Les Nuits du Peyrou.</b> Environ <b>664 000 € HT</b> engagés par la Ville et la Métropole d'après les données essentielles de la commande publique, pour six soirées accueillant de l'ordre de mille spectateurs chacune. Les concerts étaient gratuits pour le public et attribués par tirage au sort ; ils ont été payés par le contribuable, puis rediffusés en août sur France Télévisions.</p><span class="src">Données essentielles de la commande publique ; programme des six soirées du 2 au 9 juillet 2021 ; <i>En Commun</i>, septembre 2021</span></div>
+
+    <div class="billc"><b>Le jour J</b><u>dates de notification</u><p><b>Un marché signé le soir du concert.</b> Le marché de 605 000 € conclu avec <b>France.tv Studio</b> est notifié le <b>21 juin 2022</b>, le jour même de la Fête de la Musique. Celui de 2021 l'est deux jours avant la première soirée. Quelle procédure permet d'en arriver là, les actes publiés ne le disent pas.</p><span class="src">Données essentielles de la commande publique</span></div>
+
+    <div class="billc"><b>160 000 €</b><u>HT · 2025 · hors culture</u><p><b>Le départ d'étape du Tour de France.</b> Le marché conclu avec <b>A.S.O.</b> pour le départ de la 16<sup>e</sup> étape, le 22 juillet 2025, s'élève à 160 000 € HT. Le vice-président métropolitain aux sports évoque un coût total d'environ 400 000 €. Le chiffre de « 5 % du budget annuel de la ville » qui a circulé à cette occasion est hors d'échelle : le budget primitif 2025 de la Ville s'élève à <b>753 M€</b>, dont 400 000 € représentent 0,05 %.</p><span class="src">Données essentielles de la commande publique ; France 3 Occitanie, 23 juillet 2025 ; rapport du budget primitif 2025 de la Ville de Montpellier</span></div>
+  </div>
+
 
   <div class="scroller" style="margin-top:16px">
       <table class="spt">
@@ -686,7 +696,7 @@ footer b{color:var(--ink)}
     <p>Or l'article R. 2196-1 du code de la commande publique impose de publier les données essentielles de tout marché d'au moins 40 000 € HT dans les deux mois suivant sa notification. <b>Le portail de données ouvertes de la Métropole ne propose aucun jeu de données sur la commande publique, et la TaM n'y déclare que deux à trois marchés.</b> Un marché de production artistique pour l'inauguration d'une ligne de tramway de 440 M€ ne descend vraisemblablement pas sous ce seuil.</p>
   </div>
 
-  <span class="src">Décisions VD2021-289, VD2021-291 et VD2021-294 (recueil des actes administratifs de juillet 2021, pages 369 à 380) ; décisions VD2022-323, VD2022-330 et VD2022-335 (recueils de juillet et d'août-septembre-octobre 2022) ; procès-verbal du conseil municipal du 28 juillet 2022. Jeux de données « Recueils des actes administratifs de Montpellier » et « Procès-verbaux du Conseil Municipal », consultés le 31 octobre 2026. Avis de marché 8M86S (TaM, parution du 8 mai 2025) et 9M86S0, relevés sur les plateformes de publicité des marchés publics ; dossier de presse officiel de l'inauguration de la ligne 5 ; communiqués de la Ville et de la Métropole des 17 octobre 2025, 20 septembre 2025 et 8 décembre 2025. Consultés le 31 octobre 2026.</span>
+  <span class="src">Décisions VD2021-289, VD2021-291 et VD2021-294 (recueil des actes administratifs de juillet 2021, pages 369 à 380) ; décisions VD2022-323, VD2022-330 et VD2022-335 (recueils de juillet et d'août-septembre-octobre 2022) ; procès-verbal du conseil municipal du 28 juillet 2022. Données essentielles de la commande publique (fichier consolidé national). Jeux de données « Recueils des actes administratifs de Montpellier » et « Procès-verbaux du Conseil Municipal », consultés le 31 octobre 2026. Avis de marché 8M86S (TaM, parution du 8 mai 2025) et 9M86S0, relevés sur les plateformes de publicité des marchés publics ; dossier de presse officiel de l'inauguration de la ligne 5 ; communiqués de la Ville et de la Métropole des 17 octobre 2025, 20 septembre 2025 et 8 décembre 2025. Consultés le 31 octobre 2026.</span>
 </div></section>
 
 <section id="prix"><div class="wrap">
