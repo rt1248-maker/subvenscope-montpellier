@@ -20,7 +20,7 @@
   --rule:#E3E3EF; --rule-2:#EFEFF7;
   --lieu:#0E8F63; --evt:#2E63F0; --asso:#C62C9B; --regie:#C97208;
   --s1:#0E8F63; --s2:#2E63F0; --s3:#C62C9B; --s4:#C97208;
-  --accent:#6B3FF2; --accent-2:#FF4D6D; --accent-3:#00A6BE; --hors:#C8102E;
+  --accent:#6B3FF2; --accent-2:#FF4D6D; --accent-3:#00A6BE; --hors:#C8102E; --soc:#C97208;
   --focus:#2E63F0; --onfill:#FFFFFF;
   --shadow:0 1px 2px rgba(16,17,26,.05), 0 10px 30px -16px rgba(16,17,26,.28);
   --shadow-lg:0 2px 4px rgba(16,17,26,.05), 0 24px 56px -22px rgba(16,17,26,.34);
@@ -35,7 +35,7 @@
   --rule:#272D3A; --rule-2:#1C212B;
   --lieu:#1FA073; --evt:#5A86F5; --asso:#D64FB0; --regie:#BC7C14;
   --s1:#1FA073; --s2:#5A86F5; --s3:#D64FB0; --s4:#BC7C14;
-  --accent:#9B7BFF; --accent-2:#FF7E95; --accent-3:#35D0E0; --hors:#F2606F;
+  --accent:#9B7BFF; --accent-2:#FF7E95; --accent-3:#35D0E0; --hors:#F2606F --soc:#BC7C14;
   --focus:#7FA2FF; --onfill:#0B0D14;
   --shadow:0 1px 2px rgba(0,0,0,.4), 0 12px 34px -18px rgba(0,0,0,.8);
   --shadow-lg:0 2px 6px rgba(0,0,0,.45), 0 28px 64px -24px rgba(0,0,0,.9);
@@ -47,7 +47,7 @@
   --rule:#272D3A; --rule-2:#1C212B;
   --lieu:#1FA073; --evt:#5A86F5; --asso:#D64FB0; --regie:#BC7C14;
   --s1:#1FA073; --s2:#5A86F5; --s3:#D64FB0; --s4:#BC7C14;
-  --accent:#9B7BFF; --accent-2:#FF7E95; --accent-3:#35D0E0; --hors:#F2606F;
+  --accent:#9B7BFF; --accent-2:#FF7E95; --accent-3:#35D0E0; --hors:#F2606F --soc:#BC7C14;
   --focus:#7FA2FF; --onfill:#0B0D14;
   --shadow:0 1px 2px rgba(0,0,0,.4), 0 12px 34px -18px rgba(0,0,0,.8);
   --shadow-lg:0 2px 6px rgba(0,0,0,.45), 0 28px 64px -24px rgba(0,0,0,.9);
@@ -147,12 +147,22 @@ figcaption{font-size:13.5px;line-height:1.55;color:var(--ink-3);margin-top:11px}
 .chip{font:600 13px var(--f-body);border:1px solid var(--rule);background:var(--panel);color:var(--ink-2);border-radius:999px;padding:9px 15px;cursor:pointer;display:inline-flex;align-items:center;gap:7px;transition:background .15s,color .15s,border-color .15s,transform .12s}
 .chip:hover{transform:translateY(-1px)}
 .chip i{width:9px;height:9px;border-radius:999px;background:currentColor;flex:none}
-.chip[data-c="evt"]{color:var(--evt)} .chip[data-c="lieu"]{color:var(--lieu)} .chip[data-c="asso"]{color:var(--asso)}
+.chip[data-c="evt"]{color:var(--evt)} .chip[data-c="lieu"]{color:var(--lieu)} .chip[data-c="asso"]{color:var(--asso)} .chip[data-c="soc"]{color:var(--soc)}
 .chip[aria-pressed="true"]{background:var(--ink);color:var(--paper);border-color:var(--ink)}
 .chip[data-c="evt"][aria-pressed="true"]{background:var(--evt);border-color:var(--evt);color:#fff}
 .chip[data-c="lieu"][aria-pressed="true"]{background:var(--lieu);border-color:var(--lieu);color:#fff}
 .chip[data-c="asso"][aria-pressed="true"]{background:var(--asso);border-color:var(--asso);color:#fff}
+.chip[data-c="soc"][aria-pressed="true"]{background:var(--soc);border-color:var(--soc);color:#fff}
 
+.foldbox{padding:0}
+.foldbox>summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:10px;padding:18px 20px;font-size:17.5px;font-weight:800;font-family:var(--f-display);letter-spacing:-.02em}
+.foldbox>summary::-webkit-details-marker{display:none}
+.foldbox>summary::before{content:none;display:none}
+.foldbox>summary .pm{margin-left:auto;flex:none;font-family:var(--f-num);font-weight:600;font-size:15px;width:24px;height:24px;border-radius:8px;display:grid;place-items:center;color:var(--hors);background:color-mix(in srgb,var(--hors) 12%,transparent)}
+.foldbox>summary .pm::after{content:"+"}
+.foldbox[open]>summary .pm::after{content:"\2212"}
+.foldbox>summary .cnt{font-family:var(--f-num);font-size:12px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:var(--ink-3)}
+.foldbd{padding:0 20px 20px}
 /* ── blocs graphiques ────────────────────────────────────────────── */
 .tmwrap{margin-top:18px;border:1px solid var(--rule);border-radius:var(--r);overflow:hidden;background:var(--panel);box-shadow:var(--shadow)}
 .regieband{display:flex;flex-wrap:wrap;align-items:center;gap:9px;padding:15px 17px;background:repeating-linear-gradient(135deg,color-mix(in srgb,var(--regie) 8%,var(--panel)) 0 8px,color-mix(in srgb,var(--regie) 15%,var(--panel)) 8px 16px)}
@@ -589,7 +599,7 @@ footer b{color:var(--ink)}
           <span>Comédie du Livre</span><span>Les ZAT</span><span>Cœur de Ville en Lumières</span><span>Fête de la Musique</span><span>Marché de Noël</span><span>Les Dimanches du Peyrou</span>
           <span class="eq">Musée Fabre</span><span class="eq">Pavillon Populaire</span><span class="eq">Carré Sainte-Anne</span><span class="eq">Théâtre Jean Vilar</span><span class="eq">mille formes</span><span class="eq">Espace Bagouet</span><span class="eq">Espace Saint-Ravy</span>
         </div>
-        <p class="lead" style="margin-top:18px">Pour combien d'entre eux un coût a-t-il pu être retrouvé, sous une forme ou une autre&nbsp;?</p>
+        <p class="lead" style="margin-top:18px">Pour combien d'entre eux la collectivité publie-t-elle un coût propre à la manifestation ou à l'équipement&nbsp;?</p>
         <div class="cards-g tight" id="mropts"></div>
         <div id="mrnote"></div>
         <div class="bar-actions"><button class="btn" id="mrnext" hidden>Dernière manche</button></div>
@@ -620,7 +630,7 @@ footer b{color:var(--ink)}
           <div><b>90 €</b><span>la place la plus chère, Festival Radio France</span></div>
           <div><b>858 333 €</b><span>versés pour deux plateaux de télévision</span></div>
           <div><b>+29 %</b><span>la plus forte hausse depuis 2019, Montpellier Danse</span></div>
-          <div><b>2 sur 13</b><span>des manifestations en régie ont un coût retrouvable</span></div>
+          <div><b>0 sur 13</b><span>des manifestations en régie a un coût propre publié</span></div>
           <div><b>4 sur 5</b><span>des publications attendues sont absentes</span></div>
         </div>
         <div class="bar-actions" style="justify-content:center"><a class="btn" href="./">Voir les données complètes</a><button class="btn ghost" onclick="location.reload()">Rejouer</button></div>
@@ -780,7 +790,7 @@ document.querySelectorAll('#m3opts .pick').forEach(b=>b.addEventListener('click'
 document.getElementById('m3next').addEventListener('click',()=>goto('mr',5));
 
 /* ---------- MR : en regie ---------- */
-const REG=[{t:"les 13"},{t:"7 sur 13"},{t:"2 sur 13",ok:1},{t:"aucun"}];
+const REG=[{t:"les 13"},{t:"7 sur 13"},{t:"2 sur 13"},{t:"aucun",ok:1}];
 document.getElementById('mropts').innerHTML=REG.map((o,i)=>
  `<button class="pick pc" data-i="${i}"><span class="t">${o.t}</span></button>`).join('');
 document.querySelectorAll('#mropts .pick').forEach(b=>b.addEventListener('click',()=>{
@@ -789,7 +799,7 @@ document.querySelectorAll('#mropts .pick').forEach(b=>b.addEventListener('click'
  b.classList.add('mine');
  document.querySelectorAll('#mropts .pick').forEach(x=>x.classList.add('done', REG[+x.dataset.i].ok?'good':'bad'));
  if(bon) add(1);
- document.getElementById('mrnote').innerHTML=`<p class="lead" style="margin-top:16px"><span class="tag ${bon?'ok':'ko'}">${bon?'+1 point':'raté'}</span><b>Deux</b>, et aucun des deux ne vient de la collectivité elle-même. La Fête de la Musique, pour les 605 000 € de la prestation France Télévisions en 2022, dans une décision du maire annexée à un procès-verbal en PDF. Cœur de Ville en Lumières, pour <b>347 578 € HT</b> de conception artistique en 2023, dans un avis d'attribution publié au Journal officiel de l'Union européenne parce que le seuil européen l'imposait. Pour les onze autres, rien. Ce ne sont pas de petites lignes : le musée Fabre, la Comédie du Livre et le Marché de Noël mobilisent des agents, des bâtiments et des prestataires toute l'année.</p>`;
+ document.getElementById('mrnote').innerHTML=`<p class="lead" style="margin-top:16px"><span class="tag ${bon?'ok':'ko'}">${bon?'+1 point':'raté'}</span><b>Aucun.</b> Des montants existent, mais aucun ne dit ce que coûte une manifestation. Le compte administratif porte une ligne « Événements » de 1,8 à 3,9 M€ selon l'année, qui agrège tout et dont le périmètre change. Les équipements apparaissent par leurs travaux : 4,3 M€ d'autorisation de programme pour le Carré Sainte-Anne, 5 M€ pour mille formes. Les deux seuls coûts rattachables à une manifestation ont été trouvés ailleurs : 605 000 € pour la Fête de la Musique 2022, dans une décision du maire annexée à un PDF, et 347 578 € HT pour Cœur de Ville en Lumières 2023, au Journal officiel de l'Union européenne. Trois lignes ne donnent rien du tout : la Comédie du Livre, les Dimanches du Peyrou et l'espace Saint-Ravy.</p>`;
  document.getElementById('mrnext').hidden=false;
 }));
 document.getElementById('mrnext').addEventListener('click',()=>goto('m4',6));
