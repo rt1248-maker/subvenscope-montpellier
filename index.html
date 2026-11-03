@@ -195,6 +195,12 @@ figcaption{font-size:13.5px;line-height:1.55;color:var(--ink-3);margin-top:11px}
 .tbb u{position:absolute;top:0;bottom:0;border-radius:999px;text-decoration:none;background:var(--hors);
   background-image:repeating-linear-gradient(135deg,rgba(255,255,255,.34) 0 3px,transparent 3px 6px)}
 .hors{color:var(--hors)}
+.ftcta{display:flex;flex-wrap:wrap;align-items:center;gap:14px 20px;margin:4px 0 22px;padding:20px 24px;border-radius:var(--r);border:1px solid color-mix(in srgb,var(--accent-3) 36%,var(--rule));background:linear-gradient(100deg,color-mix(in srgb,var(--accent-3) 11%,var(--panel)),color-mix(in srgb,var(--accent) 9%,var(--panel)))}
+.ftcta .t{flex:1 1 300px;min-width:0}
+.ftcta b{display:block;font-family:var(--f-display);font-weight:800;font-size:clamp(17px,2.2vw,20px);letter-spacing:-.02em;color:var(--ink)}
+.ftcta span{display:block;margin-top:5px;font-size:14.5px;line-height:1.5;color:var(--ink-2)}
+.ftbtn{flex:none;display:inline-flex;align-items:center;gap:9px;text-decoration:none;font-weight:700;font-size:15px;color:var(--onfill);background:linear-gradient(96deg,var(--accent-3),var(--accent));border-radius:999px;padding:12px 22px;box-shadow:0 10px 24px -12px var(--accent-3)}
+.ftbtn:hover{filter:brightness(1.07)}
 .keyblock>span.src{display:block;margin-top:14px;font-family:var(--f-num);font-size:11.5px;line-height:1.55;color:var(--ink-3);border-top:1px solid var(--rule-2);padding-top:10px}
 .kfig{font-family:var(--f-num);font-weight:600;letter-spacing:-.02em;color:var(--accent);white-space:nowrap}
 .kno{font-family:var(--f-num);font-weight:600;letter-spacing:.02em;color:var(--hors);text-transform:uppercase;font-size:.93em}
@@ -876,6 +882,10 @@ footer b{color:var(--ink)}
 </div></section>
 
 <footer><div class="wrap">
+  <div class="ftcta">
+    <div class="t"><b>Le Subven'Scope économie</b><span>Le même travail, appliqué aux aides au développement économique : commerces, entreprises, immobilier d'activité, et les mêmes angles morts.</span></div>
+    <a class="ftbtn" href="economie.html">Découvrir le Subven'Scope économie <svg width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8h9.5M9 4.5 12.5 8 9 11.5"/></svg></a>
+  </div>
   <p><b>Subven'Scope Montpellier</b> — analyse citoyenne de données publiques. Les montants proviennent des données ouvertes de la Ville de Montpellier et de Montpellier Méditerranée Métropole et des actes publiés par ces collectivités. Aucune des structures citées n'est mise en cause : le propos porte sur la publication de l'information, pas sur l'usage qu'en font les bénéficiaires.</p>
   <p style="margin-top:10px"><a href="jeu.html" style="color:var(--accent);font-weight:600">Le jeu de la dépense publique</a> · <a href="mentions-legales.html" style="color:var(--accent);font-weight:600">Mentions légales et droit de réponse</a> · Données sources publiées par Montpellier Méditerranée Métropole sous licence <b>ODbL</b> ; le registre reconstitué est diffusé sous la même licence. Hébergement : GitHub Pages. Mise à jour : 29 octobre 2026.</p>
 </div></footer>
