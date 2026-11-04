@@ -45,7 +45,7 @@
   --rule:#272D3A; --rule-2:#1C212B;
   --lieu:#1FA073; --evt:#5A86F5; --asso:#D64FB0; --regie:#BC7C14;
   --s1:#1FA073; --s2:#5A86F5; --s3:#D64FB0; --s4:#BC7C14;
-  --accent:#9B7BFF; --accent-2:#FF7E95; --accent-3:#35D0E0; --hors:#F2606F --soc:#BC7C14;
+  --accent:#9B7BFF; --accent-2:#FF7E95; --accent-3:#35D0E0; --hors:#F2606F; --soc:#BC7C14;
   --focus:#7FA2FF; --onfill:#0B0D14;
   --shadow:0 1px 2px rgba(0,0,0,.4), 0 12px 34px -18px rgba(0,0,0,.8);
   --shadow-lg:0 2px 6px rgba(0,0,0,.45), 0 28px 64px -24px rgba(0,0,0,.9);
@@ -57,7 +57,7 @@
   --rule:#272D3A; --rule-2:#1C212B;
   --lieu:#1FA073; --evt:#5A86F5; --asso:#D64FB0; --regie:#BC7C14;
   --s1:#1FA073; --s2:#5A86F5; --s3:#D64FB0; --s4:#BC7C14;
-  --accent:#9B7BFF; --accent-2:#FF7E95; --accent-3:#35D0E0; --hors:#F2606F --soc:#BC7C14;
+  --accent:#9B7BFF; --accent-2:#FF7E95; --accent-3:#35D0E0; --hors:#F2606F; --soc:#BC7C14;
   --focus:#7FA2FF; --onfill:#0B0D14;
   --shadow:0 1px 2px rgba(0,0,0,.4), 0 12px 34px -18px rgba(0,0,0,.8);
   --shadow-lg:0 2px 6px rgba(0,0,0,.45), 0 28px 64px -24px rgba(0,0,0,.9);
@@ -202,6 +202,23 @@ figcaption{font-size:13.5px;line-height:1.55;color:var(--ink-3);margin-top:11px}
 .ftbtn{flex:none;display:inline-flex;align-items:center;gap:9px;text-decoration:none;font-weight:700;font-size:15px;color:var(--onfill);background:linear-gradient(96deg,var(--accent-3),var(--accent));border-radius:999px;padding:12px 22px;box-shadow:0 10px 24px -12px var(--accent-3)}
 .ftbtn:hover{filter:brightness(1.07)}
 .keyblock>span.src{display:block;margin-top:14px;font-family:var(--f-num);font-size:11.5px;line-height:1.55;color:var(--ink-3);border-top:1px solid var(--rule-2);padding-top:10px}
+.sp{display:block;width:100%;height:auto;overflow:visible}
+.sp .gl{stroke:var(--rule);stroke-width:1}
+.sp .gt{fill:var(--ink-3);font-family:var(--f-num);font-size:11px;letter-spacing:.04em}
+.sp .rr{stroke:var(--rule-2);stroke-width:1}
+.sp .nm{fill:var(--ink);font-size:13.5px;font-weight:500}
+.sp .sub{fill:var(--ink-3);font-family:var(--f-num);font-size:10.5px;letter-spacing:.02em}
+.sp .vl{fill:var(--ink-2);font-family:var(--f-num);font-size:13px;font-weight:600;font-variant-numeric:tabular-nums}
+.sp .dot{stroke:var(--panel);stroke-width:2}
+.sp g.r{cursor:default}
+.sp g.r:hover .rr{stroke:color-mix(in srgb,var(--accent) 45%,var(--rule))}
+.sp g.r:hover .nm{fill:var(--accent)}
+.sp .span{stroke:var(--ink-3);stroke-width:1;stroke-dasharray:3 3;opacity:.55}
+.sp .spant{fill:var(--ink-2);font-family:var(--f-num);font-size:11.5px;font-weight:600}
+.splg{display:flex;flex-wrap:wrap;gap:8px 18px;margin-top:12px;font-size:12.5px;color:var(--ink-2)}
+.splg b{display:inline-flex;align-items:center;gap:7px;font-weight:500}
+.splg s{width:11px;height:11px;border-radius:999px;text-decoration:none;flex:none}
+@media(max-width:620px){.sp .nm{font-size:12px}.sp .sub{font-size:9.5px}.sp .vl{font-size:11.5px}}
 .kfig{font-family:var(--f-num);font-weight:600;letter-spacing:-.02em;color:var(--accent);white-space:nowrap}
 .kno{font-family:var(--f-num);font-weight:600;letter-spacing:.02em;color:var(--hors);text-transform:uppercase;font-size:.93em}
 .htag{display:inline-block;font:700 9.5px var(--f-num);letter-spacing:.05em;text-transform:uppercase;background:color-mix(in srgb,var(--hors) 15%,transparent);border:1px solid color-mix(in srgb,var(--hors) 45%,transparent);color:var(--hors);border-radius:999px;padding:1px 6px;margin-left:6px;vertical-align:1px}
@@ -1285,37 +1302,62 @@ tglBtn.onclick = () => {
   const next = dark ? 'light' : 'dark';
   root.setAttribute('data-theme', next);
   try { localStorage.setItem('svs-theme', next); } catch (e) {}
-  draw(); drawCmp();
+  draw(); drawCmp(); drawSpect();
   areaChart(document.getElementById('envchart'), ENV, "L'enveloppe culturelle publiée par exercice, en milliers d'euros");
 };
 
 /* ── coût par spectateur ── */
 const SPECT = [
-  { n:'Opéra Orchestre national', v:96.8, c:'lieu', d:'13 330 k€ en 2022 · 137 743 billets édités' },
-  { n:'MO.CO.',                   v:59.0, c:'lieu', d:'5 901 k€ en 2024 · environ 100 000 visiteurs' },
-  { n:'Théâtre des Treize Vents', v:58.3, c:'lieu', d:'700 k€ en 2020 · 12 000 spectateurs en salle, saison 2018-2019' },
-  { n:'Le Printemps des Comédiens',v:50.7, c:'evt',  d:'1 522 k€ en 2023 · environ 30 000 spectateurs' },
-  { n:'Montpellier Danse',        v:49.6, c:'evt',  d:'1 588 k€ en 2023 · environ 32 000 spectateurs' },
-  { n:'Festival Radio France',    v:14.6, c:'evt',  d:'1 094 k€ en 2026 · 75 000 spectateurs, gratuits compris' },
-  { n:'Cinemed',                  v:12.9, c:'evt',  d:'707 k€ en 2021 · 55 000 entrées' },
-  { n:'Arabesques (Uni\u2019Sons)', v:4.8,  c:'evt',  d:'288 k€ en 2025 · plus de 60 000 spectateurs annoncés' },
-  { n:'MaMA Stock (Rank\u2019Art)', v:0.53, c:'evt',  d:'8 k€ en 2026 · plus de 15 000 festivaliers, festival gratuit' },
-  { n:'What a Trip ! (AFIVAM)',   v:0.45, c:'evt',  d:'18 k€ en 2023 · 40 000 spectateurs annoncés par l\u2019organisateur' }
+  { n:'Opéra Orchestre national', v:96.8, c:'lieu', u:'billets édités', d:'13 330 k€ en 2022 · 137 743 billets édités' },
+  { n:'MO.CO.',                   v:59.0, c:'lieu', u:'visiteurs annoncés', d:'5 901 k€ en 2024 · environ 100 000 visiteurs' },
+  { n:'Théâtre des Treize Vents', v:58.3, c:'lieu', u:'spectateurs en salle', d:'700 k€ en 2020 · 12 000 spectateurs en salle, saison 2018-2019' },
+  { n:'Le Printemps des Comédiens',v:50.7, c:'evt',  u:'spectateurs, chiffre de presse', d:'1 522 k€ en 2023 · environ 30 000 spectateurs' },
+  { n:'Montpellier Danse',        v:49.6, c:'evt',  u:'spectateurs, bilan d\u2019édition', d:'1 588 k€ en 2023 · environ 32 000 spectateurs' },
+  { n:'Festival Radio France',    v:14.6, c:'evt',  u:'dont 30 000 en accès libre', d:'1 094 k€ en 2026 · 75 000 spectateurs, gratuits compris' },
+  { n:'Cinemed',                  v:12.9, c:'evt',  u:'entrées', d:'707 k€ en 2021 · 55 000 entrées' },
+  { n:'Arabesques (Uni\u2019Sons)', v:4.8,  c:'evt',  u:'spectateurs annoncés', d:'288 k€ en 2025 · plus de 60 000 spectateurs annoncés' },
+  { n:'MaMA Stock (Rank\u2019Art)', v:0.53, c:'evt',  u:'festivaliers, festival gratuit', d:'8 k€ en 2026 · plus de 15 000 festivaliers, festival gratuit' },
+  { n:'What a Trip ! (AFIVAM)',   v:0.45, c:'evt',  u:'spectateurs annoncés', d:'18 k€ en 2023 · 40 000 spectateurs annoncés par l\u2019organisateur' }
 ];
-(function drawSpect(){
+function drawSpect(){
   const el = document.getElementById('spectbars'); if (!el) return;
-  const max = Math.max(...SPECT.map(x => x.v));
-  el.innerHTML = '<div class="tb">' + SPECT.map(x => `<div class="tbrow">
-      <span class="tbn" title="${esc(x.d)}">${esc(x.n)}</span>
-      <span class="tbb" data-d="${esc(x.d)}"><i style="width:${(100*x.v/max).toFixed(1)}%;background:var(--${x.c})"></i></span>
-      <span class="tbv">${fr.format(x.v)} €</span><span></span>
-    </div>`).join('') + '</div>';
-  el.querySelectorAll('.tbb,.tbn').forEach((b, i) => {
-    const x = SPECT[Math.floor(i / 2)] || SPECT[i % SPECT.length];
-    b.addEventListener('mousemove', e => showTip(e, '<b>' + esc(b.dataset.d || b.title || '') + '</b>'));
-    b.addEventListener('mouseleave', hideTip);
+  const W = 820, RH = 36, T = 30, L = 232, R = 62, Bm = 26;
+  const H = T + SPECT.length * RH + Bm;
+  const lo = Math.log10(0.3), hi = Math.log10(130);
+  const X = v => L + (W - L - R) * (Math.log10(v) - lo) / (hi - lo);
+  const g = [];
+  [0.5, 1, 5, 10, 50, 100].forEach(t => {
+    const x = X(t).toFixed(1);
+    g.push(`<line class="gl" x1="${x}" y1="${T - 14}" x2="${x}" y2="${T + SPECT.length * RH - 10}"/>`);
+    g.push(`<text class="gt" x="${x}" y="${T - 20}" text-anchor="middle">${t < 1 ? '0,50 €' : t + ' €'}</text>`);
   });
-})();
+  SPECT.forEach((d, k) => {
+    const y = T + k * RH + RH / 2 - 6, x = X(d.v);
+    g.push(`<g class="r" data-i="${k}">`);
+    g.push(`<rect x="0" y="${y - RH/2}" width="${W}" height="${RH}" fill="transparent"/>`);
+    g.push(`<line class="rr" x1="${L}" y1="${y}" x2="${W - R}" y2="${y}"/>`);
+    g.push(`<text class="nm" x="${L - 14}" y="${y - 1}" text-anchor="end">${esc(d.n)}</text>`);
+    g.push(`<text class="sub" x="${L - 14}" y="${y + 12}" text-anchor="end">${esc(d.u)}</text>`);
+    g.push(`<circle class="dot" cx="${x.toFixed(1)}" cy="${y}" r="7" fill="var(--${d.c})"/>`);
+    g.push(`<text class="vl" x="${W - R + 12}" y="${y + 4}">${fr.format(d.v)} €</text>`);
+    g.push('</g>');
+  });
+  const yTop = T + RH / 2 - 6, yBot = T + (SPECT.length - 1) * RH + RH / 2 - 6;
+  const xa = X(SPECT[SPECT.length - 1].v), xb = X(SPECT[0].v), xm = (xa + xb) / 2;
+  g.push(`<line class="span" x1="${xa.toFixed(1)}" y1="${yBot + 16}" x2="${xb.toFixed(1)}" y2="${yBot + 16}"/>`);
+  g.push(`<line class="span" x1="${xa.toFixed(1)}" y1="${yBot + 11}" x2="${xa.toFixed(1)}" y2="${yBot + 21}"/>`);
+  g.push(`<line class="span" x1="${xb.toFixed(1)}" y1="${yTop}" x2="${xb.toFixed(1)}" y2="${yBot + 21}"/>`);
+  g.push(`<text class="spant" x="${xm.toFixed(1)}" y="${yBot + 32}" text-anchor="middle">un rapport de 1 à 215</text>`);
+  el.innerHTML = `<svg class="sp" viewBox="0 0 ${W} ${H + 14}" role="img" aria-label="Argent public par spectateur, de 0,45 € à 96,80 €, échelle logarithmique">${g.join('')}</svg>`
+    + `<div class="splg"><b><s style="background:var(--lieu)"></s>Lieu ou équipement</b><b><s style="background:var(--evt)"></s>Événement ou festival</b>`
+    + `<b style="color:var(--ink-3)">Échelle logarithmique : chaque graduation multiplie par dix</b></div>`;
+  el.querySelectorAll('g.r').forEach(row => {
+    const d = SPECT[+row.dataset.i];
+    row.addEventListener('mousemove', e => showTip(e, '<b>' + esc(d.n) + '</b><br><span class="v">' + fr.format(d.v) + ' € par personne</span><br>' + esc(d.d)));
+    row.addEventListener('mouseleave', hideTip);
+  });
+}
+drawSpect();
 
 /* ── jauge de lecture ── */
 const progEl = document.getElementById('prog');
