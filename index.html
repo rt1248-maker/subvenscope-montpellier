@@ -1181,8 +1181,11 @@ function drawTop26(){
   const show = list.slice(0, 15);
   const max = show.length ? Math.max(...show.map(x => val(x) + hval(x))) : 1;
   const tot = list.reduce((a, s) => a + val(s), 0);
+  const prevL = filtered().filter(s => (s.v[I26-1] || 0) > 0);
+  const prevT = prevL.reduce((a, s) => a + (s.v[I26-1] || 0), 0);
+  const gone = prevL.filter(s => !(s.v[I26] > 0)).length;
   t26Cap.textContent = list.length
-    ? `Milliers d'euros votés au titre du seul exercice 2026, tels que publiés à ce jour. ${fr.format(list.length)} bénéficiaires ont une ligne en 2026 dans la sélection, pour ${money(tot)} au total ; les quinze premiers sont affichés. L'exercice n'est pas clos : ces montants peuvent encore évoluer.`
+    ? `Milliers d'euros votés au titre du seul exercice 2026, tels que publiés à ce jour. ${fr.format(list.length)} bénéficiaires ont une ligne en 2026 dans la sélection, pour ${money(tot)} ; ils étaient ${fr.format(prevL.length)} pour ${money(prevT)} en 2025, et ${fr.format(gone)} structures présentes l'an dernier n'ont pas encore de ligne. Les quinze premiers sont affichés. L'exercice n'est pas clos : l'absence de ligne en 2026 ne signifie pas qu'une structure a cessé d'être financée.`
     : '';
   if (!show.length){ t26El.innerHTML = '<div class="empty">Aucun bénéficiaire de cette sélection n’a de ligne en 2026.</div>'; return; }
   t26El.innerHTML = '<div class="tb">' + show.map(s => {
